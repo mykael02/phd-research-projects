@@ -1,11 +1,26 @@
 # Minimal grid navigation baseline
 
 This is a provisional robotics research starter, not a selected PhD focus or
-evidence of a research contribution. It implements planning for a point robot
+evidence of a research contribution. The grid baseline plans for a point robot
 occupying one cell, with four-connected, unit-cost moves. Planning success is
-not execution success: dynamics, robot footprint, sensing and tracking are absent.
-No live literature search was performed for this slice; that remains outstanding.
-RRT, differential-drive dynamics and path tracking are deferred to later work.
+not execution success: sensing and path tracking are absent.
+The live literature search is still **OUTSTANDING**; none was performed for
+any slice here.
+
+Status of the deferred items from `docs/starter-rationale.md`:
+
+- **D1 seeded RRT: built** in `rrtplan/` with `run_rrt_experiments.py`; see
+  [RRT.md](RRT.md).
+- **D2 differential-drive model: built** in `diffdrive/`; see
+  [DIFFDRIVE.md](DIFFDRIVE.md). It is a kinematic unicycle model with command
+  limits and a disc footprint, checked only at step boundaries.
+- **D3 path tracking: still deferred.**
+
+D1 and D2 both use the shared geometry rule G for continuous positions, stated
+in full in `DIFFDRIVE.md` and `RRT.md`: cell `(r, c)` has centre
+`(c + 0.5, r + 0.5)`, blocked cells are closed unit squares, and touching an
+obstacle or the outer map edge is a collision. The `gridnav/` rules below are
+unchanged.
 
 Python 3.8+ and the standard library are sufficient; install nothing. From the
 repository root, run these commands separately:
@@ -14,14 +29,21 @@ repository root, run these commands separately:
 python -m unittest discover -s projects/nav-baseline/tests -t projects/nav-baseline -v
 python projects/nav-baseline/run_experiments.py
 python projects/nav-baseline/run_experiments.py --timing
+python projects/nav-baseline/run_rrt_experiments.py
 ```
 
 ## Layout and API
 
 - `gridnav/`: strict grid parsing/loading, A*, BFS reference and path validation.
+- `rrtplan/`: D1 seeded RRT in continuous space under rule G ([RRT.md](RRT.md)).
+- `diffdrive/`: D2 unicycle kinematics, limits and disc collision under rule G
+  ([DIFFDRIVE.md](DIFFDRIVE.md)).
 - `maps/`: hand-made ASCII maps (`.` free, `#` blocked).
 - `run_experiments.py`: fixed cases, seeded random cases and report function.
+- `run_rrt_experiments.py`: D1 deterministic report (see [RRT.md](RRT.md)).
 - `tests/`: unittest checks, including independent script invocations.
+
+The rest of this file describes `gridnav/` and `run_experiments.py`.
 
 With `projects/nav-baseline` on the Python import path:
 
