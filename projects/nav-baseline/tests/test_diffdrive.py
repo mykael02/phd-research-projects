@@ -129,6 +129,42 @@ class KinematicsTests(unittest.TestCase):
         self.assertAlmostEqual(whole.y, split.y, places=12)
         self.assertAlmostEqual(whole.theta, split.theta, places=12)
 
+    def test_arc_matches_textbook_formula(self):
+        start = Pose(1.0, 2.0, 0.7)
+        for v, omega, dt in ((1.0, 0.5, 1.0), (0.8, -2.0, 0.3), (-0.5, 3.0, 2.0), (1.0, 1.0, 2.0 * math.pi)):
+            with self.subTest(v=v, omega=omega, dt=dt):
+                theta_end = start.theta + omega * dt
+                ratio = v / omega
+                pose = step(start, v, omega, dt)
+                self.assertAlmostEqual(pose.x, start.x + ratio * (math.sin(theta_end) - math.sin(start.theta)), places=12)
+                self.assertAlmostEqual(pose.y, start.y - ratio * (math.cos(theta_end) - math.cos(start.theta)), places=12)
+                self.assertAlmostEqual(pose.theta, wrap_angle(theta_end), places=12)
+
+    def test_tiny_turn_rate_keeps_displacement(self):
+        # Regression: the (v/omega)(sin theta' - sin theta) form loses all
+        # displacement here through cancellation. The arc must stay within
+        # rounding of the straight-line update for small +/- turn rates.
+        start = Pose(0.5, 2.5, 0.3)
+        straight = step(start, 1.0, 0.0, 1.0)
+        self.assertAlmostEqual(straight.x, 1.4553364891, places=9)
+        self.assertAlmostEqual(straight.y, 2.7955202067, places=9)
+        for omega in (1e-17, -1e-17, 1e-12, -1e-12, 1e-9, -1e-9, 5e-324):
+            with self.subTest(omega=omega):
+                pose = step(start, 1.0, omega, 1.0)
+                self.assertLess(abs(pose.x - straight.x), 1e-8)
+                self.assertLess(abs(pose.y - straight.y), 1e-8)
+                self.assertLess(abs(pose.theta - (0.3 + omega)), 1e-15)
+
+    def test_tiny_turn_rate_rollout_flags_wall(self):
+        # The correct endpoint (1.455..., 2.795...) lies inside the column-1
+        # wall of detour.txt, so the rollout must flag step 1.
+        grid = load("detour")
+        limits = Limits(0.0, 2.0, 1.0)
+        for omega in (1e-17, -1e-17):
+            with self.subTest(omega=omega):
+                result = rollout(grid, Pose(0.5, 2.5, 0.3), [(1.0, omega)], 1.0, limits)
+                self.assertEqual(result.collision_step, 1)
+
     def test_invalid_step_inputs(self):
         for dt in (0.0, -0.1, math.inf, math.nan):
             with self.subTest(dt=dt), self.assertRaises(ValueError):

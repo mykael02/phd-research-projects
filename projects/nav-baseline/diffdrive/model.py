@@ -88,12 +88,19 @@ def step(pose: Pose, v: float, omega: float, dt: float) -> Pose:
             pose.y + distance * math.sin(pose.theta),
             wrap_angle(pose.theta),
         )
-    theta_end = pose.theta + omega * dt
-    ratio = v / omega
+    # Exact arc written in a cancellation-free form: the chord has length
+    # v*dt*sinc(dtheta/2) and points along the midpoint heading. This equals
+    # (v/omega)*(sin theta' - sin theta), -(v/omega)*(cos theta' - cos theta)
+    # but does not lose the displacement when omega is tiny but nonzero.
+    dtheta = omega * dt
+    half = 0.5 * dtheta
+    sinc_half = 1.0 if half == 0 else math.sin(half) / half
+    chord = v * dt * sinc_half
+    mid = pose.theta + half
     return Pose(
-        pose.x + ratio * (math.sin(theta_end) - math.sin(pose.theta)),
-        pose.y - ratio * (math.cos(theta_end) - math.cos(pose.theta)),
-        wrap_angle(theta_end),
+        pose.x + chord * math.cos(mid),
+        pose.y + chord * math.sin(mid),
+        wrap_angle(pose.theta + dtheta),
     )
 
 

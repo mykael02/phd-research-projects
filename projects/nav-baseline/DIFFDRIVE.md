@@ -56,7 +56,10 @@ in collision at `rho = 0.5`.
   `x += v dt cos(theta)`, `y += v dt sin(theta)`. Otherwise it uses the exact
   arc: `theta' = theta + omega dt`,
   `x += (v/omega)(sin theta' - sin theta)`,
-  `y -= (v/omega)(cos theta' - cos theta)`. `step` applies no limits.
+  `y -= (v/omega)(cos theta' - cos theta)`. It is computed in the equivalent
+  form `x += c cos(theta + omega dt/2)`, `y += c sin(theta + omega dt/2)` with
+  chord `c = v dt sin(omega dt/2)/(omega dt/2)`, which avoids subtracting
+  nearly equal sines when `omega` is tiny but nonzero. `step` applies no limits.
 
 ## Rollout and the collision-check limitation
 
@@ -87,7 +90,10 @@ matches the point rule over a quarter-unit sweep of three maps, G5 for blocked
 and out-of-range cells, straight-line motion, turning on the spot with the
 position unchanged, one full circle (`v = omega = 1`, 100 steps) returning to
 its start within `1e-9` in `x`, `y` and wrapped `theta`, that one arc step
-matches ten smaller ones, clipping and its flag, the step-boundary collision
+matches ten smaller ones, that the arc update matches the textbook
+`(v/omega)` formula for moderate turn rates and stays within `1e-8` of the
+straight-line update for tiny positive and negative turn rates (including a
+rollout on `detour.txt` that must flag the wall), clipping and its flag, the step-boundary collision
 gap above, and that repeated rollouts are identical. These are checks of the
 kinematic equations and collision rule only; they make no claim about how a
 real robot would move.
