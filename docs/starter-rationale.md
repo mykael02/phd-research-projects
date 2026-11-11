@@ -21,7 +21,8 @@ decision that the PhD will focus on navigation. It was chosen because:
 
 ## Baseline rules (as built)
 
-These rules define what the baseline does and does not claim:
+These rules define what the grid baseline (`gridnav/`) does and does not
+claim. D1 and D2 use continuous positions under rule G, described below:
 
 - **Map:** `.` is a free cell and `#` is a blocked cell. Ragged, empty or
   unknown-character maps raise `ValueError`.
@@ -49,12 +50,53 @@ These rules define what the baseline does and does not claim:
   times and is byte-identical across runs. Timing appears only with `--timing`,
   in a separate section labelled non-deterministic.
 
-## Deferred work (later slices)
+## Deferred work: status
 
-These items are **not** implemented. Each is listed with ideas for how it could
-be accepted when built.
+| Item | Status |
+| --- | --- |
+| D1 seeded RRT | **Built** under rule G: `projects/nav-baseline/rrtplan/`, `run_rrt_experiments.py`, `RRT.md` |
+| D2 differential-drive model | **Built** under rule G: `projects/nav-baseline/diffdrive/`, `DIFFDRIVE.md` |
+| D3 path tracking | **Still deferred**, not implemented |
+| Live literature search | **Still OUTSTANDING** (see [literature-search-todo.md](literature-search-todo.md)) |
 
-### D1. Sampling-based planning (RRT, and possibly RRT*)
+### Shared geometry rule G (D1 and D2)
+
+D1 and D2 each implement and test the same rule for continuous positions on
+the grid maps:
+
+- **G1** Grid cell `(r, c)` maps to the point `(x, y) = (c + 0.5, r + 0.5)`.
+- **G2** The map area is `[0, width] x [0, height]`; blocked cell `(r, c)` is
+  the closed square `[c, c+1] x [r, r+1]`.
+- **G3** A point is free only if `0 < x < width`, `0 < y < height` and it is
+  in no closed blocked square. Touching an obstacle or the outer edge is a
+  collision.
+- **G4** A disc of radius `rho >= 0` collides if its centre is within distance
+  `<= rho` of a blocked square, or within `rho` of the outer edge (inclusive).
+  `rho = 0` reduces to G3.
+- **G5** Out-of-range or blocked cells map to points in collision.
+
+The tests in each slice check shared reference cases on `maps/detour.txt`.
+Passing them shows the two slices agree on these cases. It does not show that
+either is fit for any particular robot.
+
+### What was built for D1 and D2
+
+- **D1:** a seeded RRT for a point robot with exact segment checks; details,
+  fixed settings and tested success thresholds are in
+  `projects/nav-baseline/RRT.md`. RRT* was not built.
+- **D2:** a kinematic unicycle model (`x, y, theta`) with clipped and flagged
+  `(v, omega)` limits, a fixed step `dt` with exact arc integration, and a disc
+  footprint checked under G4. The footprint is checked only at the pose after
+  each step; checking the motion between steps is **not** implemented, and a
+  test shows a large `dt` jumping the one-unit wall in `detour.txt` unflagged.
+  See `projects/nav-baseline/DIFFDRIVE.md`.
+
+Neither slice adds accuracy or performance claims beyond what its tests check.
+Planning success is still not execution success: D3 is what would connect them.
+
+The original acceptance ideas are kept below for reference.
+
+### D1. Sampling-based planning (RRT, and possibly RRT*) - built (RRT only)
 - **Scope:** continuous 2-D configuration space with obstacles taken from the
   grid maps (each blocked cell becomes an axis-aligned square), point robot
   first.
@@ -69,7 +111,7 @@ be accepted when built.
     compared with the grid optimum as a reference (noting that the two use
     different metrics).
 
-### D2. Differential-drive robot model
+### D2. Differential-drive robot model - built
 - **Scope:** unicycle/differential-drive kinematics (x, y, heading) with
   velocity and turn-rate limits, integrated at a fixed time step.
 - **Acceptance ideas:**
@@ -82,7 +124,7 @@ be accepted when built.
   - A footprint radius is introduced, with tests showing that obstacle
     inflation makes free-but-narrow passages correctly fail.
 
-### D3. Path tracking
+### D3. Path tracking - still deferred
 - **Scope:** a controller (for example, pure pursuit) that drives the D2 model
   along a path from A* or RRT.
 - **Acceptance ideas:**
