@@ -32,8 +32,12 @@ filters), graph search and sampling-based planning, Python/C++, basic ROS or
 an equivalent middleware, experimental statistics.
 
 **First small experiment.** Extend `projects/nav-baseline` with a per-cell
-"localizability" penalty (for example, low in open areas with no nearby
-landmarks). Compare plain A* with penalized A* on the seeded maps, reporting
+localization-quality score in [0, 1] (high near landmarks, low in open areas
+with no nearby landmarks). Convert it into a non-negative step cost,
+`penalty = w * (1 - quality)` with weight `w >= 0`, so that poorly localized
+cells cost more and the planner avoids them. Add this penalty to the unit move
+cost. Because the penalty is never negative, the Manhattan heuristic remains
+admissible. Compare plain A* with penalized A* on the seeded maps, reporting
 path length and a simulated pose-error proxy along each path. All of this can
 be done in the standard library on a laptop.
 
