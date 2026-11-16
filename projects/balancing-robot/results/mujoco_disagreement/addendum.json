@@ -1,0 +1,994 @@
+{
+  "metadata": {
+    "specification": {
+      "study": "mujoco-boundary-disagreement-addendum-v1",
+      "date": "2026-11-13",
+      "status": "Post hoc. Designed after the main diagnostics identified chassis pitch inertia; exploratory consistency check, not a confirmatory test.",
+      "variants": [
+        "planar",
+        "native",
+        "planar_plus_chassis",
+        "chassis_removed"
+      ],
+      "boundaries": [
+        {
+          "torque_limit_nm": 0.3,
+          "low_n": 10.0,
+          "high_n": 13.5
+        },
+        {
+          "torque_limit_nm": 0.5,
+          "low_n": 17.0,
+          "high_n": 19.5
+        },
+        {
+          "torque_limit_nm": 0.7,
+          "low_n": 20.0,
+          "high_n": 23.5
+        }
+      ],
+      "halvings": 12,
+      "physics_step_s": 0.000125,
+      "prediction": "For every archived zoom force in the slice, a model falls exactly when the force is at or above its first-fallen bracket end. Compared with the archived finest-step labels of the planar and contact models.",
+      "scope": "Force slices only (zero initial tilt). The unforced start-up slice at 0.1 N m is not covered."
+    },
+    "source_sha256": {
+      "balance.py": "573cbe8e27728a2b8fe1f161f400c67be209ea6a12944a5cb12c761054ccc673",
+      "config.json": "577501728bb9e45dfe280fd519aadee4a068a8e2ff8d579ccb891967c7cf7446",
+      "mujoco_lab/validate.py": "f08f33187402b338192bc718fd9f517d0edd531d48e0e179363616b8725fe012",
+      "mujoco_lab/extension_core.py": "e010bea8527f910e90ecfe963eb3bfc0854ce5c00fcb5d833d16eb4a174ce6f6",
+      "mujoco_lab/run_disagreement.py": "4139296fda4005e77fc63fc97c622a9a6534e1992f1fe63ab0cf22da0a8a5988",
+      "mujoco_lab/disagreement_protocol.json": "bbf29469bbcd065a5e1381672a7a0be3b24188e40810005a0491ebfb794e9d10",
+      "mujoco_lab/balancing_robot.xml": "fa99dd4a2a060d52c8aa7e3e0868cf14b863d3a0267000995cb5d14e8d927f2a",
+      "results/comparison/gain_design.json": "39b0e9eb8956df04665b3e5a14c6f1c50f307f07d4ebbea025fa1550d29db466",
+      "mujoco_lab/run_disagreement_addendum.py": "cc8b146bf35e31510c394890b44cdc48179d248683f5c556e93892576e85c06e",
+      "results/mujoco_boundary_zoom/study.json": "6d3582eba473d0d4b1da06c30e1cb406aeab404455fadd0769cb09ab1e40683b"
+    },
+    "mujoco": "4.0.1",
+    "numpy": "2.5.4",
+    "python": "3.14.2",
+    "workers": 8,
+    "runtime_s": 402.8249259000004,
+    "integrations": 168
+  },
+  "boundaries": [
+    {
+      "torque_limit_nm": 0.3,
+      "brackets": {
+        "planar": {
+          "variant": "planar",
+          "torque_limit_nm": 0.3,
+          "last_not_fallen_n": 11.88330078125,
+          "first_fallen_n": 11.8841552734375,
+          "midpoint_n": 11.88372802734375,
+          "width_n": 0.0008544921875
+        },
+        "native": {
+          "variant": "native",
+          "torque_limit_nm": 0.3,
+          "last_not_fallen_n": 11.857666015625,
+          "first_fallen_n": 11.8585205078125,
+          "midpoint_n": 11.85809326171875,
+          "width_n": 0.0008544921875
+        },
+        "planar_plus_chassis": {
+          "variant": "planar_plus_chassis",
+          "torque_limit_nm": 0.3,
+          "last_not_fallen_n": 11.8551025390625,
+          "first_fallen_n": 11.85595703125,
+          "midpoint_n": 11.85552978515625,
+          "width_n": 0.0008544921875
+        },
+        "chassis_removed": {
+          "variant": "chassis_removed",
+          "torque_limit_nm": 0.3,
+          "last_not_fallen_n": 11.88671875,
+          "first_fallen_n": 11.8875732421875,
+          "midpoint_n": 11.88714599609375,
+          "width_n": 0.0008544921875
+        }
+      },
+      "gap_n": 0.025634765625,
+      "gap_percent": 0.21571316312537558,
+      "gap_with_inertia_matched_n": -0.00341796875,
+      "planar_shift_from_added_inertia_n": -0.0281982421875,
+      "contact_shift_from_chassis_inertia_n": -0.029052734375,
+      "archived_grid_forces_inside_gap_n": [],
+      "archived_zoom_cells": 22,
+      "archived_labels_reproduced": 22,
+      "archived_disagreements": 0,
+      "checks": [
+        {
+          "push_force_n": -11.5,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.55,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.6,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.65,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.7,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.75,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.8,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.85,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.9,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -11.95,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -12.0,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.5,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.55,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.6,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.65,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.7,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.75,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.8,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.85,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.9,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 11.95,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 12.0,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        }
+      ]
+    },
+    {
+      "torque_limit_nm": 0.5,
+      "brackets": {
+        "planar": {
+          "variant": "planar",
+          "torque_limit_nm": 0.5,
+          "last_not_fallen_n": 18.226806640625,
+          "first_fallen_n": 18.2274169921875,
+          "midpoint_n": 18.22711181640625,
+          "width_n": 0.0006103515625
+        },
+        "native": {
+          "variant": "native",
+          "torque_limit_nm": 0.5,
+          "last_not_fallen_n": 18.1883544921875,
+          "first_fallen_n": 18.18896484375,
+          "midpoint_n": 18.18865966796875,
+          "width_n": 0.0006103515625
+        },
+        "planar_plus_chassis": {
+          "variant": "planar_plus_chassis",
+          "torque_limit_nm": 0.5,
+          "last_not_fallen_n": 18.182861328125,
+          "first_fallen_n": 18.1834716796875,
+          "midpoint_n": 18.18316650390625,
+          "width_n": 0.0006103515625
+        },
+        "chassis_removed": {
+          "variant": "chassis_removed",
+          "torque_limit_nm": 0.5,
+          "last_not_fallen_n": 18.23291015625,
+          "first_fallen_n": 18.2335205078125,
+          "midpoint_n": 18.23321533203125,
+          "width_n": 0.0006103515625
+        }
+      },
+      "gap_n": 0.0384521484375,
+      "gap_percent": 0.21096128023359775,
+      "gap_with_inertia_matched_n": -0.006103515625,
+      "planar_shift_from_added_inertia_n": -0.0439453125,
+      "contact_shift_from_chassis_inertia_n": -0.0445556640625,
+      "archived_grid_forces_inside_gap_n": [
+        18.2
+      ],
+      "archived_zoom_cells": 22,
+      "archived_labels_reproduced": 22,
+      "archived_disagreements": 2,
+      "checks": [
+        {
+          "push_force_n": -18.0,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.05,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.1,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.15,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.2,
+          "predicted_fallen": {
+            "planar": false,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.25,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.3,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.35,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.4,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.45,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -18.5,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.0,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.05,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.1,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.15,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.2,
+          "predicted_fallen": {
+            "planar": false,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.25,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.3,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.35,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.4,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.45,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 18.5,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        }
+      ]
+    },
+    {
+      "torque_limit_nm": 0.7,
+      "brackets": {
+        "planar": {
+          "variant": "planar",
+          "torque_limit_nm": 0.7,
+          "last_not_fallen_n": 21.84912109375,
+          "first_fallen_n": 21.8499755859375,
+          "midpoint_n": 21.84954833984375,
+          "width_n": 0.0008544921875
+        },
+        "native": {
+          "variant": "native",
+          "torque_limit_nm": 0.7,
+          "last_not_fallen_n": 21.8140869140625,
+          "first_fallen_n": 21.81494140625,
+          "midpoint_n": 21.81451416015625,
+          "width_n": 0.0008544921875
+        },
+        "planar_plus_chassis": {
+          "variant": "planar_plus_chassis",
+          "torque_limit_nm": 0.7,
+          "last_not_fallen_n": 21.8115234375,
+          "first_fallen_n": 21.8123779296875,
+          "midpoint_n": 21.81195068359375,
+          "width_n": 0.0008544921875
+        },
+        "chassis_removed": {
+          "variant": "chassis_removed",
+          "torque_limit_nm": 0.7,
+          "last_not_fallen_n": 21.8525390625,
+          "first_fallen_n": 21.8533935546875,
+          "midpoint_n": 21.85296630859375,
+          "width_n": 0.0008544921875
+        }
+      },
+      "gap_n": 0.0350341796875,
+      "gap_percent": 0.16034280957475636,
+      "gap_with_inertia_matched_n": -0.00341796875,
+      "planar_shift_from_added_inertia_n": -0.03759765625,
+      "contact_shift_from_chassis_inertia_n": -0.0384521484375,
+      "archived_grid_forces_inside_gap_n": [],
+      "archived_zoom_cells": 22,
+      "archived_labels_reproduced": 22,
+      "archived_disagreements": 0,
+      "checks": [
+        {
+          "push_force_n": -21.5,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.55,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.6,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.65,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.7,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.75,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.8,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.85,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.9,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -21.95,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": -22.0,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.5,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.55,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.6,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.65,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.7,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.75,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.8,
+          "predicted_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "archived_fallen": {
+            "planar": false,
+            "native": false
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.85,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.9,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 21.95,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        },
+        {
+          "push_force_n": 22.0,
+          "predicted_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "archived_fallen": {
+            "planar": true,
+            "native": true
+          },
+          "matches": true
+        }
+      ]
+    }
+  ]
+}

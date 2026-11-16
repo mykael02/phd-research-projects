@@ -1,0 +1,14 @@
+{
+  "figures": 8,
+  "local_links": 25,
+  "manuscript_v2": {
+    "pages": 23,
+    "words": 9850,
+    "sha256": "7e7976d7d05828a75b4d5eb2b66e1503c064b102173ae732ae14ff67079302aa"
+  },
+  "mujoco_followup_report": {
+    "pages": 24,
+    "words": 8122,
+    "sha256": "adf5503e85e132f6fb1dc2b6fd653bb2225e85c9b0a9e5cbcdae15b5b74558d9"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "protocol": {
+    "study": "payload-aware-lqr-v1",
+    "date": "2026-11-12",
+    "status": "Prospectively fixed local protocol; not externally preregistered. Test conditions reserved from development, with no performance-based tuning.",
+    "q": [
+      12,
+      2,
+      120,
+      2
+    ],
+    "r": 1,
+    "design": "Continuous-time LQR at upright equilibrium, same Q/R for every assumed payload. Control sampled at 200 Hz and torque saturated. Gains fixed within each run; no online payload estimation.",
+    "tuning_budget": "Zero performance-based parameter searches. Original Q/R and sensing covariance retained. Development runs check implementation only.",
+    "variants": [
+      "fixed",
+      "exact",
+      "mass_low",
+      "mass_high",
+      "height_low",
+      "height_high"
+    ],
+    "estimate_errors": {
+      "mass_low_scale": 0.8,
+      "mass_high_scale": 1.2,
+      "height_low_offset_m": -0.04,
+      "height_high_offset_m": 0.04
+    },
+    "development_loads": [
+      {
+        "mass_kg": 0,
+        "height_m": 0.18
+      },
+      {
+        "mass_kg": 0.75,
+        "height_m": 0.18
+      },
+      {
+        "mass_kg": 0.75,
+        "height_m": 0.4
+      },
+      {
+        "mass_kg": 1.5,
+        "height_m": 0.4
+      }
+    ],
+    "development_conditions": [
+      {
+        "initial_tilt_deg": 5,
+        "push_force_n": 5,
+        "torque_limit_nm": 0.7
+      },
+      {
+        "initial_tilt_deg": 0,
+        "push_force_n": 20,
+        "torque_limit_nm": 0.7
+      }
+    ],
+    "test_masses_kg": [
+      0.35,
+      0.65,
+      1.15
+    ],
+    "test_heights_m": [
+      0.14,
+      0.26,
+      0.36
+    ],
+    "ideal_test": {
+      "tilts_deg": [
+        -12,
+        0,
+        12
+      ],
+      "forces_n": [
+        -15,
+        -7,
+        7,
+        15
+      ],
+      "torque_limits_nm": [
+        0.3,
+        0.6
+      ]
+    },
+    "sensing_test": [
+      {
+        "id": "opposing_push",
+        "initial_tilt_deg": 7,
+        "push_force_n": -12,
+        "torque_limit_nm": 0.6
+      },
+      {
+        "id": "restricted_torque",
+        "initial_tilt_deg": -7,
+        "push_force_n": 12,
+        "torque_limit_nm": 0.3
+      }
+    ],
+    "profiles": [
+      {
+        "id": "direct_0ms",
+        "mode": "direct",
+        "angleNoiseDeg": 0.75,
+        "gyroNoiseDegS": 3,
+        "delayMs": 0
+      },
+      {
+        "id": "kalman_0ms",
+        "mode": "kalman",
+        "angleNoiseDeg": 0.75,
+        "gyroNoiseDegS": 3,
+        "delayMs": 0
+      },
+      {
+        "id": "kalman_10ms",
+        "mode": "kalman",
+        "angleNoiseDeg": 0.75,
+        "gyroNoiseDegS": 3,
+        "delayMs": 10
+      }
+    ],
+    "repetitions": 30,
+    "test_seed_formula": "5003 + 104729*i, i=0..29. Same seeds across variants; distinct from prior studies.",
+    "duration_s": 10,
+    "dt_s": 0.005,
+    "pulse_start_s": 2,
+    "pulse_duration_s": 0.2,
+    "force_location": "Combined true body COM; the true force moment arm changes with true load, never with its estimated load.",
+    "primary": "Fall by 10 s at control endpoints, absolute true tilt >=45 deg",
+    "secondary": "Original final-one-second recovery dwell; final-second RMS tilt/position/speed; torque squared integral and saturation fraction. Full-horizon paired metrics only when both compared trials survive.",
+    "statistics": "Paired transitions by condition/seed; deterministic totals descriptive. Wilson 95% intervals only per noisy fixed condition. IQR for paired continuous differences. No aggregate deployment probability or unpaired significance tests.",
+    "numerical_audit": "All 1296 ideal test records repeated with two RK4 substeps preserving 200 Hz control; any changed labels repeated with four.",
+    "independent_check": "Selected ideal test trajectories checked with independently assembled component mass matrix and SciPy DOP853 under held 200 Hz control. Numerical cross-check, not independent multibody/hardware validation.",
+    "example": {
+      "mass_kg": 0.65,
+      "height_m": 0.26,
+      "initial_tilt_deg": 12,
+      "push_force_n": -15,
+      "torque_limit_nm": 0.6
+    }
+  },
+  "node": "v24.13.0",
+  "phase": "development",
+  "source_sha256": {
+    "comparison_protocol.json": "da0b9f57dde9ba9fd8e73127cfc1eb48bf9de1e6d6294b1ad642d1566d8c5ed1",
+    "config.js": "2240d09af81fda45275ddfe16ce41971873977a0726f49d9668dfd83a51144c2",
+    "model.js": "68c9788d49b0901b4da2d9ec56a3a96961c71aeaeb1dea617d1b05dab865a698",
+    "visualisation/sensing.js": "a7fcc8e208c1c904d4fb8ad6bd655443151e41170ebe1ef744400ebb7f6dd1ec",
+    "visualisation/payload.js": "b630999c509fc83941cdce6752a7ad2c11bf4b3fa9cc7d3583861aa18ef1b970",
+    "visualisation/payload-lqr.js": "5d60a6feb4736c6745ad14d5c0fbb35e60498056eebd50ee269927ebc2628a32",
+    "visualisation/payload-gains.js": "a7afc91d363661fd92132cbacf30f1c3f4d787323d79757e5371bd0d2de55cc6",
+    "design_payload_lqr.py": "8a46c4186dd47f4b121ed69a99a73237a57e8d78b9228dd1416111ade2726569",
+    "run_comparison.js": "cacff6003023b2f1862df8dfacfe80df9aee2a52af54a4a29096722462e8338f"
+  }
+}

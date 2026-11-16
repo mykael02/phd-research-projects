@@ -1,0 +1,39 @@
+{
+  "models": [
+    {
+      "image": "payload_model_1.png",
+      "mass_kg": 0.35,
+      "height_m": 0.14,
+      "loaded_mass_kg": 1.5499999999999998,
+      "combined_com_m": 0.1709677419354839,
+      "pitch_inertia_kg_m2": 0.01272521505376344
+    },
+    {
+      "image": "payload_model_2.png",
+      "mass_kg": 0.65,
+      "height_m": 0.26,
+      "loaded_mass_kg": 1.85,
+      "combined_com_m": 0.2081081081081081,
+      "pitch_inertia_kg_m2": 0.015240045045045045
+    },
+    {
+      "image": "payload_model_3.png",
+      "mass_kg": 1.15,
+      "height_m": 0.36,
+      "loaded_mass_kg": 2.3499999999999996,
+      "combined_com_m": 0.2680851063829788,
+      "pitch_inertia_kg_m2": 0.03198471631205674
+    }
+  ],
+  "camera": {
+    "azimuth": 135,
+    "elevation": -15,
+    "distance": 0.9,
+    "lookat": [
+      0,
+      0,
+      0.22
+    ]
+  },
+  "display_only": "Transparent shell and massless noncolliding mast; inertial values and payload placement unchanged. Low payloads overlap the illustrative shell."
+}

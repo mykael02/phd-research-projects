@@ -1,0 +1,56 @@
+{
+  "study": "mujoco-boundary-and-payload-v1",
+  "status": "Local prospective protocol, fixed before new trajectory execution; not external preregistration",
+  "duration_s": 10,
+  "control_period_s": 0.005,
+  "physics_steps_s": [0.0005, 0.00025],
+  "pulse_start_s": 2,
+  "pulse_duration_s": 0.2,
+  "fall_angle_deg": 45,
+  "fall_detection": "5 ms endpoints; pitch in both models, additionally roll in native model",
+  "recovery": "Original final-one-second dwell: abs(pitch)<=1 deg, abs(x)<=0.03 m, abs(vx)<=0.03 m/s, after nonzero pulse ends",
+  "boundary": {
+    "source": "results/robustness/results.json; archived LQR labels, no new tuning",
+    "force_slices": [
+      {"torque_limit_nm": 0.3, "positive_force_start_n": 10, "positive_force_end_n": 15},
+      {"torque_limit_nm": 0.5, "positive_force_start_n": 15, "positive_force_end_n": 20},
+      {"torque_limit_nm": 0.7, "positive_force_start_n": 20, "positive_force_end_n": 25}
+    ],
+    "force_spacing_n": 0.5,
+    "force_signs": [-1, 1],
+    "force_slice_initial_tilt_deg": 0,
+    "startup_slice": {"torque_limit_nm": 0.1, "positive_tilt_start_deg": 10, "positive_tilt_end_deg": 15, "spacing_deg": 0.5, "signs": [-1, 1], "push_force_n": 0},
+    "interpretation": "Discrete transition intervals only; test all cells and retain nonmonotonic labels. No universal disturbance threshold."
+  },
+  "payload": {
+    "masses_kg": [0.35, 0.65, 1.15],
+    "heights_m": [0.14, 0.26, 0.36],
+    "zero_load_control": {"mass_kg": 0, "height_m": 0.18},
+    "shape_xyz_m": [0.08, 0.12, 0.06],
+    "scenarios": [
+      {"id": "opposing_low", "initial_tilt_deg": 12, "push_force_n": -15, "torque_limit_nm": 0.3},
+      {"id": "reinforcing_low", "initial_tilt_deg": 12, "push_force_n": 15, "torque_limit_nm": 0.3},
+      {"id": "opposing_standard", "initial_tilt_deg": 12, "push_force_n": -15, "torque_limit_nm": 0.6},
+      {"id": "reinforcing_standard", "initial_tilt_deg": 12, "push_force_n": 15, "torque_limit_nm": 0.6}
+    ],
+    "controllers": ["fixed", "exact"],
+    "gain_source": "Existing results/comparison/gain_design.json; same Q/R, no fitting or new gain designs",
+    "force_location": "Combined body+payload COM. Native model splits the world-X force between torso and rigid payload in proportion to their masses, giving the same resultant and moment.",
+    "geometry": "Centred rigid cuboid; low locations can intersect the illustrative shell. This ideal mass arrangement is not a mounting design. Native chassis inertia remains additional.",
+    "reduced_checks": "Every load and both controllers, opposing_standard scenario, 0.5 ms RK4; compare against planar at same step. Also 48 acceleration/force checks per load.",
+    "example": {"mass_kg": 0.65, "height_m": 0.26, "scenario": "opposing_standard"},
+    "scope": "Focused perfect-sensing extension: 4 of the earlier 24 ideal conditions per load; does not repeat sensor noise or load-estimate error studies."
+  },
+  "contact": {"friction": 1, "time_constant_s": 0.005, "integrator": "implicitfast", "initial_axle_height_m": 0.0452, "warmup": "none"},
+  "audit": {
+    "trigger": "For each condition/controller, any three-way label disagreement between engines at 0.25 ms, or between 0.5 and 0.25 ms within an engine",
+    "extra_steps_s": [0.000125, 0.0000625],
+    "first_round": "Repeat both engines on every triggered pair at 0.125 ms",
+    "second_round": "Repeat both engines at 0.0625 ms only if an engine changes label between 0.25 and 0.125 ms",
+    "report": "Report finest available labels, all initial labels, every refinement and any remaining last-two-step label changes. Persistent cross-engine disagreement is not repaired by fitting parameters."
+  },
+  "primary": "Paired fallen/not-fallen and three-way outcomes; differences in fixed-vs-exact conclusions between engines",
+  "secondary": "Common-pre-fall trajectory differences; fall-time difference only when both fall; paired survivor torque effort; sampled contact and roll diagnostics",
+  "statistics": "Deterministic finite grids. Counts are descriptive; no confidence intervals, population success probabilities or model-as-ground-truth claims.",
+  "tuning_budget": "Zero. No adaptation of controller gains, geometry, friction, thresholds or grid after seeing new results. Audit selection follows the fixed rule above."
+}

@@ -1,0 +1,186 @@
+{
+  "protocol": {
+    "study": "step3-sensing-v1",
+    "design_date": "2026-11-12",
+    "status": "Exploratory simulation protocol fixed before this sweep; not preregistered",
+    "duration_s": 10,
+    "push_time_s": 2,
+    "push_duration_s": 0.2,
+    "controllers": [
+      "pid",
+      "lqr"
+    ],
+    "observers": [
+      "direct",
+      "kalman"
+    ],
+    "scenarios": [
+      {
+        "id": "nominal",
+        "initial_tilt_deg": 5,
+        "push_force_n": 5,
+        "torque_limit_nm": 0.7
+      },
+      {
+        "id": "large_push",
+        "initial_tilt_deg": 0,
+        "push_force_n": 20,
+        "torque_limit_nm": 0.7
+      },
+      {
+        "id": "low_torque",
+        "initial_tilt_deg": 0,
+        "push_force_n": 5,
+        "torque_limit_nm": 0.2
+      }
+    ],
+    "angle_only_sigma_deg": [
+      0,
+      0.25,
+      0.5,
+      1,
+      2
+    ],
+    "gyro_only_sigma_deg_s": [
+      0,
+      1,
+      2,
+      5,
+      10
+    ],
+    "combined_angle_sigma_deg": [
+      0,
+      0.5,
+      1,
+      2
+    ],
+    "combined_gyro_multiplier": 4,
+    "delay_ms": [
+      0,
+      5,
+      10,
+      20,
+      40
+    ],
+    "stochastic_repetitions": 30,
+    "seed_formula": "1001 + 104729 * repetition_index, index=0..29; same seed across controllers and observers",
+    "deterministic_repetitions": 1,
+    "kalman_accel_sigma_rad_s2": 50,
+    "primary_outcome": "fall by 10 s; true tilt reaches 45 deg at a control endpoint",
+    "recovery": "Final dwell >=1 s within 1 deg tilt, 0.03 m position and 0.03 m/s speed, evaluated from truth",
+    "gain_policy": "Original controller gains frozen; within-controller sensing comparison, not a fair-tuned controller-class ranking",
+    "sensor_scope": "Independent Gaussian angle and gyro noise per sample; ideal position/velocity channels; whole packet delayed; no accelerometer physics, bias, quantisation or dropout",
+    "delay_policy": "Initial noisy packet at t=0 is available at startup and held until the first newer delayed packet; filter processes each packet once; no prediction to current time",
+    "example": {
+      "scenario": "nominal",
+      "angleNoiseDeg": 1,
+      "gyroNoiseDegS": 4,
+      "delayMs": 0,
+      "seed": 1001
+    }
+  },
+  "node": "v24.13.0",
+  "control_step_s": 0.005,
+  "config": {
+    "parameters": {
+      "base_mass": 0.35,
+      "body_mass": 1.2,
+      "length": 0.18,
+      "body_inertia": 0.012,
+      "wheel_inertia": 0.00012,
+      "radius": 0.045,
+      "gravity": 9.81,
+      "translation_drag": 0.08,
+      "rotation_drag": 0.002,
+      "torque_limit": 0.7
+    },
+    "dt": 0.005,
+    "fall_angle_degrees": 45,
+    "lqr_gain": [
+      -3.4641016151376984,
+      -4.063573512601224,
+      -15.967060927212492,
+      -2.3504804372563215
+    ],
+    "lqr_q": [
+      12,
+      2,
+      120,
+      2
+    ],
+    "lqr_r": 1,
+    "linear_a": [
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        -0.10644846343391141,
+        -11.969577386187845,
+        0.011297596355014185
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0.4519038542005674,
+        92.4604700356708,
+        -0.08726967006059481
+      ]
+    ],
+    "linear_b": [
+      [
+        0
+      ],
+      [
+        35.217815798038046
+      ],
+      [
+        0
+      ],
+      [
+        -169.16368341934393
+      ]
+    ],
+    "closed_loop_poles": [
+      [
+        -244.61718040528805,
+        0
+      ],
+      [
+        -7.7214918870500195,
+        0
+      ],
+      [
+        -1.1803954819848546,
+        0.9301290279606781
+      ],
+      [
+        -1.1803954819848546,
+        -0.9301290279606781
+      ]
+    ],
+    "pid": {
+      "kp": 14,
+      "ki": 0.4,
+      "kd": 2,
+      "kx": 2,
+      "kv": 3,
+      "integral_limit": 0.25
+    }
+  },
+  "source_sha256": {
+    "model.js": "68c9788d49b0901b4da2d9ec56a3a96961c71aeaeb1dea617d1b05dab865a698",
+    "config.js": "2240d09af81fda45275ddfe16ce41971873977a0726f49d9668dfd83a51144c2",
+    "visualisation/sensing.js": "a7fcc8e208c1c904d4fb8ad6bd655443151e41170ebe1ef744400ebb7f6dd1ec",
+    "run_sensing.js": "d36afcb07c96b4af27a7e2a8931cc6b65c05574773e7a792d419a0f8c9b06915",
+    "sensing_protocol.json": "273d95aa1e1c99d99c1b54e1121dd90b98e62d7201cb0c87a616050a19533a67"
+  }
+}

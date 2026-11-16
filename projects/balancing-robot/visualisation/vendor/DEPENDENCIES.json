@@ -1,0 +1,18 @@
+{
+  "three-0.160.1.min.js": {
+    "url": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js",
+    "sha256": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa"
+  },
+  "THREE-LICENSE.txt": {
+    "url": "https://cdn.jsdelivr.net/npm/three@0.160.1/LICENSE",
+    "sha256": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d"
+  },
+  "plotly-gl3d-3.3.0.min.js": {
+    "url": "https://cdn.plot.ly/plotly-gl3d-3.3.0.min.js",
+    "sha256": "96b4f5119ecea2028bd2d9b84271354053ed3dcb8b51454ef8071eae9f0a83ee"
+  },
+  "PLOTLY-LICENSE.txt": {
+    "url": "https://raw.githubusercontent.com/plotly/plotly.js/v3.3.0/LICENSE",
+    "sha256": "8c45d9eaf50c2f72dd9c7ab9ef440788ba58a3538484b5c51c1f17d5128752e7"
+  }
+}

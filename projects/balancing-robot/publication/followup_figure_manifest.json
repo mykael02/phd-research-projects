@@ -1,0 +1,34 @@
+[
+  {
+    "name": "fu_fig01_boundary_shift",
+    "caption": "Critical push force for each of the 25 diagnostic models at a 0.5 N m torque limit, zero initial tilt and a 0.125 ms physics step: the two unmodified references, 22 variants that each change one declared assumption, and one combined variant that changes three. Each dot is the midpoint of a bisection bracket 0.61 mN wide; solid vertical lines mark the unmodified planar (dark grey) and wheel-contact (green) models, and the dashed line marks the disputed 18.2 N cell. The numeric columns give the shift from the planar bracket in millinewtons and the label at +18.2 and -18.2 N at the 0.0625 ms confirmation step (R recovered, F fallen). Nothing is fitted, and no variant replaces the archived model."
+  },
+  {
+    "name": "fu_fig02_boundary_mechanism",
+    "caption": "The disputed +18.2 N cell at the 0.0625 ms confirmation step; the push acts in the shaded interval. Left: planar equations (dark grey); right: wheel-contact model (green), the plant colours of the critical-force figure. Top: body pitch. In both simulators the run recovers with the planar pitch inertia (solid) and falls when 0.0002 kg m\u00b2 of chassis pitch inertia is present (dashed): the label follows the inertia, not the simulator. The archived contact model is the dashed green curve. Bottom: ratio of horizontal to normal ground force. On the left it is the traction the ideal-rolling equations imply but never limit; on the right it is the traction the contact model uses. All four curves stay below the contact model's friction limit of 1 (largest value 0.75), so the wheels do not slide. The push tips the body backwards; a fall is declared at -45 deg. Curves end at a fall and are sampled every 5 ms."
+  },
+  {
+    "name": "fu_fig03_noisy_falls",
+    "caption": "Noisy fixed-versus-payload-aware comparison on the same 1,620 condition and seed pairs in each plant. Left: falls by controller. Right: paired trials whose fall label changes when the fixed gain is replaced by the exact-load gain. Prevented falls are split by what happens with exact state feedback at the same load and disturbance: both gains survive without noise, or the fixed gain falls even without noise. Every introduced fall is in conditions that both gains survive without noise. This split follows the fixed gain; the per-controller split is in the text. The planar counts equal the archived JavaScript results record for record. The contact runs use physics steps of 0.25 and 0.5 ms with 200 Hz control. Every fall in every plant occurs at the 0.3 N m torque limit. Counts describe this grid, not deployment probabilities."
+  },
+  {
+    "name": "fu_fig04_noisy_map",
+    "caption": "Where the redesign changes falls: the 0.3 N m scenario (initial tilt -7 deg, +12 N push), for all nine loads and three sensing profiles, in the planar model (top) and the contact model at 0.25 ms (bottom). Each cell prints fixed-gain falls \u2192 payload-aware falls out of 30 paired seeds; colour is their difference, blue where the redesign removes falls. With exact state feedback both gains recover at every unmarked load. At the two loads marked F | R (0.65 and 1.15 kg at 0.36 m, three squares each) the fixed gain falls even with exact feedback and the payload-aware gain does not; at the load marked F | F (0.35 kg at 0.36 m) both fall. The 0.6 N m scenario is not drawn: no trial fell there under any gain, profile or plant. The 0.5 ms contact step check is in results/mujoco_followup/cells.csv."
+  },
+  {
+    "name": "fu_fig05_noisy_example",
+    "caption": "Protocol-selected noisy example, fixed before the runs: 0.65 kg at 0.26 m, 0.6 N m scenario (initial tilt +7 deg, -12 N push in the shaded interval), Kalman estimate with 10 ms packet delay, first seed. Top: true pitch over the whole run. Bottom: the torque command, held over each 5 ms interval, from 1.9 to 2.7 s; with this noise and delay it switches between the \u00b10.6 N m limits (grey lines) for much of the run, so a full-length trace is unreadable. Both controllers and both plants receive the same noise sequence, and all four runs stay upright, as does every trial at 0.6 N m."
+  },
+  {
+    "name": "fu_fig06_noise_induced_fall",
+    "caption": "A noisy fall that the redesign prevents. The selection rule was written after the noisy results were known and deliberately picks a favourable case: the condition that both gains survive without noise and in which the redesign prevents the most falls in the contact model (0.35 kg at 0.26 m, 0.3 N m scenario, kalman profile; 24 of 30 seeds prevented), and the lowest seed at which the fixed gain falls and the payload-aware gain survives in both plants (seed index 0). Top: true pitch over the whole run. Bottom: the torque command, held over each 5 ms interval, from 1.8 to 3.0 s; the fixed-gain trace is drawn wider underneath so both stay visible where they coincide at the limit. Grey lines mark the \u00b145 deg fall threshold and the \u00b10.3 N m torque limit. Both plants receive the same noise sequence. The payload-aware runs stay upright but, like every noisy survivor, do not meet the recovery dwell."
+  },
+  {
+    "name": "fu_fig07_plant_agreement",
+    "caption": "Agreement between plants, cell by cell. Each of the 54 cells is one load, scenario and sensing profile with 30 seeds; dot area grows with the number of coincident cells, and the 27 cells of the 0.6 N m scenario all sit at the origin. Left: falls under the fixed gain in the planar model against the contact model (0.25 ms). Right: net change in falls when the payload-aware gain replaces the fixed gain (payload-aware minus fixed); negative values are net reductions, prevented minus introduced. Points on the diagonal agree exactly. The direction of the change (fewer, equal or more falls) is the same in 53 of 54 cells."
+  },
+  {
+    "name": "fu_fig08_exact_boundary",
+    "caption": "What the redesign changes without noise, and how that predicts the noisy falls. Top: the smallest push that makes each gain fall with exact state feedback, at the -7 deg tilt and 0.3 N m limit of the noisy scenario, found by bisection to 9.8 mN in the contact model at 0.25 ms (the planar model and the 0.5 ms step differ by at most 0.04 N). Labels give the payload-aware boundary relative to the fixed one. The dashed line is the 12 N push of the noisy trials: where both dots lie above it, both gains recover without noise. Bottom: noisy falls of each gain against the distance from 12 N to that gain's own boundary, one dot per load and gain, by sensing profile. Both gains follow one relationship; \u03c1 is the Spearman rank correlation over all 18 dots. Post hoc analysis."
+  }
+]

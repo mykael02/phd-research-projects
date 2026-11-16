@@ -1,0 +1,5289 @@
+{
+  "metadata": {
+    "protocol": {
+      "study": "mujoco-boundary-disagreement-diagnostics-v1",
+      "date": "2026-11-13",
+      "status": "Exploratory diagnostic protocol, saved before any diagnostic trajectory was run. It targets two already-known disagreements, so it is outcome-conditioned and cannot be confirmatory.",
+      "target": "Unloaded robot, nominal fixed LQR, zero initial tilt, 0.5 N m torque limit, +/-18.2 N pulse from 2.0 to 2.2 s. The planar model recovers; native-contact MuJoCo falls (archived to 0.0625 ms).",
+      "question": "Which modelling assumption moves the native fall boundary relative to the planar one: the additional chassis pitch inertia, the unsettled contact start, or the contact and friction model?",
+      "control_period_s": 0.005,
+      "torque_limit_nm": 0.5,
+      "physics_step_s": 0.000125,
+      "confirmation_step_s": 6.25e-05,
+      "primary": "Critical-force bracket per variant: bisection on positive force inside [17.0, 19.5] N, 12 halvings (final width about 0.0006 N), label = fallen or not fallen at 10 s. Reported as the shift of the bracket midpoint from the planar reference.",
+      "secondary": "Outcome labels at +18.2 and -18.2 N at both physics steps; state at pulse onset; sampled wheel slip, friction utilisation and normal force; required traction coefficient computed from the planar trajectory.",
+      "bisection_assumption": "One fall transition inside the bracket. Checked, not assumed, by 0.01 N scans of 18.10-18.30 N in the planar and unmodified native models. A variant with no transition in the bracket is reported as such.",
+      "variants": {
+        "planar": {
+          "engine": "planar",
+          "group": "reference",
+          "label": "Planar equations"
+        },
+        "native": {
+          "engine": "native",
+          "group": "reference",
+          "label": "Native contact, as archived"
+        },
+        "planar_plus_chassis": {
+          "engine": "planar",
+          "group": "inertia",
+          "planar_body_inertia": 0.0122,
+          "label": "Planar + 0.0002 kg m2 chassis pitch inertia"
+        },
+        "chassis_removed": {
+          "engine": "native",
+          "group": "inertia",
+          "chassis_inertia": 1e-09,
+          "label": "Native, chassis inertia removed"
+        },
+        "torso_compensated": {
+          "engine": "native",
+          "group": "inertia",
+          "torso_pitch_inertia": 0.0118,
+          "label": "Native, torso pitch inertia reduced by 0.0002"
+        },
+        "chassis_doubled": {
+          "engine": "native",
+          "group": "inertia",
+          "chassis_inertia": 0.0004,
+          "label": "Native, chassis inertia doubled"
+        },
+        "height_radius": {
+          "engine": "native",
+          "group": "settling",
+          "initial_height_m": 0.045,
+          "label": "Native, start at wheel radius (0.0450 m)"
+        },
+        "height_equilibrium": {
+          "engine": "native",
+          "group": "settling",
+          "initial_height": "measured",
+          "label": "Native, start at measured resting height"
+        },
+        "warmup_2s": {
+          "engine": "native",
+          "group": "settling",
+          "warmup_s": 2.0,
+          "label": "Native, 2 s controlled warm-up before t = 0"
+        },
+        "reset_at_push": {
+          "engine": "native",
+          "group": "settling",
+          "reset_at_push": true,
+          "label": "Native, upright zero-velocity state restored at pulse onset"
+        },
+        "planar_transplant": {
+          "engine": "planar",
+          "group": "settling",
+          "inject_native_state_at_push": true,
+          "label": "Planar, native pulse-onset state injected"
+        },
+        "friction_0p5": {
+          "engine": "native",
+          "group": "contact",
+          "friction": 0.5,
+          "label": "Sliding friction 0.5"
+        },
+        "friction_0p75": {
+          "engine": "native",
+          "group": "contact",
+          "friction": 0.75,
+          "label": "Sliding friction 0.75"
+        },
+        "friction_1p5": {
+          "engine": "native",
+          "group": "contact",
+          "friction": 1.5,
+          "label": "Sliding friction 1.5"
+        },
+        "friction_2": {
+          "engine": "native",
+          "group": "contact",
+          "friction": 2.0,
+          "label": "Sliding friction 2.0"
+        },
+        "friction_5": {
+          "engine": "native",
+          "group": "contact",
+          "friction": 5.0,
+          "label": "Sliding friction 5.0"
+        },
+        "stiff_contact": {
+          "engine": "native",
+          "group": "contact",
+          "time_constant_s": 0.002,
+          "label": "Contact time constant 2 ms"
+        },
+        "soft_contact": {
+          "engine": "native",
+          "group": "contact",
+          "time_constant_s": 0.01,
+          "label": "Contact time constant 10 ms"
+        },
+        "hard_impedance": {
+          "engine": "native",
+          "group": "contact",
+          "solimp": "0.99 0.999 0.0001",
+          "label": "Stiffer contact impedance"
+        },
+        "condim_3": {
+          "engine": "native",
+          "group": "contact",
+          "condim": 3,
+          "label": "No torsional friction (condim 3)"
+        },
+        "condim_6": {
+          "engine": "native",
+          "group": "contact",
+          "condim": 6,
+          "label": "Rolling friction enabled (condim 6)"
+        },
+        "pyramidal_cone": {
+          "engine": "native",
+          "group": "contact",
+          "cone": "pyramidal",
+          "label": "Pyramidal friction cone"
+        },
+        "noslip": {
+          "engine": "native",
+          "group": "contact",
+          "noslip_iterations": 20,
+          "label": "No-slip solver pass (20 iterations)"
+        },
+        "rk4_integrator": {
+          "engine": "native",
+          "group": "contact",
+          "integrator": "RK4",
+          "label": "RK4 integrator"
+        },
+        "idealised_combined": {
+          "engine": "native",
+          "group": "combined",
+          "torso_pitch_inertia": 0.0118,
+          "initial_height": "measured",
+          "friction": 2.0,
+          "label": "Compensated inertia + resting start + friction 2.0"
+        }
+      },
+      "interpretation": "Each variant changes one declared assumption (the combined variant changes three). A variant that moves the native bracket onto the planar one identifies a sufficient explanation for these two cases only. Nothing is fitted: no variant replaces the archived model, and no parameter is selected because it restores agreement.",
+      "limits": "Illustrative parameters; no hardware. A sub-0.1 N boundary shift is far below any plausible physical calibration uncertainty, so the diagnosis concerns simulator assumptions, not robot behaviour."
+    },
+    "source_sha256": {
+      "balance.py": "573cbe8e27728a2b8fe1f161f400c67be209ea6a12944a5cb12c761054ccc673",
+      "config.json": "577501728bb9e45dfe280fd519aadee4a068a8e2ff8d579ccb891967c7cf7446",
+      "mujoco_lab/validate.py": "f08f33187402b338192bc718fd9f517d0edd531d48e0e179363616b8725fe012",
+      "mujoco_lab/extension_core.py": "e010bea8527f910e90ecfe963eb3bfc0854ce5c00fcb5d833d16eb4a174ce6f6",
+      "mujoco_lab/run_disagreement.py": "4139296fda4005e77fc63fc97c622a9a6534e1992f1fe63ab0cf22da0a8a5988",
+      "mujoco_lab/disagreement_protocol.json": "bbf29469bbcd065a5e1381672a7a0be3b24188e40810005a0491ebfb794e9d10",
+      "mujoco_lab/balancing_robot.xml": "fa99dd4a2a060d52c8aa7e3e0868cf14b863d3a0267000995cb5d14e8d927f2a",
+      "results/comparison/gain_design.json": "39b0e9eb8956df04665b3e5a14c6f1c50f307f07d4ebbea025fa1550d29db466"
+    },
+    "mujoco": "4.0.1",
+    "numpy": "2.5.4",
+    "python": "3.14.2",
+    "trajectory_columns": [
+      "time_s",
+      "x_m",
+      "vx_m_s",
+      "pitch_rad",
+      "pitch_rate_rad_s",
+      "next_interval_torque_nm",
+      "next_interval_push_n",
+      "roll_rad",
+      "axle_height_m",
+      "left_slip_m_s",
+      "right_slip_m_s",
+      "y_m",
+      "yaw_rad",
+      "contact_count",
+      "normal_force_n",
+      "friction_utilisation"
+    ],
+    "workers": 16,
+    "runtime_s": 1547.508757500007,
+    "integrations": 488
+  },
+  "regression": [
+    {
+      "engine": "planar",
+      "archived_id": "eb276553a5460676a6e8",
+      "outcome": "recovered",
+      "result": "bitwise identical to archived zoom trajectory"
+    },
+    {
+      "engine": "native",
+      "archived_id": "9078ae01dec64be43617",
+      "outcome": "fallen",
+      "result": "bitwise identical to archived zoom trajectory"
+    }
+  ],
+  "startup": {
+    "0.000125": {
+      "resting_axle_height_m": 0.04498974159522063,
+      "initial_axle_height_m": 0.0452,
+      "initial_drop_m": 0.00021025840477936764,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_pitch_before_pulse_deg": 0.0,
+      "max_abs_position_before_pulse_m": 0.0,
+      "max_slip_before_pulse_m_s": 0.0,
+      "first_contact_time_s": 0.01
+    },
+    "6.25e-05": {
+      "resting_axle_height_m": 0.04498974159522148,
+      "initial_axle_height_m": 0.0452,
+      "initial_drop_m": 0.00021025840477851415,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_pitch_before_pulse_deg": 0.0,
+      "max_abs_position_before_pulse_m": 0.0,
+      "max_slip_before_pulse_m_s": 0.0,
+      "first_contact_time_s": 0.01
+    }
+  },
+  "brackets": [
+    {
+      "variant": "planar",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.226806640625,
+      "first_fallen_n": 18.2274169921875,
+      "midpoint_n": 18.22711181640625,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "recovered"
+        ],
+        [
+          18.23046875,
+          "fallen"
+        ],
+        [
+          18.220703125,
+          "recovered"
+        ],
+        [
+          18.2255859375,
+          "recovered"
+        ],
+        [
+          18.22802734375,
+          "fallen"
+        ],
+        [
+          18.226806640625,
+          "recovered"
+        ],
+        [
+          18.2274169921875,
+          "fallen"
+        ]
+      ],
+      "group": "reference",
+      "label": "Planar equations",
+      "engine": "planar",
+      "shift_from_planar_n": 0.0,
+      "shift_from_native_n": 0.0384521484375,
+      "fraction_of_gap_closed": null
+    },
+    {
+      "variant": "native",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "reference",
+      "label": "Native contact, as archived",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "planar_plus_chassis",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.182861328125,
+      "first_fallen_n": 18.1834716796875,
+      "midpoint_n": 18.18316650390625,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "fallen"
+        ],
+        [
+          18.18408203125,
+          "fallen"
+        ],
+        [
+          18.182861328125,
+          "recovered"
+        ],
+        [
+          18.1834716796875,
+          "fallen"
+        ]
+      ],
+      "group": "inertia",
+      "label": "Planar + 0.0002 kg m2 chassis pitch inertia",
+      "engine": "planar",
+      "shift_from_planar_n": -0.0439453125,
+      "shift_from_native_n": -0.0054931640625,
+      "fraction_of_gap_closed": null
+    },
+    {
+      "variant": "chassis_removed",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.23291015625,
+      "first_fallen_n": 18.2335205078125,
+      "midpoint_n": 18.23321533203125,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "recovered"
+        ],
+        [
+          18.23046875,
+          "recovered"
+        ],
+        [
+          18.240234375,
+          "fallen"
+        ],
+        [
+          18.2353515625,
+          "fallen"
+        ],
+        [
+          18.23291015625,
+          "recovered"
+        ],
+        [
+          18.234130859375,
+          "fallen"
+        ],
+        [
+          18.2335205078125,
+          "fallen"
+        ]
+      ],
+      "group": "inertia",
+      "label": "Native, chassis inertia removed",
+      "engine": "native",
+      "shift_from_planar_n": 0.006103515625,
+      "shift_from_native_n": 0.0445556640625,
+      "fraction_of_gap_closed": 1.1587301587301588
+    },
+    {
+      "variant": "torso_compensated",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.23291015625,
+      "first_fallen_n": 18.2335205078125,
+      "midpoint_n": 18.23321533203125,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "recovered"
+        ],
+        [
+          18.23046875,
+          "recovered"
+        ],
+        [
+          18.240234375,
+          "fallen"
+        ],
+        [
+          18.2353515625,
+          "fallen"
+        ],
+        [
+          18.23291015625,
+          "recovered"
+        ],
+        [
+          18.234130859375,
+          "fallen"
+        ],
+        [
+          18.2335205078125,
+          "fallen"
+        ]
+      ],
+      "group": "inertia",
+      "label": "Native, torso pitch inertia reduced by 0.0002",
+      "engine": "native",
+      "shift_from_planar_n": 0.006103515625,
+      "shift_from_native_n": 0.0445556640625,
+      "fraction_of_gap_closed": 1.1587301587301588
+    },
+    {
+      "variant": "chassis_doubled",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1444091796875,
+      "first_fallen_n": 18.14501953125,
+      "midpoint_n": 18.14471435546875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "fallen"
+        ],
+        [
+          18.1328125,
+          "recovered"
+        ],
+        [
+          18.15234375,
+          "fallen"
+        ],
+        [
+          18.142578125,
+          "recovered"
+        ],
+        [
+          18.1474609375,
+          "fallen"
+        ],
+        [
+          18.14501953125,
+          "fallen"
+        ],
+        [
+          18.143798828125,
+          "recovered"
+        ],
+        [
+          18.1444091796875,
+          "recovered"
+        ]
+      ],
+      "group": "inertia",
+      "label": "Native, chassis inertia doubled",
+      "engine": "native",
+      "shift_from_planar_n": -0.0823974609375,
+      "shift_from_native_n": -0.0439453125,
+      "fraction_of_gap_closed": -1.1428571428571428
+    },
+    {
+      "variant": "height_radius",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "settling",
+      "label": "Native, start at wheel radius (0.0450 m)",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "height_equilibrium",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "settling",
+      "label": "Native, start at measured resting height",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "warmup_2s",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "settling",
+      "label": "Native, 2 s controlled warm-up before t = 0",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "reset_at_push",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "settling",
+      "label": "Native, upright zero-velocity state restored at pulse onset",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "planar_transplant",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.226806640625,
+      "first_fallen_n": 18.2274169921875,
+      "midpoint_n": 18.22711181640625,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "recovered"
+        ],
+        [
+          18.23046875,
+          "fallen"
+        ],
+        [
+          18.220703125,
+          "recovered"
+        ],
+        [
+          18.2255859375,
+          "recovered"
+        ],
+        [
+          18.22802734375,
+          "fallen"
+        ],
+        [
+          18.226806640625,
+          "recovered"
+        ],
+        [
+          18.2274169921875,
+          "fallen"
+        ]
+      ],
+      "group": "settling",
+      "label": "Planar, native pulse-onset state injected",
+      "engine": "planar",
+      "shift_from_planar_n": 0.0,
+      "shift_from_native_n": 0.0384521484375,
+      "fraction_of_gap_closed": null
+    },
+    {
+      "variant": "friction_0p5",
+      "transition_in_bracket": false,
+      "trace": [
+        [
+          17.0,
+          "fallen"
+        ],
+        [
+          19.5,
+          "fallen"
+        ]
+      ],
+      "group": "contact",
+      "label": "Sliding friction 0.5",
+      "engine": "native"
+    },
+    {
+      "variant": "friction_0p75",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1871337890625,
+      "first_fallen_n": 18.187744140625,
+      "midpoint_n": 18.18743896484375,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "fallen"
+        ],
+        [
+          18.1871337890625,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "Sliding friction 0.75",
+      "engine": "native",
+      "shift_from_planar_n": -0.0396728515625,
+      "shift_from_native_n": -0.001220703125,
+      "fraction_of_gap_closed": -0.031746031746031744
+    },
+    {
+      "variant": "friction_1p5",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "Sliding friction 1.5",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "friction_2",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "Sliding friction 2.0",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "friction_5",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "Sliding friction 5.0",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "stiff_contact",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1871337890625,
+      "first_fallen_n": 18.187744140625,
+      "midpoint_n": 18.18743896484375,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "fallen"
+        ],
+        [
+          18.1871337890625,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "Contact time constant 2 ms",
+      "engine": "native",
+      "shift_from_planar_n": -0.0396728515625,
+      "shift_from_native_n": -0.001220703125,
+      "fraction_of_gap_closed": -0.031746031746031744
+    },
+    {
+      "variant": "soft_contact",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.19140625,
+      "first_fallen_n": 18.1920166015625,
+      "midpoint_n": 18.19171142578125,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "recovered"
+        ],
+        [
+          18.201171875,
+          "fallen"
+        ],
+        [
+          18.1962890625,
+          "fallen"
+        ],
+        [
+          18.19384765625,
+          "fallen"
+        ],
+        [
+          18.192626953125,
+          "fallen"
+        ],
+        [
+          18.1920166015625,
+          "fallen"
+        ]
+      ],
+      "group": "contact",
+      "label": "Contact time constant 10 ms",
+      "engine": "native",
+      "shift_from_planar_n": -0.035400390625,
+      "shift_from_native_n": 0.0030517578125,
+      "fraction_of_gap_closed": 0.07936507936507936
+    },
+    {
+      "variant": "hard_impedance",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1871337890625,
+      "first_fallen_n": 18.187744140625,
+      "midpoint_n": 18.18743896484375,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "fallen"
+        ],
+        [
+          18.1871337890625,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "Stiffer contact impedance",
+      "engine": "native",
+      "shift_from_planar_n": -0.0396728515625,
+      "shift_from_native_n": -0.001220703125,
+      "fraction_of_gap_closed": -0.031746031746031744
+    },
+    {
+      "variant": "condim_3",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1883544921875,
+      "first_fallen_n": 18.18896484375,
+      "midpoint_n": 18.18865966796875,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "fallen"
+        ],
+        [
+          18.187744140625,
+          "recovered"
+        ],
+        [
+          18.1883544921875,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "No torsional friction (condim 3)",
+      "engine": "native",
+      "shift_from_planar_n": -0.0384521484375,
+      "shift_from_native_n": 0.0,
+      "fraction_of_gap_closed": 0.0
+    },
+    {
+      "variant": "condim_6",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.17431640625,
+      "first_fallen_n": 18.1749267578125,
+      "midpoint_n": 18.17462158203125,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "fallen"
+        ],
+        [
+          18.1767578125,
+          "fallen"
+        ],
+        [
+          18.17431640625,
+          "recovered"
+        ],
+        [
+          18.175537109375,
+          "fallen"
+        ],
+        [
+          18.1749267578125,
+          "fallen"
+        ]
+      ],
+      "group": "contact",
+      "label": "Rolling friction enabled (condim 6)",
+      "engine": "native",
+      "shift_from_planar_n": -0.052490234375,
+      "shift_from_native_n": -0.0140380859375,
+      "fraction_of_gap_closed": -0.36507936507936506
+    },
+    {
+      "variant": "pyramidal_cone",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.185302734375,
+      "first_fallen_n": 18.1859130859375,
+      "midpoint_n": 18.18560791015625,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "fallen"
+        ],
+        [
+          18.18408203125,
+          "recovered"
+        ],
+        [
+          18.185302734375,
+          "recovered"
+        ],
+        [
+          18.1859130859375,
+          "fallen"
+        ]
+      ],
+      "group": "contact",
+      "label": "Pyramidal friction cone",
+      "engine": "native",
+      "shift_from_planar_n": -0.04150390625,
+      "shift_from_native_n": -0.0030517578125,
+      "fraction_of_gap_closed": -0.07936507936507936
+    },
+    {
+      "variant": "noslip",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.1895751953125,
+      "first_fallen_n": 18.190185546875,
+      "midpoint_n": 18.18988037109375,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "recovered"
+        ],
+        [
+          18.18896484375,
+          "recovered"
+        ],
+        [
+          18.190185546875,
+          "fallen"
+        ],
+        [
+          18.1895751953125,
+          "recovered"
+        ]
+      ],
+      "group": "contact",
+      "label": "No-slip solver pass (20 iterations)",
+      "engine": "native",
+      "shift_from_planar_n": -0.0372314453125,
+      "shift_from_native_n": 0.001220703125,
+      "fraction_of_gap_closed": 0.031746031746031744
+    },
+    {
+      "variant": "rk4_integrator",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.18408203125,
+      "first_fallen_n": 18.1846923828125,
+      "midpoint_n": 18.18438720703125,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "fallen"
+        ],
+        [
+          18.19140625,
+          "fallen"
+        ],
+        [
+          18.181640625,
+          "recovered"
+        ],
+        [
+          18.1865234375,
+          "fallen"
+        ],
+        [
+          18.18408203125,
+          "recovered"
+        ],
+        [
+          18.185302734375,
+          "fallen"
+        ],
+        [
+          18.1846923828125,
+          "fallen"
+        ]
+      ],
+      "group": "contact",
+      "label": "RK4 integrator",
+      "engine": "native",
+      "shift_from_planar_n": -0.042724609375,
+      "shift_from_native_n": -0.0042724609375,
+      "fraction_of_gap_closed": -0.1111111111111111
+    },
+    {
+      "variant": "idealised_combined",
+      "transition_in_bracket": true,
+      "last_not_fallen_n": 18.23291015625,
+      "first_fallen_n": 18.2335205078125,
+      "midpoint_n": 18.23321533203125,
+      "width_n": 0.0006103515625,
+      "trace": [
+        [
+          17.0,
+          "recovered"
+        ],
+        [
+          19.5,
+          "fallen"
+        ],
+        [
+          18.25,
+          "fallen"
+        ],
+        [
+          17.625,
+          "recovered"
+        ],
+        [
+          17.9375,
+          "recovered"
+        ],
+        [
+          18.09375,
+          "recovered"
+        ],
+        [
+          18.171875,
+          "recovered"
+        ],
+        [
+          18.2109375,
+          "recovered"
+        ],
+        [
+          18.23046875,
+          "recovered"
+        ],
+        [
+          18.240234375,
+          "fallen"
+        ],
+        [
+          18.2353515625,
+          "fallen"
+        ],
+        [
+          18.23291015625,
+          "recovered"
+        ],
+        [
+          18.234130859375,
+          "fallen"
+        ],
+        [
+          18.2335205078125,
+          "fallen"
+        ]
+      ],
+      "group": "combined",
+      "label": "Compensated inertia + resting start + friction 2.0",
+      "engine": "native",
+      "shift_from_planar_n": 0.006103515625,
+      "shift_from_native_n": 0.0445556640625,
+      "fraction_of_gap_closed": 1.1587301587301588
+    }
+  ],
+  "labels": [
+    {
+      "variant": "planar",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.558255605377695,
+      "max_travel_m": 1.0182662230295119,
+      "squared_torque_integral_nm2_s": 0.23167135655322887,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar__0.000125__+18.2"
+    },
+    {
+      "variant": "planar",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.558255605377695,
+      "max_travel_m": 1.0182662230295119,
+      "squared_torque_integral_nm2_s": 0.23167135655322887,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar__0.000125__-18.2"
+    },
+    {
+      "variant": "planar",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.55825560537781,
+      "max_travel_m": 1.0182662230295145,
+      "squared_torque_integral_nm2_s": 0.2316713565532296,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar__6.25e-05__+18.2"
+    },
+    {
+      "variant": "planar",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.55825560537781,
+      "max_travel_m": 1.0182662230295145,
+      "squared_torque_integral_nm2_s": 0.2316713565532296,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar__6.25e-05__-18.2"
+    },
+    {
+      "variant": "native",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160835,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522362,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733637004222967e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.000582949597374427,
+      "pulse_max_friction_utilisation": 0.5517286744632494,
+      "pulse_min_normal_force_n": 12.710449942593716,
+      "id": "native__0.000125__+18.2"
+    },
+    {
+      "variant": "native",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160835,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522362,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733637004222967e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.000582949597374427,
+      "pulse_max_friction_utilisation": 0.5517286744632494,
+      "pulse_min_normal_force_n": 12.710449942593716,
+      "id": "native__0.000125__-18.2"
+    },
+    {
+      "variant": "native",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385189009,
+      "max_travel_m": 1.0216224511681076,
+      "squared_torque_integral_nm2_s": 0.11992914018158791,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399909,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848426969,
+      "pulse_max_friction_utilisation": 0.5517261959418996,
+      "pulse_min_normal_force_n": 12.710867590205327,
+      "id": "native__6.25e-05__+18.2"
+    },
+    {
+      "variant": "native",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385189009,
+      "max_travel_m": 1.0216224511681076,
+      "squared_torque_integral_nm2_s": 0.11992914018158791,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399909,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848426969,
+      "pulse_max_friction_utilisation": 0.5517261959418996,
+      "pulse_min_normal_force_n": 12.710867590205327,
+      "id": "native__6.25e-05__-18.2"
+    },
+    {
+      "variant": "planar_plus_chassis",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.595,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01550247410787,
+      "max_travel_m": 1.0180533004309598,
+      "squared_torque_integral_nm2_s": 0.11492629247155828,
+      "saturation_s": 0.4,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.595,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_plus_chassis__0.000125__+18.2"
+    },
+    {
+      "variant": "planar_plus_chassis",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.595,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01550247410787,
+      "max_travel_m": 1.0180533004309598,
+      "squared_torque_integral_nm2_s": 0.11492629247155828,
+      "saturation_s": 0.4,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.595,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_plus_chassis__0.000125__-18.2"
+    },
+    {
+      "variant": "planar_plus_chassis",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.595,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01550247410723,
+      "max_travel_m": 1.0180533004309524,
+      "squared_torque_integral_nm2_s": 0.1149262924715579,
+      "saturation_s": 0.4,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.595,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_plus_chassis__6.25e-05__+18.2"
+    },
+    {
+      "variant": "planar_plus_chassis",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.595,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01550247410723,
+      "max_travel_m": 1.0180533004309524,
+      "squared_torque_integral_nm2_s": 0.1149262924715579,
+      "saturation_s": 0.4,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.595,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_plus_chassis__6.25e-05__-18.2"
+    },
+    {
+      "variant": "chassis_removed",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.25,
+      "peak_pitch_deg": 43.41745684235453,
+      "max_travel_m": 1.0177187139678787,
+      "squared_torque_integral_nm2_s": 0.2215344253811357,
+      "saturation_s": 0.735,
+      "max_sampled_slip_m_s": 0.0009125048915006317,
+      "max_sampled_roll_deg": 1.7926547706822483e-11,
+      "max_sampled_y_m": 1.302257317078448e-11,
+      "min_sampled_axle_height_m": 0.04488778344218816,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498962436466958,
+      "pulse_max_slip_m_s": 0.0005892881915104953,
+      "pulse_max_friction_utilisation": 0.5513768185458295,
+      "pulse_min_normal_force_n": 12.712465541534577,
+      "id": "chassis_removed__0.000125__+18.2"
+    },
+    {
+      "variant": "chassis_removed",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.25,
+      "peak_pitch_deg": 43.41745684235453,
+      "max_travel_m": 1.0177187139678787,
+      "squared_torque_integral_nm2_s": 0.2215344253811357,
+      "saturation_s": 0.735,
+      "max_sampled_slip_m_s": 0.0009125048915006317,
+      "max_sampled_roll_deg": 1.7926547706822483e-11,
+      "max_sampled_y_m": 1.302257317078448e-11,
+      "min_sampled_axle_height_m": 0.04488778344218816,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498962436466958,
+      "pulse_max_slip_m_s": 0.0005892881915104953,
+      "pulse_max_friction_utilisation": 0.5513768185458295,
+      "pulse_min_normal_force_n": 12.712465541534577,
+      "id": "chassis_removed__0.000125__-18.2"
+    },
+    {
+      "variant": "chassis_removed",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.27,
+      "peak_pitch_deg": 43.469085671719654,
+      "max_travel_m": 1.0179024012388453,
+      "squared_torque_integral_nm2_s": 0.224700168696704,
+      "saturation_s": 0.745,
+      "max_sampled_slip_m_s": 0.0009176005710926916,
+      "max_sampled_roll_deg": 8.530506019067988e-12,
+      "max_sampled_y_m": 2.2014263743246812e-13,
+      "min_sampled_axle_height_m": 0.044887221338697034,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498962436467044,
+      "pulse_max_slip_m_s": 0.0005891901839407132,
+      "pulse_max_friction_utilisation": 0.5513742894158846,
+      "pulse_min_normal_force_n": 12.712885557430665,
+      "id": "chassis_removed__6.25e-05__+18.2"
+    },
+    {
+      "variant": "chassis_removed",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.27,
+      "peak_pitch_deg": 43.469085671719654,
+      "max_travel_m": 1.0179024012388453,
+      "squared_torque_integral_nm2_s": 0.224700168696704,
+      "saturation_s": 0.745,
+      "max_sampled_slip_m_s": 0.0009176005710926916,
+      "max_sampled_roll_deg": 8.530506019067988e-12,
+      "max_sampled_y_m": 2.2014263743246812e-13,
+      "min_sampled_axle_height_m": 0.044887221338697034,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498962436467044,
+      "pulse_max_slip_m_s": 0.0005891901839407132,
+      "pulse_max_friction_utilisation": 0.5513742894158846,
+      "pulse_min_normal_force_n": 12.712885557430665,
+      "id": "chassis_removed__6.25e-05__-18.2"
+    },
+    {
+      "variant": "torso_compensated",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.25,
+      "peak_pitch_deg": 43.41778115633836,
+      "max_travel_m": 1.0177204726965037,
+      "squared_torque_integral_nm2_s": 0.22158361426763262,
+      "saturation_s": 0.735,
+      "max_sampled_slip_m_s": 0.000903569880394528,
+      "max_sampled_roll_deg": 1.783986062799028e-11,
+      "max_sampled_y_m": 1.2776127933062625e-11,
+      "min_sampled_axle_height_m": 0.044887827497976956,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989726278713525,
+      "pulse_max_slip_m_s": 0.0005834991120521882,
+      "pulse_max_friction_utilisation": 0.5513768349052699,
+      "pulse_min_normal_force_n": 12.712453716096565,
+      "id": "torso_compensated__0.000125__+18.2"
+    },
+    {
+      "variant": "torso_compensated",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.25,
+      "peak_pitch_deg": 43.41778115633836,
+      "max_travel_m": 1.0177204726965037,
+      "squared_torque_integral_nm2_s": 0.22158361426763262,
+      "saturation_s": 0.735,
+      "max_sampled_slip_m_s": 0.000903569880394528,
+      "max_sampled_roll_deg": 1.783986062799028e-11,
+      "max_sampled_y_m": 1.2776127933062625e-11,
+      "min_sampled_axle_height_m": 0.044887827497976956,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989726278713525,
+      "pulse_max_slip_m_s": 0.0005834991120521882,
+      "pulse_max_friction_utilisation": 0.5513768349052699,
+      "pulse_min_normal_force_n": 12.712453716096565,
+      "id": "torso_compensated__0.000125__-18.2"
+    },
+    {
+      "variant": "torso_compensated",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.27,
+      "peak_pitch_deg": 43.46942388761547,
+      "max_travel_m": 1.0179041525590993,
+      "squared_torque_integral_nm2_s": 0.22472475893250857,
+      "saturation_s": 0.745,
+      "max_sampled_slip_m_s": 0.0009086245364278156,
+      "max_sampled_roll_deg": 1.72862946247718e-11,
+      "max_sampled_y_m": 1.8871615646903346e-12,
+      "min_sampled_axle_height_m": 0.04488726442725734,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989726278714386,
+      "pulse_max_slip_m_s": 0.0005834020780393079,
+      "pulse_max_friction_utilisation": 0.5513743076179721,
+      "pulse_min_normal_force_n": 12.712873909568003,
+      "id": "torso_compensated__6.25e-05__+18.2"
+    },
+    {
+      "variant": "torso_compensated",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.27,
+      "peak_pitch_deg": 43.46942388761547,
+      "max_travel_m": 1.0179041525590993,
+      "squared_torque_integral_nm2_s": 0.22472475893250857,
+      "saturation_s": 0.745,
+      "max_sampled_slip_m_s": 0.0009086245364278156,
+      "max_sampled_roll_deg": 1.72862946247718e-11,
+      "max_sampled_y_m": 1.8871615646903346e-12,
+      "min_sampled_axle_height_m": 0.04488726442725734,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989726278714386,
+      "pulse_max_slip_m_s": 0.0005834020780393079,
+      "pulse_max_friction_utilisation": 0.5513743076179721,
+      "pulse_min_normal_force_n": 12.712873909568003,
+      "id": "torso_compensated__6.25e-05__-18.2"
+    },
+    {
+      "variant": "chassis_doubled",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.52,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.05845697478079,
+      "max_travel_m": 0.9817411224795237,
+      "squared_torque_integral_nm2_s": 0.09629235451499751,
+      "saturation_s": 0.325,
+      "max_sampled_slip_m_s": 0.0005768763737898919,
+      "max_sampled_roll_deg": 1.6943413485224006e-11,
+      "max_sampled_y_m": 1.2477768924018701e-11,
+      "min_sampled_axle_height_m": 0.044887882708797046,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.52,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.0449898539350389,
+      "pulse_max_slip_m_s": 0.0005768763737898919,
+      "pulse_max_friction_utilisation": 0.5520747414769831,
+      "pulse_min_normal_force_n": 12.708433665330672,
+      "id": "chassis_doubled__0.000125__+18.2"
+    },
+    {
+      "variant": "chassis_doubled",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.52,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.05845697478079,
+      "max_travel_m": 0.9817411224795237,
+      "squared_torque_integral_nm2_s": 0.09629235451499751,
+      "saturation_s": 0.325,
+      "max_sampled_slip_m_s": 0.0005768763737898919,
+      "max_sampled_roll_deg": 1.6943413485224006e-11,
+      "max_sampled_y_m": 1.2477768924018701e-11,
+      "min_sampled_axle_height_m": 0.044887882708797046,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.52,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.0449898539350389,
+      "pulse_max_slip_m_s": 0.0005768763737898919,
+      "pulse_max_friction_utilisation": 0.5520747414769831,
+      "pulse_min_normal_force_n": 12.708433665330672,
+      "id": "chassis_doubled__0.000125__-18.2"
+    },
+    {
+      "variant": "chassis_doubled",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.515,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00964789259136,
+      "max_travel_m": 0.9777983963310038,
+      "squared_torque_integral_nm2_s": 0.09504318522106955,
+      "saturation_s": 0.32,
+      "max_sampled_slip_m_s": 0.0005767803142867622,
+      "max_sampled_roll_deg": 1.2736360499754118e-11,
+      "max_sampled_y_m": 1.3835318012130764e-12,
+      "min_sampled_axle_height_m": 0.04488731842596852,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.515,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498985393503976,
+      "pulse_max_slip_m_s": 0.0005767803142867622,
+      "pulse_max_friction_utilisation": 0.5520723122729109,
+      "pulse_min_normal_force_n": 12.708848995553586,
+      "id": "chassis_doubled__6.25e-05__+18.2"
+    },
+    {
+      "variant": "chassis_doubled",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.515,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00964789259136,
+      "max_travel_m": 0.9777983963310038,
+      "squared_torque_integral_nm2_s": 0.09504318522106955,
+      "saturation_s": 0.32,
+      "max_sampled_slip_m_s": 0.0005767803142867622,
+      "max_sampled_roll_deg": 1.2736360499754118e-11,
+      "max_sampled_y_m": 1.3835318012130764e-12,
+      "min_sampled_axle_height_m": 0.04488731842596852,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.515,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498985393503976,
+      "pulse_max_slip_m_s": 0.0005767803142867622,
+      "pulse_max_friction_utilisation": 0.5520723122729109,
+      "pulse_min_normal_force_n": 12.708848995553586,
+      "id": "chassis_doubled__6.25e-05__-18.2"
+    },
+    {
+      "variant": "height_radius",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160817,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522709,
+      "max_sampled_roll_deg": 1.8047495895760923e-11,
+      "max_sampled_y_m": 1.290654940537764e-11,
+      "min_sampled_axle_height_m": 0.044988631553391674,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595221185,
+      "pulse_max_slip_m_s": 0.0005829495973723176,
+      "pulse_max_friction_utilisation": 0.5517286744610522,
+      "pulse_min_normal_force_n": 12.710449942593709,
+      "id": "height_radius__0.000125__+18.2"
+    },
+    {
+      "variant": "height_radius",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160817,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522709,
+      "max_sampled_roll_deg": 1.8047495895760923e-11,
+      "max_sampled_y_m": 1.290654940537764e-11,
+      "min_sampled_axle_height_m": 0.044988631553391674,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595221185,
+      "pulse_max_slip_m_s": 0.0005829495973723176,
+      "pulse_max_friction_utilisation": 0.5517286744610522,
+      "pulse_min_normal_force_n": 12.710449942593709,
+      "id": "height_radius__0.000125__-18.2"
+    },
+    {
+      "variant": "height_radius",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889635,
+      "max_travel_m": 1.0216224511681042,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400048,
+      "max_sampled_roll_deg": 6.525699014731602e-12,
+      "max_sampled_y_m": 1.5894638610185972e-13,
+      "min_sampled_axle_height_m": 0.044988631383988564,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595220324,
+      "pulse_max_slip_m_s": 0.0005828525848461941,
+      "pulse_max_friction_utilisation": 0.5517261959436116,
+      "pulse_min_normal_force_n": 12.710867590205304,
+      "id": "height_radius__6.25e-05__+18.2"
+    },
+    {
+      "variant": "height_radius",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889635,
+      "max_travel_m": 1.0216224511681042,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400048,
+      "max_sampled_roll_deg": 6.525699014731602e-12,
+      "max_sampled_y_m": 1.5894638610185972e-13,
+      "min_sampled_axle_height_m": 0.044988631383988564,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595220324,
+      "pulse_max_slip_m_s": 0.0005828525848461941,
+      "pulse_max_friction_utilisation": 0.5517261959436116,
+      "pulse_min_normal_force_n": 12.710867590205304,
+      "id": "height_radius__6.25e-05__-18.2"
+    },
+    {
+      "variant": "height_equilibrium",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522063
+      },
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160835,
+      "max_travel_m": 1.0225780512909737,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.000673200094652257,
+      "max_sampled_roll_deg": 1.80894205776132e-11,
+      "max_sampled_y_m": 1.361891650611349e-11,
+      "min_sampled_axle_height_m": 0.044988631553391674,
+      "max_sampled_axle_height_m": 0.04499184402743756,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595220636,
+      "pulse_max_slip_m_s": 0.0005829495973704857,
+      "pulse_max_friction_utilisation": 0.5517286744594435,
+      "pulse_min_normal_force_n": 12.710449942593705,
+      "id": "height_equilibrium__0.000125__+18.2"
+    },
+    {
+      "variant": "height_equilibrium",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522063
+      },
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160835,
+      "max_travel_m": 1.0225780512909737,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.000673200094652257,
+      "max_sampled_roll_deg": 1.80894205776132e-11,
+      "max_sampled_y_m": 1.361891650611349e-11,
+      "min_sampled_axle_height_m": 0.044988631553391674,
+      "max_sampled_axle_height_m": 0.04499184402743756,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595220636,
+      "pulse_max_slip_m_s": 0.0005829495973704857,
+      "pulse_max_friction_utilisation": 0.5517286744594435,
+      "pulse_min_normal_force_n": 12.710449942593705,
+      "id": "height_equilibrium__0.000125__-18.2"
+    },
+    {
+      "variant": "height_equilibrium",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522148
+      },
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889465,
+      "max_travel_m": 1.0216224511681045,
+      "squared_torque_integral_nm2_s": 0.11992914018158786,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400186,
+      "max_sampled_roll_deg": 8.303684492514675e-12,
+      "max_sampled_y_m": 1.2551469474120963e-13,
+      "min_sampled_axle_height_m": 0.044988631383988564,
+      "max_sampled_axle_height_m": 0.04499183739659298,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848392552,
+      "pulse_max_friction_utilisation": 0.551726195937496,
+      "pulse_min_normal_force_n": 12.710867590205373,
+      "id": "height_equilibrium__6.25e-05__+18.2"
+    },
+    {
+      "variant": "height_equilibrium",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522148
+      },
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889465,
+      "max_travel_m": 1.0216224511681045,
+      "squared_torque_integral_nm2_s": 0.11992914018158786,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400186,
+      "max_sampled_roll_deg": 8.303684492514675e-12,
+      "max_sampled_y_m": 1.2551469474120963e-13,
+      "min_sampled_axle_height_m": 0.044988631383988564,
+      "max_sampled_axle_height_m": 0.04499183739659298,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848392552,
+      "pulse_max_friction_utilisation": 0.551726195937496,
+      "pulse_min_normal_force_n": 12.710867590205373,
+      "id": "height_equilibrium__6.25e-05__-18.2"
+    },
+    {
+      "variant": "warmup_2s",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.013768271608214,
+      "max_travel_m": 1.022578051290974,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522709,
+      "max_sampled_roll_deg": 1.8121864533220838e-11,
+      "max_sampled_y_m": 2.6319775464347125e-11,
+      "min_sampled_axle_height_m": 0.044988631553391674,
+      "max_sampled_axle_height_m": 0.04499184402743756,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973798671,
+      "pulse_max_friction_utilisation": 0.5517286744671624,
+      "pulse_min_normal_force_n": 12.71044994259373,
+      "id": "warmup_2s__0.000125__+18.2"
+    },
+    {
+      "variant": "warmup_2s",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.013768271608214,
+      "max_travel_m": 1.022578051290974,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522709,
+      "max_sampled_roll_deg": 1.8121864533220838e-11,
+      "max_sampled_y_m": 2.6319775464347125e-11,
+      "min_sampled_axle_height_m": 0.044988631553391674,
+      "max_sampled_axle_height_m": 0.04499184402743756,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973798671,
+      "pulse_max_friction_utilisation": 0.5517286744671624,
+      "pulse_min_normal_force_n": 12.71044994259373,
+      "id": "warmup_2s__0.000125__-18.2"
+    },
+    {
+      "variant": "warmup_2s",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889834,
+      "max_travel_m": 1.0216224511681073,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399631,
+      "max_sampled_roll_deg": 6.393986892144611e-12,
+      "max_sampled_y_m": 1.0091283314388224e-13,
+      "min_sampled_axle_height_m": 0.044988631383988564,
+      "max_sampled_axle_height_m": 0.04499183739659298,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848436406,
+      "pulse_max_friction_utilisation": 0.5517261959424055,
+      "pulse_min_normal_force_n": 12.710867590205307,
+      "id": "warmup_2s__6.25e-05__+18.2"
+    },
+    {
+      "variant": "warmup_2s",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889834,
+      "max_travel_m": 1.0216224511681073,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399631,
+      "max_sampled_roll_deg": 6.393986892144611e-12,
+      "max_sampled_y_m": 1.0091283314388224e-13,
+      "min_sampled_axle_height_m": 0.044988631383988564,
+      "max_sampled_axle_height_m": 0.04499183739659298,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848436406,
+      "pulse_max_friction_utilisation": 0.5517261959424055,
+      "pulse_min_normal_force_n": 12.710867590205307,
+      "id": "warmup_2s__6.25e-05__-18.2"
+    },
+    {
+      "variant": "reset_at_push",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160858,
+      "max_travel_m": 1.0225780512909741,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522501,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2672129744156733e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973573295,
+      "pulse_max_friction_utilisation": 0.5517286744461363,
+      "pulse_min_normal_force_n": 12.710449942593712,
+      "id": "reset_at_push__0.000125__+18.2"
+    },
+    {
+      "variant": "reset_at_push",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160858,
+      "max_travel_m": 1.0225780512909741,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522501,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2672129744156733e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973573295,
+      "pulse_max_friction_utilisation": 0.5517286744461363,
+      "pulse_min_normal_force_n": 12.710449942593712,
+      "id": "reset_at_push__0.000125__-18.2"
+    },
+    {
+      "variant": "reset_at_push",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385188999,
+      "max_travel_m": 1.0216224511681067,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400325,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.000582852584838478,
+      "pulse_max_friction_utilisation": 0.5517261959373623,
+      "pulse_min_normal_force_n": 12.710867590205222,
+      "id": "reset_at_push__6.25e-05__+18.2"
+    },
+    {
+      "variant": "reset_at_push",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385188999,
+      "max_travel_m": 1.0216224511681067,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400325,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.000582852584838478,
+      "pulse_max_friction_utilisation": 0.5517261959373623,
+      "pulse_min_normal_force_n": 12.710867590205222,
+      "id": "reset_at_push__6.25e-05__-18.2"
+    },
+    {
+      "variant": "planar_transplant",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {
+        "injected_state": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.558255605377695,
+      "max_travel_m": 1.0182662230295119,
+      "squared_torque_integral_nm2_s": 0.23167135655322887,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_transplant__0.000125__+18.2"
+    },
+    {
+      "variant": "planar_transplant",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {
+        "injected_state": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.558255605377695,
+      "max_travel_m": 1.0182662230295119,
+      "squared_torque_integral_nm2_s": 0.23167135655322887,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_transplant__0.000125__-18.2"
+    },
+    {
+      "variant": "planar_transplant",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {
+        "injected_state": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.55825560537781,
+      "max_travel_m": 1.0182662230295145,
+      "squared_torque_integral_nm2_s": 0.2316713565532296,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_transplant__6.25e-05__+18.2"
+    },
+    {
+      "variant": "planar_transplant",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {
+        "injected_state": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.295,
+      "peak_pitch_deg": 43.55825560537781,
+      "max_travel_m": 1.0182662230295145,
+      "squared_torque_integral_nm2_s": 0.2316713565532296,
+      "saturation_s": 0.76,
+      "max_sampled_slip_m_s": 0.0,
+      "max_sampled_roll_deg": 0.0,
+      "max_sampled_y_m": 0.0,
+      "min_sampled_axle_height_m": 0.045,
+      "max_sampled_axle_height_m": 0.045,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.045,
+      "pulse_max_slip_m_s": 0.0,
+      "pulse_max_friction_utilisation": 0.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "planar_transplant__6.25e-05__-18.2"
+    },
+    {
+      "variant": "friction_0p5",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.345,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0121955171421,
+      "max_travel_m": 0.7614150217143639,
+      "squared_torque_integral_nm2_s": 0.05261718679260341,
+      "saturation_s": 0.16,
+      "max_sampled_slip_m_s": 3.3646718280799637,
+      "max_sampled_roll_deg": 2.4078086501936242e-11,
+      "max_sampled_y_m": 1.2763177238110599e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.345,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.19240688818114493,
+      "pulse_max_friction_utilisation": 1.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "friction_0p5__0.000125__+18.2"
+    },
+    {
+      "variant": "friction_0p5",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.345,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0121955171421,
+      "max_travel_m": 0.7614150217143639,
+      "squared_torque_integral_nm2_s": 0.05261718679260341,
+      "saturation_s": 0.16,
+      "max_sampled_slip_m_s": 3.3646718280799637,
+      "max_sampled_roll_deg": 2.4078086501936242e-11,
+      "max_sampled_y_m": 1.2763177238110599e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.345,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.19240688818114493,
+      "pulse_max_friction_utilisation": 1.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "friction_0p5__0.000125__-18.2"
+    },
+    {
+      "variant": "friction_0p5",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.345,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.010630950572214,
+      "max_travel_m": 0.7613374597569982,
+      "squared_torque_integral_nm2_s": 0.05264069248818851,
+      "saturation_s": 0.16,
+      "max_sampled_slip_m_s": 3.3112431418516737,
+      "max_sampled_roll_deg": 1.1067362449069715e-10,
+      "max_sampled_y_m": 5.923550682264323e-13,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.345,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.21955930028812332,
+      "pulse_max_friction_utilisation": 1.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "friction_0p5__6.25e-05__+18.2"
+    },
+    {
+      "variant": "friction_0p5",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.345,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.010630950572214,
+      "max_travel_m": 0.7613374597569982,
+      "squared_torque_integral_nm2_s": 0.05264069248818851,
+      "saturation_s": 0.16,
+      "max_sampled_slip_m_s": 3.3112431418516737,
+      "max_sampled_roll_deg": 1.1067362449069715e-10,
+      "max_sampled_y_m": 5.923550682264323e-13,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.345,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.21955930028812332,
+      "pulse_max_friction_utilisation": 1.0,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "friction_0p5__6.25e-05__-18.2"
+    },
+    {
+      "variant": "friction_0p75",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0137682716081,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522917,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733633304300672e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973740384,
+      "pulse_max_friction_utilisation": 0.7356382326178311,
+      "pulse_min_normal_force_n": 12.710449942593721,
+      "id": "friction_0p75__0.000125__+18.2"
+    },
+    {
+      "variant": "friction_0p75",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0137682716081,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522917,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733633304300672e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973740384,
+      "pulse_max_friction_utilisation": 0.7356382326178311,
+      "pulse_min_normal_force_n": 12.710449942593721,
+      "id": "friction_0p75__0.000125__-18.2"
+    },
+    {
+      "variant": "friction_0p75",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889266,
+      "max_travel_m": 1.0216224511681036,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399215,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.000582852584843252,
+      "pulse_max_friction_utilisation": 0.7356349279225917,
+      "pulse_min_normal_force_n": 12.710867590205348,
+      "id": "friction_0p75__6.25e-05__+18.2"
+    },
+    {
+      "variant": "friction_0p75",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851889266,
+      "max_travel_m": 1.0216224511681036,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399215,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.000582852584843252,
+      "pulse_max_friction_utilisation": 0.7356349279225917,
+      "pulse_min_normal_force_n": 12.710867590205348,
+      "id": "friction_0p75__6.25e-05__-18.2"
+    },
+    {
+      "variant": "friction_1p5",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160806,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522432,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733639987119535e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973742604,
+      "pulse_max_friction_utilisation": 0.36781911630876146,
+      "pulse_min_normal_force_n": 12.71044994259372,
+      "id": "friction_1p5__0.000125__+18.2"
+    },
+    {
+      "variant": "friction_1p5",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160806,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522432,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733639987119535e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973742604,
+      "pulse_max_friction_utilisation": 0.36781911630876146,
+      "pulse_min_normal_force_n": 12.71044994259372,
+      "id": "friction_1p5__0.000125__-18.2"
+    },
+    {
+      "variant": "friction_1p5",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851890765,
+      "max_travel_m": 1.0216224511681091,
+      "squared_torque_integral_nm2_s": 0.11992914018158793,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400741,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848430299,
+      "pulse_max_friction_utilisation": 0.3678174639612348,
+      "pulse_min_normal_force_n": 12.710867590205305,
+      "id": "friction_1p5__6.25e-05__+18.2"
+    },
+    {
+      "variant": "friction_1p5",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851890765,
+      "max_travel_m": 1.0216224511681091,
+      "squared_torque_integral_nm2_s": 0.11992914018158793,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100400741,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848430299,
+      "pulse_max_friction_utilisation": 0.3678174639612348,
+      "pulse_min_normal_force_n": 12.710867590205305,
+      "id": "friction_1p5__6.25e-05__-18.2"
+    },
+    {
+      "variant": "friction_2",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160805,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.12617835081439926,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522709,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733641095678496e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973741494,
+      "pulse_max_friction_utilisation": 0.2758643372315625,
+      "pulse_min_normal_force_n": 12.710449942593725,
+      "id": "friction_2__0.000125__+18.2"
+    },
+    {
+      "variant": "friction_2",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160805,
+      "max_travel_m": 1.0225780512909735,
+      "squared_torque_integral_nm2_s": 0.12617835081439926,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522709,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733641095678496e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973741494,
+      "pulse_max_friction_utilisation": 0.2758643372315625,
+      "pulse_min_normal_force_n": 12.710449942593725,
+      "id": "friction_2__0.000125__-18.2"
+    },
+    {
+      "variant": "friction_2",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385189062,
+      "max_travel_m": 1.0216224511681087,
+      "squared_torque_integral_nm2_s": 0.11992914018158791,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.000653703210040088,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848428634,
+      "pulse_max_friction_utilisation": 0.27586309797093483,
+      "pulse_min_normal_force_n": 12.710867590205295,
+      "id": "friction_2__6.25e-05__+18.2"
+    },
+    {
+      "variant": "friction_2",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385189062,
+      "max_travel_m": 1.0216224511681087,
+      "squared_torque_integral_nm2_s": 0.11992914018158791,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.000653703210040088,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848428634,
+      "pulse_max_friction_utilisation": 0.27586309797093483,
+      "pulse_min_normal_force_n": 12.710867590205295,
+      "id": "friction_2__6.25e-05__-18.2"
+    },
+    {
+      "variant": "friction_5",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160915,
+      "max_travel_m": 1.0225780512909766,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.000673200094652257,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.273364236876565e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973742604,
+      "pulse_max_friction_utilisation": 0.11034573489261676,
+      "pulse_min_normal_force_n": 12.710449942593762,
+      "id": "friction_5__0.000125__+18.2"
+    },
+    {
+      "variant": "friction_5",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160915,
+      "max_travel_m": 1.0225780512909766,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.000673200094652257,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.273364236876565e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.0005829495973742604,
+      "pulse_max_friction_utilisation": 0.11034573489261676,
+      "pulse_min_normal_force_n": 12.710449942593762,
+      "id": "friction_5__0.000125__-18.2"
+    },
+    {
+      "variant": "friction_5",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385188974,
+      "max_travel_m": 1.0216224511681065,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399631,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848430299,
+      "pulse_max_friction_utilisation": 0.11034523918836606,
+      "pulse_min_normal_force_n": 12.71086759020531,
+      "id": "friction_5__6.25e-05__+18.2"
+    },
+    {
+      "variant": "friction_5",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00071385188974,
+      "max_travel_m": 1.0216224511681065,
+      "squared_torque_integral_nm2_s": 0.11992914018158789,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100399631,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.0005828525848430299,
+      "pulse_max_friction_utilisation": 0.11034523918836606,
+      "pulse_min_normal_force_n": 12.71086759020531,
+      "id": "friction_5__6.25e-05__-18.2"
+    },
+    {
+      "variant": "stiff_contact",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.625,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01343684644025,
+      "max_travel_m": 1.0225086500350904,
+      "squared_torque_integral_nm2_s": 0.12242581422545377,
+      "saturation_s": 0.43,
+      "max_sampled_slip_m_s": 0.00026615550721829917,
+      "max_sampled_roll_deg": 1.886224981163083e-07,
+      "max_sampled_y_m": 1.280938978383163e-09,
+      "min_sampled_axle_height_m": 0.044963654806744316,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.625,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044998358357554155,
+      "pulse_max_slip_m_s": 0.00022332283796544505,
+      "pulse_max_friction_utilisation": 0.5517267069067624,
+      "pulse_min_normal_force_n": 12.709871268663202,
+      "id": "stiff_contact__0.000125__+18.2"
+    },
+    {
+      "variant": "stiff_contact",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.625,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01343684644025,
+      "max_travel_m": 1.0225086500350904,
+      "squared_torque_integral_nm2_s": 0.12242581422545377,
+      "saturation_s": 0.43,
+      "max_sampled_slip_m_s": 0.00026615550721829917,
+      "max_sampled_roll_deg": 1.886224981163083e-07,
+      "max_sampled_y_m": 1.280938978383163e-09,
+      "min_sampled_axle_height_m": 0.044963654806744316,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.625,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044998358357554155,
+      "pulse_max_slip_m_s": 0.00022332283796544505,
+      "pulse_max_friction_utilisation": 0.5517267069067624,
+      "pulse_min_normal_force_n": 12.709871268663202,
+      "id": "stiff_contact__0.000125__-18.2"
+    },
+    {
+      "variant": "stiff_contact",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.61,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.026042728283144,
+      "max_travel_m": 1.0210502402605444,
+      "squared_torque_integral_nm2_s": 0.11867662364235798,
+      "saturation_s": 0.41500000000000004,
+      "max_sampled_slip_m_s": 0.00026426767319776,
+      "max_sampled_roll_deg": 1.99070033341237e-11,
+      "max_sampled_y_m": 3.998885162432524e-11,
+      "min_sampled_axle_height_m": 0.04496193016649467,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.61,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499835835755421,
+      "pulse_max_slip_m_s": 0.00022332328168100934,
+      "pulse_max_friction_utilisation": 0.5517244024444588,
+      "pulse_min_normal_force_n": 12.710313549873842,
+      "id": "stiff_contact__6.25e-05__+18.2"
+    },
+    {
+      "variant": "stiff_contact",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.61,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.026042728283144,
+      "max_travel_m": 1.0210502402605444,
+      "squared_torque_integral_nm2_s": 0.11867662364235798,
+      "saturation_s": 0.41500000000000004,
+      "max_sampled_slip_m_s": 0.00026426767319776,
+      "max_sampled_roll_deg": 1.99070033341237e-11,
+      "max_sampled_y_m": 3.998885162432524e-11,
+      "min_sampled_axle_height_m": 0.04496193016649467,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.61,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499835835755421,
+      "pulse_max_slip_m_s": 0.00022332328168100934,
+      "pulse_max_friction_utilisation": 0.5517244024444588,
+      "pulse_min_normal_force_n": 12.710313549873842,
+      "id": "stiff_contact__6.25e-05__-18.2"
+    },
+    {
+      "variant": "soft_contact",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 3.49,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.63221328199039,
+      "max_travel_m": 1.5451586680993328,
+      "squared_torque_integral_nm2_s": 0.3375513951372784,
+      "saturation_s": 1.29,
+      "max_sampled_slip_m_s": 6.009988756805866,
+      "max_sampled_roll_deg": 1.5239564585362623e-11,
+      "max_sampled_y_m": 1.732454591983503e-13,
+      "min_sampled_axle_height_m": 0.04476062718188581,
+      "max_sampled_axle_height_m": 0.04597391175993562,
+      "pulse_samples": 40,
+      "fall_time_s": 3.49,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04495908023674504,
+      "pulse_max_slip_m_s": 0.0013579606405449418,
+      "pulse_max_friction_utilisation": 0.5517441269824745,
+      "pulse_min_normal_force_n": 12.710008149961666,
+      "id": "soft_contact__0.000125__+18.2"
+    },
+    {
+      "variant": "soft_contact",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 3.49,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.63221328199039,
+      "max_travel_m": 1.5451586680993328,
+      "squared_torque_integral_nm2_s": 0.3375513951372784,
+      "saturation_s": 1.29,
+      "max_sampled_slip_m_s": 6.009988756805866,
+      "max_sampled_roll_deg": 1.5239564585362623e-11,
+      "max_sampled_y_m": 1.732454591983503e-13,
+      "min_sampled_axle_height_m": 0.04476062718188581,
+      "max_sampled_axle_height_m": 0.04597391175993562,
+      "pulse_samples": 40,
+      "fall_time_s": 3.49,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04495908023674504,
+      "pulse_max_slip_m_s": 0.0013579606405449418,
+      "pulse_max_friction_utilisation": 0.5517441269824745,
+      "pulse_min_normal_force_n": 12.710008149961666,
+      "id": "soft_contact__0.000125__-18.2"
+    },
+    {
+      "variant": "soft_contact",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.65,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0028320349041,
+      "max_travel_m": 1.0223551669939834,
+      "squared_torque_integral_nm2_s": 0.12867891829381506,
+      "saturation_s": 0.455,
+      "max_sampled_slip_m_s": 0.0013853522420120834,
+      "max_sampled_roll_deg": 8.422817294300302e-17,
+      "max_sampled_y_m": 1.2156831623753405e-18,
+      "min_sampled_axle_height_m": 0.04475979541313669,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.65,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04495908023983463,
+      "pulse_max_slip_m_s": 0.001358100545016061,
+      "pulse_max_friction_utilisation": 0.5517407043372159,
+      "pulse_min_normal_force_n": 12.710418876511307,
+      "id": "soft_contact__6.25e-05__+18.2"
+    },
+    {
+      "variant": "soft_contact",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.65,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0028320349041,
+      "max_travel_m": 1.0223551669939834,
+      "squared_torque_integral_nm2_s": 0.12867891829381506,
+      "saturation_s": 0.455,
+      "max_sampled_slip_m_s": 0.0013853522420120834,
+      "max_sampled_roll_deg": 8.422817294300302e-17,
+      "max_sampled_y_m": 1.2156831623753405e-18,
+      "min_sampled_axle_height_m": 0.04475979541313669,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.65,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04495908023983463,
+      "pulse_max_slip_m_s": 0.001358100545016061,
+      "pulse_max_friction_utilisation": 0.5517407043372159,
+      "pulse_min_normal_force_n": 12.710418876511307,
+      "id": "soft_contact__6.25e-05__-18.2"
+    },
+    {
+      "variant": "hard_impedance",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.625,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00757214227016,
+      "max_travel_m": 1.022494589237871,
+      "squared_torque_integral_nm2_s": 0.12242540785855077,
+      "saturation_s": 0.43,
+      "max_sampled_slip_m_s": 0.00012806016193584596,
+      "max_sampled_roll_deg": 2.7008519750417124e-06,
+      "max_sampled_y_m": 1.997745655914601e-08,
+      "min_sampled_axle_height_m": 0.04489162193504722,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.625,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499807720443237,
+      "pulse_max_slip_m_s": 0.00011255176562929847,
+      "pulse_max_friction_utilisation": 0.5517294927947223,
+      "pulse_min_normal_force_n": 12.709473640975752,
+      "id": "hard_impedance__0.000125__+18.2"
+    },
+    {
+      "variant": "hard_impedance",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.625,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00757214227016,
+      "max_travel_m": 1.022494589237871,
+      "squared_torque_integral_nm2_s": 0.12242540785855077,
+      "saturation_s": 0.43,
+      "max_sampled_slip_m_s": 0.00012806016193584596,
+      "max_sampled_roll_deg": 2.7008519750417124e-06,
+      "max_sampled_y_m": 1.997745655914601e-08,
+      "min_sampled_axle_height_m": 0.04489162193504722,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.625,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499807720443237,
+      "pulse_max_slip_m_s": 0.00011255176562929847,
+      "pulse_max_friction_utilisation": 0.5517294927947223,
+      "pulse_min_normal_force_n": 12.709473640975752,
+      "id": "hard_impedance__0.000125__-18.2"
+    },
+    {
+      "variant": "hard_impedance",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.61,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.021038466313,
+      "max_travel_m": 1.0210378515971084,
+      "squared_torque_integral_nm2_s": 0.11867620399703835,
+      "saturation_s": 0.41500000000000004,
+      "max_sampled_slip_m_s": 0.00012585972059903083,
+      "max_sampled_roll_deg": 2.6135423693187507e-06,
+      "max_sampled_y_m": 2.0046785734541898e-08,
+      "min_sampled_axle_height_m": 0.04489097449059196,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.61,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499807720443247,
+      "pulse_max_slip_m_s": 0.00011253243514935951,
+      "pulse_max_friction_utilisation": 0.5517271635282122,
+      "pulse_min_normal_force_n": 12.709905766074916,
+      "id": "hard_impedance__6.25e-05__+18.2"
+    },
+    {
+      "variant": "hard_impedance",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.61,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.021038466313,
+      "max_travel_m": 1.0210378515971084,
+      "squared_torque_integral_nm2_s": 0.11867620399703835,
+      "saturation_s": 0.41500000000000004,
+      "max_sampled_slip_m_s": 0.00012585972059903083,
+      "max_sampled_roll_deg": 2.6135423693187507e-06,
+      "max_sampled_y_m": 2.0046785734541898e-08,
+      "min_sampled_axle_height_m": 0.04489097449059196,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.61,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499807720443247,
+      "pulse_max_slip_m_s": 0.00011253243514935951,
+      "pulse_max_friction_utilisation": 0.5517271635282122,
+      "pulse_min_normal_force_n": 12.709905766074916,
+      "id": "hard_impedance__6.25e-05__-18.2"
+    },
+    {
+      "variant": "condim_3",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160787,
+      "max_travel_m": 1.022578051290973,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522848,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733642608529727e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.000582949597374427,
+      "pulse_max_friction_utilisation": 0.5517286744630583,
+      "pulse_min_normal_force_n": 12.710449942593737,
+      "id": "condim_3__0.000125__+18.2"
+    },
+    {
+      "variant": "condim_3",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.64,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01376827160787,
+      "max_travel_m": 1.022578051290973,
+      "squared_torque_integral_nm2_s": 0.1261783508143993,
+      "saturation_s": 0.445,
+      "max_sampled_slip_m_s": 0.0006732000946522848,
+      "max_sampled_roll_deg": 1.8138992272394768e-11,
+      "max_sampled_y_m": 1.2733642608529727e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.64,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.000582949597374427,
+      "pulse_max_friction_utilisation": 0.5517286744630583,
+      "pulse_min_normal_force_n": 12.710449942593737,
+      "id": "condim_3__0.000125__-18.2"
+    },
+    {
+      "variant": "condim_3",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851890474,
+      "max_travel_m": 1.0216224511681087,
+      "squared_torque_integral_nm2_s": 0.11992914018158793,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100401297,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.000582852584843252,
+      "pulse_max_friction_utilisation": 0.5517261959418379,
+      "pulse_min_normal_force_n": 12.710867590205305,
+      "id": "condim_3__6.25e-05__+18.2"
+    },
+    {
+      "variant": "condim_3",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.615,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.000713851890474,
+      "max_travel_m": 1.0216224511681087,
+      "squared_torque_integral_nm2_s": 0.11992914018158793,
+      "saturation_s": 0.42,
+      "max_sampled_slip_m_s": 0.0006537032100401297,
+      "max_sampled_roll_deg": 5.995308943621012e-12,
+      "max_sampled_y_m": 7.243684264537193e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.615,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.000582852584843252,
+      "pulse_max_friction_utilisation": 0.5517261959418379,
+      "pulse_min_normal_force_n": 12.710867590205305,
+      "id": "condim_3__6.25e-05__-18.2"
+    },
+    {
+      "variant": "condim_6",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.565,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01941000511961,
+      "max_travel_m": 1.0067078026498113,
+      "squared_torque_integral_nm2_s": 0.1076162663987138,
+      "saturation_s": 0.37,
+      "max_sampled_slip_m_s": 0.05519950159740672,
+      "max_sampled_roll_deg": 1.8061481014557767e-11,
+      "max_sampled_y_m": 1.2683964185293322e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.565,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.016324017696711657,
+      "pulse_max_friction_utilisation": 0.5486030776008113,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "condim_6__0.000125__+18.2"
+    },
+    {
+      "variant": "condim_6",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.565,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.01941000511961,
+      "max_travel_m": 1.0067078026498113,
+      "squared_torque_integral_nm2_s": 0.1076162663987138,
+      "saturation_s": 0.37,
+      "max_sampled_slip_m_s": 0.05519950159740672,
+      "max_sampled_roll_deg": 1.8061481014557767e-11,
+      "max_sampled_y_m": 1.2683964185293322e-11,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.565,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522061,
+      "pulse_max_slip_m_s": 0.016324017696711657,
+      "pulse_max_friction_utilisation": 0.5486030776008113,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "condim_6__0.000125__-18.2"
+    },
+    {
+      "variant": "condim_6",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.54,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.06083767756477,
+      "max_travel_m": 0.9938069261293573,
+      "squared_torque_integral_nm2_s": 0.10125479982337027,
+      "saturation_s": 0.34500000000000003,
+      "max_sampled_slip_m_s": 0.056998285034951746,
+      "max_sampled_roll_deg": 6.7464168072198024e-12,
+      "max_sampled_y_m": 7.986383140514906e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.54,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.015660479445427367,
+      "pulse_max_friction_utilisation": 0.5486014313679214,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "condim_6__6.25e-05__+18.2"
+    },
+    {
+      "variant": "condim_6",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.54,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.06083767756477,
+      "max_travel_m": 0.9938069261293573,
+      "squared_torque_integral_nm2_s": 0.10125479982337027,
+      "saturation_s": 0.34500000000000003,
+      "max_sampled_slip_m_s": 0.056998285034951746,
+      "max_sampled_roll_deg": 6.7464168072198024e-12,
+      "max_sampled_y_m": 7.986383140514906e-14,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.54,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522147,
+      "pulse_max_slip_m_s": 0.015660479445427367,
+      "pulse_max_friction_utilisation": 0.5486014313679214,
+      "pulse_min_normal_force_n": 0.0,
+      "id": "condim_6__6.25e-05__-18.2"
+    },
+    {
+      "variant": "pyramidal_cone",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.61,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0049839126513,
+      "max_travel_m": 1.0210596377125492,
+      "squared_torque_integral_nm2_s": 0.11867902290853932,
+      "saturation_s": 0.41500000000000004,
+      "max_sampled_slip_m_s": 0.002343626953262401,
+      "max_sampled_roll_deg": 8.486685517524182e-11,
+      "max_sampled_y_m": 5.760221829597896e-11,
+      "min_sampled_axle_height_m": 0.04488932330665189,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.61,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044993160356415096,
+      "pulse_max_slip_m_s": 0.0017424691519152269,
+      "pulse_max_friction_utilisation": 0.5521723124960473,
+      "pulse_min_normal_force_n": 12.710116048622254,
+      "id": "pyramidal_cone__0.000125__+18.2"
+    },
+    {
+      "variant": "pyramidal_cone",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.61,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.00498391265094,
+      "max_travel_m": 1.0210596377125472,
+      "squared_torque_integral_nm2_s": 0.11867902290853932,
+      "saturation_s": 0.41500000000000004,
+      "max_sampled_slip_m_s": 0.0023436269532623455,
+      "max_sampled_roll_deg": 8.486685517524182e-11,
+      "max_sampled_y_m": 5.7602218311467655e-11,
+      "min_sampled_axle_height_m": 0.04488932330665189,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.61,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044993160356415096,
+      "pulse_max_slip_m_s": 0.0017424691519151159,
+      "pulse_max_friction_utilisation": 0.5521723124960448,
+      "pulse_min_normal_force_n": 12.710116048622258,
+      "id": "pyramidal_cone__0.000125__-18.2"
+    },
+    {
+      "variant": "pyramidal_cone",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.6,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.02615704312422,
+      "max_travel_m": 1.019271252691566,
+      "squared_torque_integral_nm2_s": 0.11617981843418822,
+      "saturation_s": 0.405,
+      "max_sampled_slip_m_s": 0.002341053364867035,
+      "max_sampled_roll_deg": 3.391401401317345e-16,
+      "max_sampled_y_m": 1.2165854212669831e-17,
+      "min_sampled_axle_height_m": 0.04488872740676417,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.6,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499316035719661,
+      "pulse_max_slip_m_s": 0.001742168126442567,
+      "pulse_max_friction_utilisation": 0.5521732448064277,
+      "pulse_min_normal_force_n": 12.710538371986123,
+      "id": "pyramidal_cone__6.25e-05__+18.2"
+    },
+    {
+      "variant": "pyramidal_cone",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.6,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.02615704312407,
+      "max_travel_m": 1.0192712526915655,
+      "squared_torque_integral_nm2_s": 0.11617981843418825,
+      "saturation_s": 0.405,
+      "max_sampled_slip_m_s": 0.0023410533648668963,
+      "max_sampled_roll_deg": 3.2460068631963385e-16,
+      "max_sampled_y_m": 5.698681727278297e-18,
+      "min_sampled_axle_height_m": 0.04488872740676417,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.6,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04499316035719661,
+      "pulse_max_slip_m_s": 0.0017421681264424005,
+      "pulse_max_friction_utilisation": 0.5521732448064279,
+      "pulse_min_normal_force_n": 12.710538371986146,
+      "id": "pyramidal_cone__6.25e-05__-18.2"
+    },
+    {
+      "variant": "noslip",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.65,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0037300471264,
+      "max_travel_m": 1.0224882914779536,
+      "squared_torque_integral_nm2_s": 0.12867747822590203,
+      "saturation_s": 0.455,
+      "max_sampled_slip_m_s": 0.00037411354617056247,
+      "max_sampled_roll_deg": 3.0547052036432113e-09,
+      "max_sampled_y_m": 2.407643597072537e-10,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.65,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159521885,
+      "pulse_max_slip_m_s": 0.00031194034153214645,
+      "pulse_max_friction_utilisation": 0.5531731579579446,
+      "pulse_min_normal_force_n": 12.71044741075735,
+      "id": "noslip__0.000125__+18.2"
+    },
+    {
+      "variant": "noslip",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.65,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0037300471264,
+      "max_travel_m": 1.0224882914779536,
+      "squared_torque_integral_nm2_s": 0.12867747822590203,
+      "saturation_s": 0.455,
+      "max_sampled_slip_m_s": 0.00037411354617056247,
+      "max_sampled_roll_deg": 3.0547052036432113e-09,
+      "max_sampled_y_m": 2.407643597072537e-10,
+      "min_sampled_axle_height_m": 0.04488783412071211,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.65,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159521885,
+      "pulse_max_slip_m_s": 0.00031194034153214645,
+      "pulse_max_friction_utilisation": 0.5531731579579446,
+      "pulse_min_normal_force_n": 12.71044741075735,
+      "id": "noslip__0.000125__-18.2"
+    },
+    {
+      "variant": "noslip",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.625,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0150900517922,
+      "max_travel_m": 1.0224405962622929,
+      "squared_torque_integral_nm2_s": 0.12242826590123823,
+      "saturation_s": 0.43,
+      "max_sampled_slip_m_s": 0.0003741369208682954,
+      "max_sampled_roll_deg": 3.055372286777099e-09,
+      "max_sampled_y_m": 2.4075608762881895e-10,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.625,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595226986,
+      "pulse_max_slip_m_s": 0.00031193078321045675,
+      "pulse_max_friction_utilisation": 0.5531709346047351,
+      "pulse_min_normal_force_n": 12.71086516508516,
+      "id": "noslip__6.25e-05__+18.2"
+    },
+    {
+      "variant": "noslip",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.625,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.0150900517922,
+      "max_travel_m": 1.0224405962622929,
+      "squared_torque_integral_nm2_s": 0.12242826590123823,
+      "saturation_s": 0.43,
+      "max_sampled_slip_m_s": 0.0003741369208682954,
+      "max_sampled_roll_deg": 3.055372286777099e-09,
+      "max_sampled_y_m": 2.4075608762881895e-10,
+      "min_sampled_axle_height_m": 0.04488727090459425,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.625,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.044989741595226986,
+      "pulse_max_slip_m_s": 0.00031193078321045675,
+      "pulse_max_friction_utilisation": 0.5531709346047351,
+      "pulse_min_normal_force_n": 12.71086516508516,
+      "id": "noslip__6.25e-05__-18.2"
+    },
+    {
+      "variant": "rk4_integrator",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.605,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.02779016060403,
+      "max_travel_m": 1.0201773610352025,
+      "squared_torque_integral_nm2_s": 0.11742954748926517,
+      "saturation_s": 0.41000000000000003,
+      "max_sampled_slip_m_s": 0.000645851842597106,
+      "max_sampled_roll_deg": 8.455664086587029e-13,
+      "max_sampled_y_m": 6.97112731874805e-14,
+      "min_sampled_axle_height_m": 0.044885476427174616,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.605,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522093,
+      "pulse_max_slip_m_s": 0.0005827500740724911,
+      "pulse_max_friction_utilisation": 0.551720960640855,
+      "pulse_min_normal_force_n": 12.711261309680815,
+      "id": "rk4_integrator__0.000125__+18.2"
+    },
+    {
+      "variant": "rk4_integrator",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.605,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.02779016060403,
+      "max_travel_m": 1.0201773610352025,
+      "squared_torque_integral_nm2_s": 0.11742954748926517,
+      "saturation_s": 0.41000000000000003,
+      "max_sampled_slip_m_s": 0.000645851842597106,
+      "max_sampled_roll_deg": 8.455664086587029e-13,
+      "max_sampled_y_m": 6.97112731874805e-14,
+      "min_sampled_axle_height_m": 0.044885476427174616,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.605,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522093,
+      "pulse_max_slip_m_s": 0.0005827500740724911,
+      "pulse_max_friction_utilisation": 0.551720960640855,
+      "pulse_min_normal_force_n": 12.711261309680815,
+      "id": "rk4_integrator__0.000125__-18.2"
+    },
+    {
+      "variant": "rk4_integrator",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.605,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.02878134320878,
+      "max_travel_m": 1.0201797316424404,
+      "squared_torque_integral_nm2_s": 0.11742973951413077,
+      "saturation_s": 0.41000000000000003,
+      "max_sampled_slip_m_s": 0.0006458509561965697,
+      "max_sampled_roll_deg": 4.2166796315263227e-13,
+      "max_sampled_y_m": 1.4623732569567752e-14,
+      "min_sampled_axle_height_m": 0.04488610582052476,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.605,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522059,
+      "pulse_max_slip_m_s": 0.0005827506316794517,
+      "pulse_max_friction_utilisation": 0.5517223321455882,
+      "pulse_min_normal_force_n": 12.711273369130096,
+      "id": "rk4_integrator__6.25e-05__+18.2"
+    },
+    {
+      "variant": "rk4_integrator",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {},
+      "outcome": "fallen",
+      "duration_s": 2.605,
+      "recovery_s": null,
+      "peak_pitch_deg": 45.02878134320878,
+      "max_travel_m": 1.0201797316424404,
+      "squared_torque_integral_nm2_s": 0.11742973951413077,
+      "saturation_s": 0.41000000000000003,
+      "max_sampled_slip_m_s": 0.0006458509561965697,
+      "max_sampled_roll_deg": 4.2166796315263227e-13,
+      "max_sampled_y_m": 1.4623732569567752e-14,
+      "min_sampled_axle_height_m": 0.04488610582052476,
+      "max_sampled_axle_height_m": 0.0452,
+      "pulse_samples": 40,
+      "fall_time_s": 2.605,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498974159522059,
+      "pulse_max_slip_m_s": 0.0005827506316794517,
+      "pulse_max_friction_utilisation": 0.5517223321455882,
+      "pulse_min_normal_force_n": 12.711273369130096,
+      "id": "rk4_integrator__6.25e-05__-18.2"
+    },
+    {
+      "variant": "idealised_combined",
+      "physics_step_s": 0.000125,
+      "push_force_n": 18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522063
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.25,
+      "peak_pitch_deg": 43.41778115633863,
+      "max_travel_m": 1.0177204726965061,
+      "squared_torque_integral_nm2_s": 0.22158361426766646,
+      "saturation_s": 0.735,
+      "max_sampled_slip_m_s": 0.000903569880394528,
+      "max_sampled_roll_deg": 1.7904445841737455e-11,
+      "max_sampled_y_m": 1.3253085696093501e-11,
+      "min_sampled_axle_height_m": 0.04498859517887772,
+      "max_sampled_axle_height_m": 0.04499402050013916,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.0449897262787141,
+      "pulse_max_slip_m_s": 0.0005834991120670097,
+      "pulse_max_friction_utilisation": 0.2756884174583604,
+      "pulse_min_normal_force_n": 12.712453716096515,
+      "id": "idealised_combined__0.000125__+18.2"
+    },
+    {
+      "variant": "idealised_combined",
+      "physics_step_s": 0.000125,
+      "push_force_n": -18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522063
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.25,
+      "peak_pitch_deg": 43.41778115633863,
+      "max_travel_m": 1.0177204726965061,
+      "squared_torque_integral_nm2_s": 0.22158361426766646,
+      "saturation_s": 0.735,
+      "max_sampled_slip_m_s": 0.000903569880394528,
+      "max_sampled_roll_deg": 1.7904445841737455e-11,
+      "max_sampled_y_m": 1.3253085696093501e-11,
+      "min_sampled_axle_height_m": 0.04498859517887772,
+      "max_sampled_axle_height_m": 0.04499402050013916,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.0449897262787141,
+      "pulse_max_slip_m_s": 0.0005834991120670097,
+      "pulse_max_friction_utilisation": 0.2756884174583604,
+      "pulse_min_normal_force_n": 12.712453716096515,
+      "id": "idealised_combined__0.000125__-18.2"
+    },
+    {
+      "variant": "idealised_combined",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": 18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522148
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.27,
+      "peak_pitch_deg": 43.46942388761493,
+      "max_travel_m": 1.017904152559094,
+      "squared_torque_integral_nm2_s": 0.22472475893247434,
+      "saturation_s": 0.745,
+      "max_sampled_slip_m_s": 0.0009086245364242629,
+      "max_sampled_roll_deg": 1.604014797572505e-11,
+      "max_sampled_y_m": 5.772965778920492e-13,
+      "min_sampled_axle_height_m": 0.04498859500995813,
+      "max_sampled_axle_height_m": 0.04499412636424799,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498972627871324,
+      "pulse_max_slip_m_s": 0.0005834020780368654,
+      "pulse_max_friction_utilisation": 0.27568715380824294,
+      "pulse_min_normal_force_n": 12.712873909568048,
+      "id": "idealised_combined__6.25e-05__+18.2"
+    },
+    {
+      "variant": "idealised_combined",
+      "physics_step_s": 6.25e-05,
+      "push_force_n": -18.2,
+      "resolved": {
+        "initial_height_m": 0.04498974159522148
+      },
+      "outcome": "recovered",
+      "duration_s": 10.0,
+      "recovery_s": 4.27,
+      "peak_pitch_deg": 43.46942388761493,
+      "max_travel_m": 1.017904152559094,
+      "squared_torque_integral_nm2_s": 0.22472475893247434,
+      "saturation_s": 0.745,
+      "max_sampled_slip_m_s": 0.0009086245364242629,
+      "max_sampled_roll_deg": 1.604014797572505e-11,
+      "max_sampled_y_m": 5.772965778920492e-13,
+      "min_sampled_axle_height_m": 0.04498859500995813,
+      "max_sampled_axle_height_m": 0.04499412636424799,
+      "pulse_samples": 40,
+      "fall_time_s": null,
+      "pulse_onset_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pulse_onset_axle_height_m": 0.04498972627871324,
+      "pulse_max_slip_m_s": 0.0005834020780368654,
+      "pulse_max_friction_utilisation": 0.27568715380824294,
+      "pulse_min_normal_force_n": 12.712873909568048,
+      "id": "idealised_combined__6.25e-05__-18.2"
+    }
+  ],
+  "monotonicity": {
+    "planar": {
+      "forces_n": [
+        18.1,
+        18.11,
+        18.12,
+        18.13,
+        18.14,
+        18.15,
+        18.16,
+        18.17,
+        18.18,
+        18.19,
+        18.2,
+        18.21,
+        18.22,
+        18.23,
+        18.24,
+        18.25,
+        18.26,
+        18.27,
+        18.28,
+        18.29,
+        18.3
+      ],
+      "fallen": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "single_transition": true,
+      "last_not_fallen_n": 18.22,
+      "first_fallen_n": 18.23
+    },
+    "native": {
+      "forces_n": [
+        18.1,
+        18.11,
+        18.12,
+        18.13,
+        18.14,
+        18.15,
+        18.16,
+        18.17,
+        18.18,
+        18.19,
+        18.2,
+        18.21,
+        18.22,
+        18.23,
+        18.24,
+        18.25,
+        18.26,
+        18.27,
+        18.28,
+        18.29,
+        18.3
+      ],
+      "fallen": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "single_transition": true,
+      "last_not_fallen_n": 18.18,
+      "first_fallen_n": 18.19
+    }
+  },
+  "planar_traction_demand": {
+    "17.0": {
+      "peak_required_friction_coefficient": 0.5905474329145282,
+      "time_s": 2.325,
+      "horizontal_ground_force_n": -10.108950695696374,
+      "normal_force_n": 17.11793182438484,
+      "samples_above_1": 0,
+      "seconds_above_1": 0.0,
+      "min_normal_force_n": 10.71768355676572
+    },
+    "18.0": {
+      "peak_required_friction_coefficient": 0.6361185848997504,
+      "time_s": 2.445,
+      "horizontal_ground_force_n": -10.240974961471892,
+      "normal_force_n": 16.099160132360897,
+      "samples_above_1": 0,
+      "seconds_above_1": 0.0,
+      "min_normal_force_n": 10.284037299033244
+    },
+    "18.2": {
+      "peak_required_friction_coefficient": 0.7324664807058237,
+      "time_s": 2.95,
+      "horizontal_ground_force_n": -9.329603625580003,
+      "normal_force_n": 12.737243097581414,
+      "samples_above_1": 0,
+      "seconds_above_1": 0.0,
+      "min_normal_force_n": 6.460651371677994
+    },
+    "19.0": {
+      "peak_required_friction_coefficient": 0.673431985747153,
+      "time_s": 2.365,
+      "horizontal_ground_force_n": -10.270403835534841,
+      "normal_force_n": 15.250840549458205,
+      "samples_above_1": 0,
+      "seconds_above_1": 0.0,
+      "min_normal_force_n": 9.846341725946036
+    }
+  },
+  "planar_midpoint_n": 18.22711181640625,
+  "native_midpoint_n": 18.18865966796875
+}

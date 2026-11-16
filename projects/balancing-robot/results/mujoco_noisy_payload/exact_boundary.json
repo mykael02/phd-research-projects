@@ -1,0 +1,8188 @@
+{
+ "metadata": {
+  "status": "Post hoc, added after an internal review of manuscript version 2 and after every noisy result was known. Deterministic; no tuning.",
+  "source_sha256": {
+   "balance.py": "573cbe8e27728a2b8fe1f161f400c67be209ea6a12944a5cb12c761054ccc673",
+   "config.json": "577501728bb9e45dfe280fd519aadee4a068a8e2ff8d579ccb891967c7cf7446",
+   "comparison_protocol.json": "da0b9f57dde9ba9fd8e73127cfc1eb48bf9de1e6d6294b1ad642d1566d8c5ed1",
+   "visualisation/sensing.js": "a7fcc8e208c1c904d4fb8ad6bd655443151e41170ebe1ef744400ebb7f6dd1ec",
+   "mujoco_lab/validate.py": "f08f33187402b338192bc718fd9f517d0edd531d48e0e179363616b8725fe012",
+   "mujoco_lab/extension_core.py": "e010bea8527f910e90ecfe963eb3bfc0854ce5c00fcb5d833d16eb4a174ce6f6",
+   "mujoco_lab/extension_protocol.json": "8f68208afb82f22352a5ef7995bb1384e9760195e090357a132601c89b321cb2",
+   "mujoco_lab/run_noisy_payload.py": "033f0fcab9d0dba27622052dd4ec04bebdeebc8599315ca9ad9e235467fa616e",
+   "mujoco_lab/noisy_payload_protocol.json": "817df6943706423611b898218389a9db56c8cea1e09c8c24ff894f70bae8c82e",
+   "mujoco_lab/balancing_robot.xml": "fa99dd4a2a060d52c8aa7e3e0868cf14b863d3a0267000995cb5d14e8d927f2a",
+   "results/comparison/gain_design.json": "39b0e9eb8956df04665b3e5a14c6f1c50f307f07d4ebbea025fa1550d29db466",
+   "mujoco_lab/run_exact_boundary.py": "1bccb0784b775eb824006006984d9b1738da5a2a1ed11eb48f8921d8d9b473c4"
+  },
+  "mujoco": "4.0.1",
+  "numpy": "2.5.4",
+  "python": "3.14.2",
+  "bracket_n": [
+   0.0,
+   40.0
+  ],
+  "halvings": 12,
+  "width_n": 0.009765625,
+  "integrations": 2988,
+  "elapsed_s": 183.2
+ },
+ "records": [
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 23.7109375,
+   "first_fallen_n": 23.720703125,
+   "critical_push_n": 23.7158203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     false
+    ],
+    [
+     23.4375,
+     false
+    ],
+    [
+     23.59375,
+     false
+    ],
+    [
+     23.671875,
+     false
+    ],
+    [
+     23.7109375,
+     false
+    ],
+    [
+     23.73046875,
+     true
+    ],
+    [
+     23.720703125,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 11.7158203125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 23.525390625,
+   "first_fallen_n": 23.53515625,
+   "critical_push_n": 23.5302734375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     false
+    ],
+    [
+     23.4375,
+     false
+    ],
+    [
+     23.59375,
+     true
+    ],
+    [
+     23.515625,
+     false
+    ],
+    [
+     23.5546875,
+     true
+    ],
+    [
+     23.53515625,
+     true
+    ],
+    [
+     23.525390625,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 11.5302734375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 21.865234375,
+   "first_fallen_n": 21.875,
+   "critical_push_n": 21.8701171875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     false
+    ],
+    [
+     21.875,
+     true
+    ],
+    [
+     21.5625,
+     false
+    ],
+    [
+     21.71875,
+     false
+    ],
+    [
+     21.796875,
+     false
+    ],
+    [
+     21.8359375,
+     false
+    ],
+    [
+     21.85546875,
+     false
+    ],
+    [
+     21.865234375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 9.8701171875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 22.734375,
+   "first_fallen_n": 22.744140625,
+   "critical_push_n": 22.7392578125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     false
+    ],
+    [
+     22.7734375,
+     true
+    ],
+    [
+     22.75390625,
+     true
+    ],
+    [
+     22.744140625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 10.7392578125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 19.62890625,
+   "first_fallen_n": 19.638671875,
+   "critical_push_n": 19.6337890625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     false
+    ],
+    [
+     17.5,
+     false
+    ],
+    [
+     18.75,
+     false
+    ],
+    [
+     19.375,
+     false
+    ],
+    [
+     19.6875,
+     true
+    ],
+    [
+     19.53125,
+     false
+    ],
+    [
+     19.609375,
+     false
+    ],
+    [
+     19.6484375,
+     true
+    ],
+    [
+     19.62890625,
+     false
+    ],
+    [
+     19.638671875,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 7.6337890625
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 21.630859375,
+   "first_fallen_n": 21.640625,
+   "critical_push_n": 21.6357421875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     false
+    ],
+    [
+     21.875,
+     true
+    ],
+    [
+     21.5625,
+     false
+    ],
+    [
+     21.71875,
+     true
+    ],
+    [
+     21.640625,
+     true
+    ],
+    [
+     21.6015625,
+     false
+    ],
+    [
+     21.62109375,
+     false
+    ],
+    [
+     21.630859375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 9.6357421875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 25.615234375,
+   "first_fallen_n": 25.625,
+   "critical_push_n": 25.6201171875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     true
+    ],
+    [
+     25.3125,
+     false
+    ],
+    [
+     25.46875,
+     false
+    ],
+    [
+     25.546875,
+     false
+    ],
+    [
+     25.5859375,
+     false
+    ],
+    [
+     25.60546875,
+     false
+    ],
+    [
+     25.615234375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 13.6201171875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 25.390625,
+   "first_fallen_n": 25.400390625,
+   "critical_push_n": 25.3955078125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     true
+    ],
+    [
+     25.3125,
+     false
+    ],
+    [
+     25.46875,
+     true
+    ],
+    [
+     25.390625,
+     false
+    ],
+    [
+     25.4296875,
+     true
+    ],
+    [
+     25.41015625,
+     true
+    ],
+    [
+     25.400390625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 13.3955078125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 22.7734375,
+   "first_fallen_n": 22.783203125,
+   "critical_push_n": 22.7783203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     false
+    ],
+    [
+     22.7734375,
+     false
+    ],
+    [
+     22.79296875,
+     true
+    ],
+    [
+     22.783203125,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 10.7783203125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 24.1796875,
+   "first_fallen_n": 24.189453125,
+   "critical_push_n": 24.1845703125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     false
+    ],
+    [
+     24.21875,
+     true
+    ],
+    [
+     24.140625,
+     false
+    ],
+    [
+     24.1796875,
+     false
+    ],
+    [
+     24.19921875,
+     true
+    ],
+    [
+     24.189453125,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 12.1845703125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 19.658203125,
+   "first_fallen_n": 19.66796875,
+   "critical_push_n": 19.6630859375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     false
+    ],
+    [
+     17.5,
+     false
+    ],
+    [
+     18.75,
+     false
+    ],
+    [
+     19.375,
+     false
+    ],
+    [
+     19.6875,
+     true
+    ],
+    [
+     19.53125,
+     false
+    ],
+    [
+     19.609375,
+     false
+    ],
+    [
+     19.6484375,
+     false
+    ],
+    [
+     19.66796875,
+     true
+    ],
+    [
+     19.658203125,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 7.6630859375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 22.6953125,
+   "first_fallen_n": 22.705078125,
+   "critical_push_n": 22.7001953125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     true
+    ],
+    [
+     22.6953125,
+     false
+    ],
+    [
+     22.71484375,
+     true
+    ],
+    [
+     22.705078125,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 10.7001953125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 27.880859375,
+   "first_fallen_n": 27.890625,
+   "critical_push_n": 27.8857421875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     false
+    ],
+    [
+     28.75,
+     true
+    ],
+    [
+     28.125,
+     true
+    ],
+    [
+     27.8125,
+     false
+    ],
+    [
+     27.96875,
+     true
+    ],
+    [
+     27.890625,
+     true
+    ],
+    [
+     27.8515625,
+     false
+    ],
+    [
+     27.87109375,
+     false
+    ],
+    [
+     27.880859375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 15.8857421875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 27.744140625,
+   "first_fallen_n": 27.75390625,
+   "critical_push_n": 27.7490234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     false
+    ],
+    [
+     28.75,
+     true
+    ],
+    [
+     28.125,
+     true
+    ],
+    [
+     27.8125,
+     true
+    ],
+    [
+     27.65625,
+     false
+    ],
+    [
+     27.734375,
+     false
+    ],
+    [
+     27.7734375,
+     true
+    ],
+    [
+     27.75390625,
+     true
+    ],
+    [
+     27.744140625,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 15.7490234375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 24.033203125,
+   "first_fallen_n": 24.04296875,
+   "critical_push_n": 24.0380859375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     true
+    ],
+    [
+     23.90625,
+     false
+    ],
+    [
+     23.984375,
+     false
+    ],
+    [
+     24.0234375,
+     false
+    ],
+    [
+     24.04296875,
+     true
+    ],
+    [
+     24.033203125,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 12.0380859375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 26.1328125,
+   "first_fallen_n": 26.142578125,
+   "critical_push_n": 26.1376953125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     false
+    ],
+    [
+     25.9375,
+     false
+    ],
+    [
+     26.09375,
+     false
+    ],
+    [
+     26.171875,
+     true
+    ],
+    [
+     26.1328125,
+     false
+    ],
+    [
+     26.15234375,
+     true
+    ],
+    [
+     26.142578125,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 14.1376953125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 20.1171875,
+   "first_fallen_n": 20.126953125,
+   "critical_push_n": 20.1220703125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     true
+    ],
+    [
+     20.625,
+     true
+    ],
+    [
+     20.3125,
+     true
+    ],
+    [
+     20.15625,
+     true
+    ],
+    [
+     20.078125,
+     false
+    ],
+    [
+     20.1171875,
+     false
+    ],
+    [
+     20.13671875,
+     true
+    ],
+    [
+     20.126953125,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 8.1220703125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 24.345703125,
+   "first_fallen_n": 24.35546875,
+   "critical_push_n": 24.3505859375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     false
+    ],
+    [
+     24.21875,
+     false
+    ],
+    [
+     24.296875,
+     false
+    ],
+    [
+     24.3359375,
+     false
+    ],
+    [
+     24.35546875,
+     true
+    ],
+    [
+     24.345703125,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 12.3505859375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 13.193359375,
+   "first_fallen_n": 13.203125,
+   "critical_push_n": 13.1982421875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     false
+    ],
+    [
+     13.4375,
+     true
+    ],
+    [
+     13.28125,
+     true
+    ],
+    [
+     13.203125,
+     true
+    ],
+    [
+     13.1640625,
+     false
+    ],
+    [
+     13.18359375,
+     false
+    ],
+    [
+     13.193359375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 1.1982421875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 13.076171875,
+   "first_fallen_n": 13.0859375,
+   "critical_push_n": 13.0810546875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     false
+    ],
+    [
+     13.046875,
+     false
+    ],
+    [
+     13.0859375,
+     true
+    ],
+    [
+     13.06640625,
+     false
+    ],
+    [
+     13.076171875,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 1.0810546875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.1875,
+   "first_fallen_n": 12.197265625,
+   "critical_push_n": 12.1923828125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     true
+    ],
+    [
+     12.265625,
+     true
+    ],
+    [
+     12.2265625,
+     true
+    ],
+    [
+     12.20703125,
+     true
+    ],
+    [
+     12.197265625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 0.1923828125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 12.65625,
+   "first_fallen_n": 12.666015625,
+   "critical_push_n": 12.6611328125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     true
+    ],
+    [
+     12.65625,
+     false
+    ],
+    [
+     12.734375,
+     true
+    ],
+    [
+     12.6953125,
+     true
+    ],
+    [
+     12.67578125,
+     true
+    ],
+    [
+     12.666015625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 0.6611328125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.849609375,
+   "first_fallen_n": 10.859375,
+   "critical_push_n": 10.8544921875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     false
+    ],
+    [
+     10.859375,
+     true
+    ],
+    [
+     10.8203125,
+     false
+    ],
+    [
+     10.83984375,
+     false
+    ],
+    [
+     10.849609375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": -1.1455078125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 11.97265625,
+   "first_fallen_n": 11.982421875,
+   "critical_push_n": 11.9775390625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     true
+    ],
+    [
+     12.03125,
+     true
+    ],
+    [
+     11.953125,
+     false
+    ],
+    [
+     11.9921875,
+     true
+    ],
+    [
+     11.97265625,
+     false
+    ],
+    [
+     11.982421875,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": -0.0224609375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 14.0625,
+   "first_fallen_n": 14.072265625,
+   "critical_push_n": 14.0673828125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     false
+    ],
+    [
+     14.21875,
+     true
+    ],
+    [
+     14.140625,
+     true
+    ],
+    [
+     14.1015625,
+     true
+    ],
+    [
+     14.08203125,
+     true
+    ],
+    [
+     14.072265625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 2.0673828125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 13.92578125,
+   "first_fallen_n": 13.935546875,
+   "critical_push_n": 13.9306640625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     true
+    ],
+    [
+     13.90625,
+     false
+    ],
+    [
+     13.984375,
+     true
+    ],
+    [
+     13.9453125,
+     true
+    ],
+    [
+     13.92578125,
+     false
+    ],
+    [
+     13.935546875,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 1.9306640625
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.490234375,
+   "first_fallen_n": 12.5,
+   "critical_push_n": 12.4951171875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     false
+    ],
+    [
+     12.421875,
+     false
+    ],
+    [
+     12.4609375,
+     false
+    ],
+    [
+     12.48046875,
+     false
+    ],
+    [
+     12.490234375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 0.4951171875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 13.28125,
+   "first_fallen_n": 13.291015625,
+   "critical_push_n": 13.2861328125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     false
+    ],
+    [
+     13.4375,
+     true
+    ],
+    [
+     13.28125,
+     false
+    ],
+    [
+     13.359375,
+     true
+    ],
+    [
+     13.3203125,
+     true
+    ],
+    [
+     13.30078125,
+     true
+    ],
+    [
+     13.291015625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 1.2861328125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.693359375,
+   "first_fallen_n": 10.703125,
+   "critical_push_n": 10.6982421875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     true
+    ],
+    [
+     10.703125,
+     true
+    ],
+    [
+     10.6640625,
+     false
+    ],
+    [
+     10.68359375,
+     false
+    ],
+    [
+     10.693359375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": -1.3017578125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 12.34375,
+   "first_fallen_n": 12.353515625,
+   "critical_push_n": 12.3486328125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     false
+    ],
+    [
+     12.421875,
+     true
+    ],
+    [
+     12.3828125,
+     true
+    ],
+    [
+     12.36328125,
+     true
+    ],
+    [
+     12.353515625,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 0.3486328125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 14.94140625,
+   "first_fallen_n": 14.951171875,
+   "critical_push_n": 14.9462890625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     false
+    ],
+    [
+     14.6875,
+     false
+    ],
+    [
+     14.84375,
+     false
+    ],
+    [
+     14.921875,
+     false
+    ],
+    [
+     14.9609375,
+     true
+    ],
+    [
+     14.94140625,
+     false
+    ],
+    [
+     14.951171875,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 2.9462890625
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 14.912109375,
+   "first_fallen_n": 14.921875,
+   "critical_push_n": 14.9169921875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     false
+    ],
+    [
+     14.6875,
+     false
+    ],
+    [
+     14.84375,
+     false
+    ],
+    [
+     14.921875,
+     true
+    ],
+    [
+     14.8828125,
+     false
+    ],
+    [
+     14.90234375,
+     false
+    ],
+    [
+     14.912109375,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 2.9169921875
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.939453125,
+   "first_fallen_n": 12.94921875,
+   "critical_push_n": 12.9443359375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     true
+    ],
+    [
+     12.890625,
+     false
+    ],
+    [
+     12.9296875,
+     false
+    ],
+    [
+     12.94921875,
+     true
+    ],
+    [
+     12.939453125,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 0.9443359375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 14.072265625,
+   "first_fallen_n": 14.08203125,
+   "critical_push_n": 14.0771484375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     false
+    ],
+    [
+     14.21875,
+     true
+    ],
+    [
+     14.140625,
+     true
+    ],
+    [
+     14.1015625,
+     true
+    ],
+    [
+     14.08203125,
+     true
+    ],
+    [
+     14.072265625,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 2.0771484375
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.732421875,
+   "first_fallen_n": 10.7421875,
+   "critical_push_n": 10.7373046875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     true
+    ],
+    [
+     10.703125,
+     false
+    ],
+    [
+     10.7421875,
+     true
+    ],
+    [
+     10.72265625,
+     false
+    ],
+    [
+     10.732421875,
+     false
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": -1.2626953125
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 12.98828125,
+   "first_fallen_n": 12.998046875,
+   "critical_push_n": 12.9931640625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     false
+    ],
+    [
+     13.046875,
+     true
+    ],
+    [
+     13.0078125,
+     true
+    ],
+    [
+     12.98828125,
+     false
+    ],
+    [
+     12.998046875,
+     true
+    ]
+   ],
+   "scan_single_transition": true,
+   "margin_at_noisy_push_n": 0.9931640625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 23.681640625,
+   "first_fallen_n": 23.69140625,
+   "critical_push_n": 23.6865234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     false
+    ],
+    [
+     23.4375,
+     false
+    ],
+    [
+     23.59375,
+     false
+    ],
+    [
+     23.671875,
+     false
+    ],
+    [
+     23.7109375,
+     true
+    ],
+    [
+     23.69140625,
+     true
+    ],
+    [
+     23.681640625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 11.6865234375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 23.486328125,
+   "first_fallen_n": 23.49609375,
+   "critical_push_n": 23.4912109375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     false
+    ],
+    [
+     23.4375,
+     false
+    ],
+    [
+     23.59375,
+     true
+    ],
+    [
+     23.515625,
+     true
+    ],
+    [
+     23.4765625,
+     false
+    ],
+    [
+     23.49609375,
+     true
+    ],
+    [
+     23.486328125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 11.4912109375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 21.8359375,
+   "first_fallen_n": 21.845703125,
+   "critical_push_n": 21.8408203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     false
+    ],
+    [
+     21.875,
+     true
+    ],
+    [
+     21.5625,
+     false
+    ],
+    [
+     21.71875,
+     false
+    ],
+    [
+     21.796875,
+     false
+    ],
+    [
+     21.8359375,
+     false
+    ],
+    [
+     21.85546875,
+     true
+    ],
+    [
+     21.845703125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 9.8408203125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 22.6953125,
+   "first_fallen_n": 22.705078125,
+   "critical_push_n": 22.7001953125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     true
+    ],
+    [
+     22.6953125,
+     false
+    ],
+    [
+     22.71484375,
+     true
+    ],
+    [
+     22.705078125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 10.7001953125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 19.599609375,
+   "first_fallen_n": 19.609375,
+   "critical_push_n": 19.6044921875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     false
+    ],
+    [
+     17.5,
+     false
+    ],
+    [
+     18.75,
+     false
+    ],
+    [
+     19.375,
+     false
+    ],
+    [
+     19.6875,
+     true
+    ],
+    [
+     19.53125,
+     false
+    ],
+    [
+     19.609375,
+     true
+    ],
+    [
+     19.5703125,
+     false
+    ],
+    [
+     19.58984375,
+     false
+    ],
+    [
+     19.599609375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 7.6044921875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 21.6015625,
+   "first_fallen_n": 21.611328125,
+   "critical_push_n": 21.6064453125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     false
+    ],
+    [
+     21.875,
+     true
+    ],
+    [
+     21.5625,
+     false
+    ],
+    [
+     21.71875,
+     true
+    ],
+    [
+     21.640625,
+     true
+    ],
+    [
+     21.6015625,
+     false
+    ],
+    [
+     21.62109375,
+     true
+    ],
+    [
+     21.611328125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 9.6064453125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 25.5859375,
+   "first_fallen_n": 25.595703125,
+   "critical_push_n": 25.5908203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     true
+    ],
+    [
+     25.3125,
+     false
+    ],
+    [
+     25.46875,
+     false
+    ],
+    [
+     25.546875,
+     false
+    ],
+    [
+     25.5859375,
+     false
+    ],
+    [
+     25.60546875,
+     true
+    ],
+    [
+     25.595703125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 13.5908203125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 25.361328125,
+   "first_fallen_n": 25.37109375,
+   "critical_push_n": 25.3662109375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     true
+    ],
+    [
+     25.3125,
+     false
+    ],
+    [
+     25.46875,
+     true
+    ],
+    [
+     25.390625,
+     true
+    ],
+    [
+     25.3515625,
+     false
+    ],
+    [
+     25.37109375,
+     true
+    ],
+    [
+     25.361328125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 13.3662109375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 22.744140625,
+   "first_fallen_n": 22.75390625,
+   "critical_push_n": 22.7490234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     false
+    ],
+    [
+     22.7734375,
+     true
+    ],
+    [
+     22.75390625,
+     true
+    ],
+    [
+     22.744140625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 10.7490234375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 24.150390625,
+   "first_fallen_n": 24.16015625,
+   "critical_push_n": 24.1552734375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     false
+    ],
+    [
+     24.21875,
+     true
+    ],
+    [
+     24.140625,
+     false
+    ],
+    [
+     24.1796875,
+     true
+    ],
+    [
+     24.16015625,
+     true
+    ],
+    [
+     24.150390625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 12.1552734375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 19.638671875,
+   "first_fallen_n": 19.6484375,
+   "critical_push_n": 19.6435546875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     false
+    ],
+    [
+     17.5,
+     false
+    ],
+    [
+     18.75,
+     false
+    ],
+    [
+     19.375,
+     false
+    ],
+    [
+     19.6875,
+     true
+    ],
+    [
+     19.53125,
+     false
+    ],
+    [
+     19.609375,
+     false
+    ],
+    [
+     19.6484375,
+     true
+    ],
+    [
+     19.62890625,
+     false
+    ],
+    [
+     19.638671875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 7.6435546875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 22.67578125,
+   "first_fallen_n": 22.685546875,
+   "critical_push_n": 22.6806640625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     true
+    ],
+    [
+     22.6953125,
+     true
+    ],
+    [
+     22.67578125,
+     false
+    ],
+    [
+     22.685546875,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 10.6806640625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 27.861328125,
+   "first_fallen_n": 27.87109375,
+   "critical_push_n": 27.8662109375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     false
+    ],
+    [
+     28.75,
+     true
+    ],
+    [
+     28.125,
+     true
+    ],
+    [
+     27.8125,
+     false
+    ],
+    [
+     27.96875,
+     true
+    ],
+    [
+     27.890625,
+     true
+    ],
+    [
+     27.8515625,
+     false
+    ],
+    [
+     27.87109375,
+     true
+    ],
+    [
+     27.861328125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 15.8662109375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 27.71484375,
+   "first_fallen_n": 27.724609375,
+   "critical_push_n": 27.7197265625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     false
+    ],
+    [
+     28.75,
+     true
+    ],
+    [
+     28.125,
+     true
+    ],
+    [
+     27.8125,
+     true
+    ],
+    [
+     27.65625,
+     false
+    ],
+    [
+     27.734375,
+     true
+    ],
+    [
+     27.6953125,
+     false
+    ],
+    [
+     27.71484375,
+     false
+    ],
+    [
+     27.724609375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 15.7197265625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 24.013671875,
+   "first_fallen_n": 24.0234375,
+   "critical_push_n": 24.0185546875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     true
+    ],
+    [
+     23.90625,
+     false
+    ],
+    [
+     23.984375,
+     false
+    ],
+    [
+     24.0234375,
+     true
+    ],
+    [
+     24.00390625,
+     false
+    ],
+    [
+     24.013671875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 12.0185546875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 26.11328125,
+   "first_fallen_n": 26.123046875,
+   "critical_push_n": 26.1181640625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     false
+    ],
+    [
+     25.9375,
+     false
+    ],
+    [
+     26.09375,
+     false
+    ],
+    [
+     26.171875,
+     true
+    ],
+    [
+     26.1328125,
+     true
+    ],
+    [
+     26.11328125,
+     false
+    ],
+    [
+     26.123046875,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 14.1181640625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 20.107421875,
+   "first_fallen_n": 20.1171875,
+   "critical_push_n": 20.1123046875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     true
+    ],
+    [
+     20.625,
+     true
+    ],
+    [
+     20.3125,
+     true
+    ],
+    [
+     20.15625,
+     true
+    ],
+    [
+     20.078125,
+     false
+    ],
+    [
+     20.1171875,
+     true
+    ],
+    [
+     20.09765625,
+     false
+    ],
+    [
+     20.107421875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 8.1123046875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 24.3359375,
+   "first_fallen_n": 24.345703125,
+   "critical_push_n": 24.3408203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     false
+    ],
+    [
+     24.21875,
+     false
+    ],
+    [
+     24.296875,
+     false
+    ],
+    [
+     24.3359375,
+     false
+    ],
+    [
+     24.35546875,
+     true
+    ],
+    [
+     24.345703125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 12.3408203125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 13.1640625,
+   "first_fallen_n": 13.173828125,
+   "critical_push_n": 13.1689453125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     false
+    ],
+    [
+     13.4375,
+     true
+    ],
+    [
+     13.28125,
+     true
+    ],
+    [
+     13.203125,
+     true
+    ],
+    [
+     13.1640625,
+     false
+    ],
+    [
+     13.18359375,
+     true
+    ],
+    [
+     13.173828125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.1689453125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 13.056640625,
+   "first_fallen_n": 13.06640625,
+   "critical_push_n": 13.0615234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     false
+    ],
+    [
+     13.046875,
+     false
+    ],
+    [
+     13.0859375,
+     true
+    ],
+    [
+     13.06640625,
+     true
+    ],
+    [
+     13.056640625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.0615234375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.16796875,
+   "first_fallen_n": 12.177734375,
+   "critical_push_n": 12.1728515625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     true
+    ],
+    [
+     12.03125,
+     false
+    ],
+    [
+     12.109375,
+     false
+    ],
+    [
+     12.1484375,
+     false
+    ],
+    [
+     12.16796875,
+     false
+    ],
+    [
+     12.177734375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.1728515625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 12.63671875,
+   "first_fallen_n": 12.646484375,
+   "critical_push_n": 12.6416015625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     true
+    ],
+    [
+     12.65625,
+     true
+    ],
+    [
+     12.578125,
+     false
+    ],
+    [
+     12.6171875,
+     false
+    ],
+    [
+     12.63671875,
+     false
+    ],
+    [
+     12.646484375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.6416015625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.83984375,
+   "first_fallen_n": 10.849609375,
+   "critical_push_n": 10.8447265625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     false
+    ],
+    [
+     10.859375,
+     true
+    ],
+    [
+     10.8203125,
+     false
+    ],
+    [
+     10.83984375,
+     false
+    ],
+    [
+     10.849609375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -1.1552734375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 11.953125,
+   "first_fallen_n": 11.962890625,
+   "critical_push_n": 11.9580078125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     true
+    ],
+    [
+     12.03125,
+     true
+    ],
+    [
+     11.953125,
+     false
+    ],
+    [
+     11.9921875,
+     true
+    ],
+    [
+     11.97265625,
+     true
+    ],
+    [
+     11.962890625,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -0.0419921875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 14.04296875,
+   "first_fallen_n": 14.052734375,
+   "critical_push_n": 14.0478515625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     true
+    ],
+    [
+     13.90625,
+     false
+    ],
+    [
+     13.984375,
+     false
+    ],
+    [
+     14.0234375,
+     false
+    ],
+    [
+     14.04296875,
+     false
+    ],
+    [
+     14.052734375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.0478515625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 13.896484375,
+   "first_fallen_n": 13.90625,
+   "critical_push_n": 13.9013671875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     true
+    ],
+    [
+     13.90625,
+     true
+    ],
+    [
+     13.828125,
+     false
+    ],
+    [
+     13.8671875,
+     false
+    ],
+    [
+     13.88671875,
+     false
+    ],
+    [
+     13.896484375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.9013671875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.48046875,
+   "first_fallen_n": 12.490234375,
+   "critical_push_n": 12.4853515625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     false
+    ],
+    [
+     12.421875,
+     false
+    ],
+    [
+     12.4609375,
+     false
+    ],
+    [
+     12.48046875,
+     false
+    ],
+    [
+     12.490234375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.4853515625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 13.26171875,
+   "first_fallen_n": 13.271484375,
+   "critical_push_n": 13.2666015625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     false
+    ],
+    [
+     13.4375,
+     true
+    ],
+    [
+     13.28125,
+     true
+    ],
+    [
+     13.203125,
+     false
+    ],
+    [
+     13.2421875,
+     false
+    ],
+    [
+     13.26171875,
+     false
+    ],
+    [
+     13.271484375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.2666015625
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.68359375,
+   "first_fallen_n": 10.693359375,
+   "critical_push_n": 10.6884765625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     true
+    ],
+    [
+     10.703125,
+     true
+    ],
+    [
+     10.6640625,
+     false
+    ],
+    [
+     10.68359375,
+     false
+    ],
+    [
+     10.693359375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -1.3115234375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 12.333984375,
+   "first_fallen_n": 12.34375,
+   "critical_push_n": 12.3388671875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     true
+    ],
+    [
+     12.265625,
+     false
+    ],
+    [
+     12.3046875,
+     false
+    ],
+    [
+     12.32421875,
+     false
+    ],
+    [
+     12.333984375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.3388671875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 14.931640625,
+   "first_fallen_n": 14.94140625,
+   "critical_push_n": 14.9365234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     false
+    ],
+    [
+     14.6875,
+     false
+    ],
+    [
+     14.84375,
+     false
+    ],
+    [
+     14.921875,
+     false
+    ],
+    [
+     14.9609375,
+     true
+    ],
+    [
+     14.94140625,
+     true
+    ],
+    [
+     14.931640625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.9365234375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 14.892578125,
+   "first_fallen_n": 14.90234375,
+   "critical_push_n": 14.8974609375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     false
+    ],
+    [
+     14.6875,
+     false
+    ],
+    [
+     14.84375,
+     false
+    ],
+    [
+     14.921875,
+     true
+    ],
+    [
+     14.8828125,
+     false
+    ],
+    [
+     14.90234375,
+     true
+    ],
+    [
+     14.892578125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.8974609375
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.9296875,
+   "first_fallen_n": 12.939453125,
+   "critical_push_n": 12.9345703125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     true
+    ],
+    [
+     12.890625,
+     false
+    ],
+    [
+     12.9296875,
+     false
+    ],
+    [
+     12.94921875,
+     true
+    ],
+    [
+     12.939453125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.9345703125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 14.052734375,
+   "first_fallen_n": 14.0625,
+   "critical_push_n": 14.0576171875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     true
+    ],
+    [
+     13.90625,
+     false
+    ],
+    [
+     13.984375,
+     false
+    ],
+    [
+     14.0234375,
+     false
+    ],
+    [
+     14.04296875,
+     false
+    ],
+    [
+     14.052734375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.0576171875
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.732421875,
+   "first_fallen_n": 10.7421875,
+   "critical_push_n": 10.7373046875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     true
+    ],
+    [
+     10.703125,
+     false
+    ],
+    [
+     10.7421875,
+     true
+    ],
+    [
+     10.72265625,
+     false
+    ],
+    [
+     10.732421875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -1.2626953125
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 12.978515625,
+   "first_fallen_n": 12.98828125,
+   "critical_push_n": 12.9833984375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     false
+    ],
+    [
+     13.046875,
+     true
+    ],
+    [
+     13.0078125,
+     true
+    ],
+    [
+     12.98828125,
+     true
+    ],
+    [
+     12.978515625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.9833984375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 23.69140625,
+   "first_fallen_n": 23.701171875,
+   "critical_push_n": 23.6962890625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     false
+    ],
+    [
+     23.4375,
+     false
+    ],
+    [
+     23.59375,
+     false
+    ],
+    [
+     23.671875,
+     false
+    ],
+    [
+     23.7109375,
+     true
+    ],
+    [
+     23.69140625,
+     false
+    ],
+    [
+     23.701171875,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 11.6962890625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 23.505859375,
+   "first_fallen_n": 23.515625,
+   "critical_push_n": 23.5107421875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     false
+    ],
+    [
+     23.4375,
+     false
+    ],
+    [
+     23.59375,
+     true
+    ],
+    [
+     23.515625,
+     true
+    ],
+    [
+     23.4765625,
+     false
+    ],
+    [
+     23.49609375,
+     false
+    ],
+    [
+     23.505859375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 11.5107421875
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 21.845703125,
+   "first_fallen_n": 21.85546875,
+   "critical_push_n": 21.8505859375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     false
+    ],
+    [
+     21.875,
+     true
+    ],
+    [
+     21.5625,
+     false
+    ],
+    [
+     21.71875,
+     false
+    ],
+    [
+     21.796875,
+     false
+    ],
+    [
+     21.8359375,
+     false
+    ],
+    [
+     21.85546875,
+     true
+    ],
+    [
+     21.845703125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 9.8505859375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 22.71484375,
+   "first_fallen_n": 22.724609375,
+   "critical_push_n": 22.7197265625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     true
+    ],
+    [
+     22.6953125,
+     false
+    ],
+    [
+     22.71484375,
+     false
+    ],
+    [
+     22.724609375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 10.7197265625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 19.609375,
+   "first_fallen_n": 19.619140625,
+   "critical_push_n": 19.6142578125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     false
+    ],
+    [
+     17.5,
+     false
+    ],
+    [
+     18.75,
+     false
+    ],
+    [
+     19.375,
+     false
+    ],
+    [
+     19.6875,
+     true
+    ],
+    [
+     19.53125,
+     false
+    ],
+    [
+     19.609375,
+     false
+    ],
+    [
+     19.6484375,
+     true
+    ],
+    [
+     19.62890625,
+     true
+    ],
+    [
+     19.619140625,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 7.6142578125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 21.611328125,
+   "first_fallen_n": 21.62109375,
+   "critical_push_n": 21.6162109375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     false
+    ],
+    [
+     21.875,
+     true
+    ],
+    [
+     21.5625,
+     false
+    ],
+    [
+     21.71875,
+     true
+    ],
+    [
+     21.640625,
+     true
+    ],
+    [
+     21.6015625,
+     false
+    ],
+    [
+     21.62109375,
+     true
+    ],
+    [
+     21.611328125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 9.6162109375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 25.595703125,
+   "first_fallen_n": 25.60546875,
+   "critical_push_n": 25.6005859375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     true
+    ],
+    [
+     25.3125,
+     false
+    ],
+    [
+     25.46875,
+     false
+    ],
+    [
+     25.546875,
+     false
+    ],
+    [
+     25.5859375,
+     false
+    ],
+    [
+     25.60546875,
+     true
+    ],
+    [
+     25.595703125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 13.6005859375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 25.37109375,
+   "first_fallen_n": 25.380859375,
+   "critical_push_n": 25.3759765625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     true
+    ],
+    [
+     25.3125,
+     false
+    ],
+    [
+     25.46875,
+     true
+    ],
+    [
+     25.390625,
+     true
+    ],
+    [
+     25.3515625,
+     false
+    ],
+    [
+     25.37109375,
+     false
+    ],
+    [
+     25.380859375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 13.3759765625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 22.75390625,
+   "first_fallen_n": 22.763671875,
+   "critical_push_n": 22.7587890625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     false
+    ],
+    [
+     22.7734375,
+     true
+    ],
+    [
+     22.75390625,
+     false
+    ],
+    [
+     22.763671875,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 10.7587890625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 24.16015625,
+   "first_fallen_n": 24.169921875,
+   "critical_push_n": 24.1650390625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     false
+    ],
+    [
+     24.21875,
+     true
+    ],
+    [
+     24.140625,
+     false
+    ],
+    [
+     24.1796875,
+     true
+    ],
+    [
+     24.16015625,
+     false
+    ],
+    [
+     24.169921875,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 12.1650390625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 19.6484375,
+   "first_fallen_n": 19.658203125,
+   "critical_push_n": 19.6533203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     false
+    ],
+    [
+     17.5,
+     false
+    ],
+    [
+     18.75,
+     false
+    ],
+    [
+     19.375,
+     false
+    ],
+    [
+     19.6875,
+     true
+    ],
+    [
+     19.53125,
+     false
+    ],
+    [
+     19.609375,
+     false
+    ],
+    [
+     19.6484375,
+     false
+    ],
+    [
+     19.66796875,
+     true
+    ],
+    [
+     19.658203125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 7.6533203125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 22.685546875,
+   "first_fallen_n": 22.6953125,
+   "critical_push_n": 22.6904296875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     true
+    ],
+    [
+     23.125,
+     true
+    ],
+    [
+     22.8125,
+     true
+    ],
+    [
+     22.65625,
+     false
+    ],
+    [
+     22.734375,
+     true
+    ],
+    [
+     22.6953125,
+     true
+    ],
+    [
+     22.67578125,
+     false
+    ],
+    [
+     22.685546875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 10.6904296875
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 27.861328125,
+   "first_fallen_n": 27.87109375,
+   "critical_push_n": 27.8662109375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     false
+    ],
+    [
+     28.75,
+     true
+    ],
+    [
+     28.125,
+     true
+    ],
+    [
+     27.8125,
+     false
+    ],
+    [
+     27.96875,
+     true
+    ],
+    [
+     27.890625,
+     true
+    ],
+    [
+     27.8515625,
+     false
+    ],
+    [
+     27.87109375,
+     true
+    ],
+    [
+     27.861328125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 15.8662109375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 27.724609375,
+   "first_fallen_n": 27.734375,
+   "critical_push_n": 27.7294921875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     false
+    ],
+    [
+     28.75,
+     true
+    ],
+    [
+     28.125,
+     true
+    ],
+    [
+     27.8125,
+     true
+    ],
+    [
+     27.65625,
+     false
+    ],
+    [
+     27.734375,
+     true
+    ],
+    [
+     27.6953125,
+     false
+    ],
+    [
+     27.71484375,
+     false
+    ],
+    [
+     27.724609375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 15.7294921875
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 24.0234375,
+   "first_fallen_n": 24.033203125,
+   "critical_push_n": 24.0283203125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     true
+    ],
+    [
+     23.90625,
+     false
+    ],
+    [
+     23.984375,
+     false
+    ],
+    [
+     24.0234375,
+     false
+    ],
+    [
+     24.04296875,
+     true
+    ],
+    [
+     24.033203125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 12.0283203125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 26.123046875,
+   "first_fallen_n": 26.1328125,
+   "critical_push_n": 26.1279296875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     false
+    ],
+    [
+     27.5,
+     true
+    ],
+    [
+     26.25,
+     true
+    ],
+    [
+     25.625,
+     false
+    ],
+    [
+     25.9375,
+     false
+    ],
+    [
+     26.09375,
+     false
+    ],
+    [
+     26.171875,
+     true
+    ],
+    [
+     26.1328125,
+     true
+    ],
+    [
+     26.11328125,
+     false
+    ],
+    [
+     26.123046875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 14.1279296875
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 20.1171875,
+   "first_fallen_n": 20.126953125,
+   "critical_push_n": 20.1220703125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     true
+    ],
+    [
+     21.25,
+     true
+    ],
+    [
+     20.625,
+     true
+    ],
+    [
+     20.3125,
+     true
+    ],
+    [
+     20.15625,
+     true
+    ],
+    [
+     20.078125,
+     false
+    ],
+    [
+     20.1171875,
+     false
+    ],
+    [
+     20.13671875,
+     true
+    ],
+    [
+     20.126953125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 8.1220703125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 24.345703125,
+   "first_fallen_n": 24.35546875,
+   "critical_push_n": 24.3505859375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     false
+    ],
+    [
+     30.0,
+     true
+    ],
+    [
+     25.0,
+     true
+    ],
+    [
+     22.5,
+     false
+    ],
+    [
+     23.75,
+     false
+    ],
+    [
+     24.375,
+     true
+    ],
+    [
+     24.0625,
+     false
+    ],
+    [
+     24.21875,
+     false
+    ],
+    [
+     24.296875,
+     false
+    ],
+    [
+     24.3359375,
+     false
+    ],
+    [
+     24.35546875,
+     true
+    ],
+    [
+     24.345703125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 12.3505859375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 13.173828125,
+   "first_fallen_n": 13.18359375,
+   "critical_push_n": 13.1787109375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     false
+    ],
+    [
+     13.4375,
+     true
+    ],
+    [
+     13.28125,
+     true
+    ],
+    [
+     13.203125,
+     true
+    ],
+    [
+     13.1640625,
+     false
+    ],
+    [
+     13.18359375,
+     true
+    ],
+    [
+     13.173828125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.1787109375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 13.056640625,
+   "first_fallen_n": 13.06640625,
+   "critical_push_n": 13.0615234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     false
+    ],
+    [
+     13.046875,
+     false
+    ],
+    [
+     13.0859375,
+     true
+    ],
+    [
+     13.06640625,
+     true
+    ],
+    [
+     13.056640625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.0615234375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.16796875,
+   "first_fallen_n": 12.177734375,
+   "critical_push_n": 12.1728515625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     true
+    ],
+    [
+     12.03125,
+     false
+    ],
+    [
+     12.109375,
+     false
+    ],
+    [
+     12.1484375,
+     false
+    ],
+    [
+     12.16796875,
+     false
+    ],
+    [
+     12.177734375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.1728515625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 12.646484375,
+   "first_fallen_n": 12.65625,
+   "critical_push_n": 12.6513671875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     true
+    ],
+    [
+     12.65625,
+     true
+    ],
+    [
+     12.578125,
+     false
+    ],
+    [
+     12.6171875,
+     false
+    ],
+    [
+     12.63671875,
+     false
+    ],
+    [
+     12.646484375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.6513671875
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.849609375,
+   "first_fallen_n": 10.859375,
+   "critical_push_n": 10.8544921875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     false
+    ],
+    [
+     10.859375,
+     true
+    ],
+    [
+     10.8203125,
+     false
+    ],
+    [
+     10.83984375,
+     false
+    ],
+    [
+     10.849609375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -1.1455078125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 11.962890625,
+   "first_fallen_n": 11.97265625,
+   "critical_push_n": 11.9677734375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     true
+    ],
+    [
+     12.03125,
+     true
+    ],
+    [
+     11.953125,
+     false
+    ],
+    [
+     11.9921875,
+     true
+    ],
+    [
+     11.97265625,
+     true
+    ],
+    [
+     11.962890625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -0.0322265625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 14.04296875,
+   "first_fallen_n": 14.052734375,
+   "critical_push_n": 14.0478515625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     true
+    ],
+    [
+     13.90625,
+     false
+    ],
+    [
+     13.984375,
+     false
+    ],
+    [
+     14.0234375,
+     false
+    ],
+    [
+     14.04296875,
+     false
+    ],
+    [
+     14.052734375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.0478515625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 13.90625,
+   "first_fallen_n": 13.916015625,
+   "critical_push_n": 13.9111328125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     true
+    ],
+    [
+     13.90625,
+     false
+    ],
+    [
+     13.984375,
+     true
+    ],
+    [
+     13.9453125,
+     true
+    ],
+    [
+     13.92578125,
+     true
+    ],
+    [
+     13.916015625,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.9111328125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.48046875,
+   "first_fallen_n": 12.490234375,
+   "critical_push_n": 12.4853515625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     false
+    ],
+    [
+     12.421875,
+     false
+    ],
+    [
+     12.4609375,
+     false
+    ],
+    [
+     12.48046875,
+     false
+    ],
+    [
+     12.490234375,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.4853515625
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 13.271484375,
+   "first_fallen_n": 13.28125,
+   "critical_push_n": 13.2763671875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     false
+    ],
+    [
+     13.4375,
+     true
+    ],
+    [
+     13.28125,
+     true
+    ],
+    [
+     13.203125,
+     false
+    ],
+    [
+     13.2421875,
+     false
+    ],
+    [
+     13.26171875,
+     false
+    ],
+    [
+     13.271484375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 1.2763671875
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.693359375,
+   "first_fallen_n": 10.703125,
+   "critical_push_n": 10.6982421875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     true
+    ],
+    [
+     10.703125,
+     true
+    ],
+    [
+     10.6640625,
+     false
+    ],
+    [
+     10.68359375,
+     false
+    ],
+    [
+     10.693359375,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -1.3017578125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 12.34375,
+   "first_fallen_n": 12.353515625,
+   "critical_push_n": 12.3486328125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     false
+    ],
+    [
+     11.875,
+     false
+    ],
+    [
+     12.1875,
+     false
+    ],
+    [
+     12.34375,
+     false
+    ],
+    [
+     12.421875,
+     true
+    ],
+    [
+     12.3828125,
+     true
+    ],
+    [
+     12.36328125,
+     true
+    ],
+    [
+     12.353515625,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.3486328125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "fixed",
+   "last_not_fallen_n": 14.931640625,
+   "first_fallen_n": 14.94140625,
+   "critical_push_n": 14.9365234375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     false
+    ],
+    [
+     14.6875,
+     false
+    ],
+    [
+     14.84375,
+     false
+    ],
+    [
+     14.921875,
+     false
+    ],
+    [
+     14.9609375,
+     true
+    ],
+    [
+     14.94140625,
+     true
+    ],
+    [
+     14.931640625,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.9365234375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "controller": "exact",
+   "last_not_fallen_n": 14.892578125,
+   "first_fallen_n": 14.90234375,
+   "critical_push_n": 14.8974609375,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     false
+    ],
+    [
+     14.6875,
+     false
+    ],
+    [
+     14.84375,
+     false
+    ],
+    [
+     14.921875,
+     true
+    ],
+    [
+     14.8828125,
+     false
+    ],
+    [
+     14.90234375,
+     true
+    ],
+    [
+     14.892578125,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.8974609375
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "fixed",
+   "last_not_fallen_n": 12.9296875,
+   "first_fallen_n": 12.939453125,
+   "critical_push_n": 12.9345703125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     true
+    ],
+    [
+     12.890625,
+     false
+    ],
+    [
+     12.9296875,
+     false
+    ],
+    [
+     12.94921875,
+     true
+    ],
+    [
+     12.939453125,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.9345703125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "controller": "exact",
+   "last_not_fallen_n": 14.0625,
+   "first_fallen_n": 14.072265625,
+   "critical_push_n": 14.0673828125,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     false
+    ],
+    [
+     14.375,
+     true
+    ],
+    [
+     14.0625,
+     false
+    ],
+    [
+     14.21875,
+     true
+    ],
+    [
+     14.140625,
+     true
+    ],
+    [
+     14.1015625,
+     true
+    ],
+    [
+     14.08203125,
+     true
+    ],
+    [
+     14.072265625,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 2.0673828125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "fixed",
+   "last_not_fallen_n": 10.732421875,
+   "first_fallen_n": 10.7421875,
+   "critical_push_n": 10.7373046875,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     true
+    ],
+    [
+     11.25,
+     true
+    ],
+    [
+     10.625,
+     false
+    ],
+    [
+     10.9375,
+     true
+    ],
+    [
+     10.78125,
+     true
+    ],
+    [
+     10.703125,
+     false
+    ],
+    [
+     10.7421875,
+     true
+    ],
+    [
+     10.72265625,
+     false
+    ],
+    [
+     10.732421875,
+     false
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": -1.2626953125
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "controller": "exact",
+   "last_not_fallen_n": 12.98828125,
+   "first_fallen_n": 12.998046875,
+   "critical_push_n": 12.9931640625,
+   "trace": [
+    [
+     0.0,
+     false
+    ],
+    [
+     40.0,
+     true
+    ],
+    [
+     20.0,
+     true
+    ],
+    [
+     10.0,
+     false
+    ],
+    [
+     15.0,
+     true
+    ],
+    [
+     12.5,
+     false
+    ],
+    [
+     13.75,
+     true
+    ],
+    [
+     13.125,
+     true
+    ],
+    [
+     12.8125,
+     false
+    ],
+    [
+     12.96875,
+     false
+    ],
+    [
+     13.046875,
+     true
+    ],
+    [
+     13.0078125,
+     true
+    ],
+    [
+     12.98828125,
+     false
+    ],
+    [
+     12.998046875,
+     true
+    ]
+   ],
+   "scan_single_transition": null,
+   "margin_at_noisy_push_n": 0.9931640625
+  }
+ ],
+ "cells": [
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "fixed_critical_n": 23.6865234375,
+   "exact_critical_n": 23.4912109375,
+   "shift_n": -0.1953125,
+   "shift_percent": -0.8245722531436818,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "fixed_critical_n": 21.8408203125,
+   "exact_critical_n": 22.7001953125,
+   "shift_n": 0.859375,
+   "shift_percent": 3.934719427677174,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "fixed_critical_n": 19.6044921875,
+   "exact_critical_n": 21.6064453125,
+   "shift_n": 2.001953125,
+   "shift_percent": 10.211706102117061,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "fixed_critical_n": 25.5908203125,
+   "exact_critical_n": 25.3662109375,
+   "shift_n": -0.224609375,
+   "shift_percent": -0.8776950963556573,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "fixed_critical_n": 22.7490234375,
+   "exact_critical_n": 24.1552734375,
+   "shift_n": 1.40625,
+   "shift_percent": 6.18158403090792,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "fixed_critical_n": 19.6435546875,
+   "exact_critical_n": 22.6806640625,
+   "shift_n": 3.037109375,
+   "shift_percent": 15.461098682575193,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "fixed_critical_n": 27.8662109375,
+   "exact_critical_n": 27.7197265625,
+   "shift_n": -0.146484375,
+   "shift_percent": -0.525670229542667,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "fixed_critical_n": 24.0185546875,
+   "exact_critical_n": 26.1181640625,
+   "shift_n": 2.099609375,
+   "shift_percent": 8.741614149217321,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "fixed_critical_n": 20.1123046875,
+   "exact_critical_n": 24.3408203125,
+   "shift_n": 4.228515625,
+   "shift_percent": 21.02452051468803,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "fixed_critical_n": 13.1689453125,
+   "exact_critical_n": 13.0615234375,
+   "shift_n": -0.107421875,
+   "shift_percent": -0.8157211716722284,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.1728515625,
+   "exact_critical_n": 12.6416015625,
+   "shift_n": 0.46875,
+   "shift_percent": 3.8507821901323704,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.8447265625,
+   "exact_critical_n": 11.9580078125,
+   "shift_n": 1.11328125,
+   "shift_percent": 10.265646105357947,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "fixed_critical_n": 14.0478515625,
+   "exact_critical_n": 13.9013671875,
+   "shift_n": -0.146484375,
+   "shift_percent": -1.0427528675703859,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.4853515625,
+   "exact_critical_n": 13.2666015625,
+   "shift_n": 0.78125,
+   "shift_percent": 6.257332811888932,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.6884765625,
+   "exact_critical_n": 12.3388671875,
+   "shift_n": 1.650390625,
+   "shift_percent": 15.440840566468706,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "fixed_critical_n": 14.9365234375,
+   "exact_critical_n": 14.8974609375,
+   "shift_n": -0.0390625,
+   "shift_percent": -0.2615233736515201,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.9345703125,
+   "exact_critical_n": 14.0576171875,
+   "shift_n": 1.123046875,
+   "shift_percent": 8.682521706304266,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p25ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.7373046875,
+   "exact_critical_n": 12.9833984375,
+   "shift_n": 2.24609375,
+   "shift_percent": 20.918599363346974,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "fixed_critical_n": 23.6962890625,
+   "exact_critical_n": 23.5107421875,
+   "shift_n": -0.185546875,
+   "shift_percent": -0.783020811868947,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "fixed_critical_n": 21.8505859375,
+   "exact_critical_n": 22.7197265625,
+   "shift_n": 0.869140625,
+   "shift_percent": 3.977653631284916,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "fixed_critical_n": 19.6142578125,
+   "exact_critical_n": 21.6162109375,
+   "shift_n": 2.001953125,
+   "shift_percent": 10.206621857107294,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "fixed_critical_n": 25.6005859375,
+   "exact_critical_n": 25.3759765625,
+   "shift_n": -0.224609375,
+   "shift_percent": -0.8773602899103566,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "fixed_critical_n": 22.7587890625,
+   "exact_critical_n": 24.1650390625,
+   "shift_n": 1.40625,
+   "shift_percent": 6.178931559751127,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "fixed_critical_n": 19.6533203125,
+   "exact_critical_n": 22.6904296875,
+   "shift_n": 3.037109375,
+   "shift_percent": 15.453416149068323,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "fixed_critical_n": 27.8662109375,
+   "exact_critical_n": 27.7294921875,
+   "shift_n": -0.13671875,
+   "shift_percent": -0.4906255475731558,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "fixed_critical_n": 24.0283203125,
+   "exact_critical_n": 26.1279296875,
+   "shift_n": 2.099609375,
+   "shift_percent": 8.738061369640317,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "fixed_critical_n": 20.1220703125,
+   "exact_critical_n": 24.3505859375,
+   "shift_n": 4.228515625,
+   "shift_percent": 21.014316913370543,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "fixed_critical_n": 13.1787109375,
+   "exact_critical_n": 13.0615234375,
+   "shift_n": -0.1171875,
+   "shift_percent": -0.889218228973694,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.1728515625,
+   "exact_critical_n": 12.6513671875,
+   "shift_n": 0.478515625,
+   "shift_percent": 3.9310068190934615,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.8544921875,
+   "exact_critical_n": 11.9677734375,
+   "shift_n": 1.11328125,
+   "shift_percent": 10.256410256410257,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "fixed_critical_n": 14.0478515625,
+   "exact_critical_n": 13.9111328125,
+   "shift_n": -0.13671875,
+   "shift_percent": -0.9732360097323601,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.4853515625,
+   "exact_critical_n": 13.2763671875,
+   "shift_n": 0.791015625,
+   "shift_percent": 6.335549472037544,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.6982421875,
+   "exact_critical_n": 12.3486328125,
+   "shift_n": 1.650390625,
+   "shift_percent": 15.426745778183477,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "fixed_critical_n": 14.9365234375,
+   "exact_critical_n": 14.8974609375,
+   "shift_n": -0.0390625,
+   "shift_percent": -0.2615233736515201,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.9345703125,
+   "exact_critical_n": 14.0673828125,
+   "shift_n": 1.1328125,
+   "shift_percent": 8.758021895054737,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "native_0p5ms",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.7373046875,
+   "exact_critical_n": 12.9931640625,
+   "shift_n": 2.255859375,
+   "shift_percent": 21.00954979536153,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "fixed_critical_n": 23.7158203125,
+   "exact_critical_n": 23.5302734375,
+   "shift_n": -0.185546875,
+   "shift_percent": -0.7823759522338892,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "fixed_critical_n": 21.8701171875,
+   "exact_critical_n": 22.7392578125,
+   "shift_n": 0.869140625,
+   "shift_percent": 3.9741013619111407,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "fixed_critical_n": 19.6337890625,
+   "exact_critical_n": 21.6357421875,
+   "shift_n": 2.001953125,
+   "shift_percent": 10.196468540164139,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "fixed_critical_n": 25.6201171875,
+   "exact_critical_n": 25.3955078125,
+   "shift_n": -0.224609375,
+   "shift_percent": -0.8766914427291785,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "fixed_critical_n": 22.7783203125,
+   "exact_critical_n": 24.1845703125,
+   "shift_n": 1.40625,
+   "shift_percent": 6.173633440514469,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "fixed_critical_n": 19.6630859375,
+   "exact_critical_n": 22.7001953125,
+   "shift_n": 3.037109375,
+   "shift_percent": 15.445741246585548,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "fixed_critical_n": 27.8857421875,
+   "exact_critical_n": 27.7490234375,
+   "shift_n": -0.13671875,
+   "shift_percent": -0.4902819120994572,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "fixed_critical_n": 24.0380859375,
+   "exact_critical_n": 26.1376953125,
+   "shift_n": 2.099609375,
+   "shift_percent": 8.734511476741824,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "opposing_push",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "fixed_critical_n": 20.1220703125,
+   "exact_critical_n": 24.3505859375,
+   "shift_n": 4.228515625,
+   "shift_percent": 21.014316913370543,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.14,
+   "fixed_critical_n": 13.1982421875,
+   "exact_critical_n": 13.0810546875,
+   "shift_n": -0.1171875,
+   "shift_percent": -0.8879023307436182,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.1923828125,
+   "exact_critical_n": 12.6611328125,
+   "shift_n": 0.46875,
+   "shift_percent": 3.844613536243492,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.35,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.8544921875,
+   "exact_critical_n": 11.9775390625,
+   "shift_n": 1.123046875,
+   "shift_percent": 10.3463787674314,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.14,
+   "fixed_critical_n": 14.0673828125,
+   "exact_critical_n": 13.9306640625,
+   "shift_n": -0.13671875,
+   "shift_percent": -0.9718847622353349,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.4951171875,
+   "exact_critical_n": 13.2861328125,
+   "shift_n": 0.791015625,
+   "shift_percent": 6.330597889800703,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 0.65,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.6982421875,
+   "exact_critical_n": 12.3486328125,
+   "shift_n": 1.650390625,
+   "shift_percent": 15.426745778183477,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.14,
+   "fixed_critical_n": 14.9462890625,
+   "exact_critical_n": 14.9169921875,
+   "shift_n": -0.029296875,
+   "shift_percent": -0.1960143743874551,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.26,
+   "fixed_critical_n": 12.9443359375,
+   "exact_critical_n": 14.0771484375,
+   "shift_n": 1.1328125,
+   "shift_percent": 8.751414560543191,
+   "noisy_push_n": 12
+  },
+  {
+   "engine_id": "planar_port",
+   "scenario": "restricted_torque",
+   "mass_kg": 1.15,
+   "height_m": 0.36,
+   "fixed_critical_n": 10.7373046875,
+   "exact_critical_n": 12.9931640625,
+   "shift_n": 2.255859375,
+   "shift_percent": 21.00954979536153,
+   "noisy_push_n": 12
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+  "study": "step3-sensing-v1",
+  "design_date": "2026-11-12",
+  "status": "Exploratory simulation protocol fixed before this sweep; not preregistered",
+  "duration_s": 10,
+  "push_time_s": 2,
+  "push_duration_s": 0.2,
+  "controllers": ["pid", "lqr"],
+  "observers": ["direct", "kalman"],
+  "scenarios": [
+    {"id": "nominal", "initial_tilt_deg": 5, "push_force_n": 5, "torque_limit_nm": 0.7},
+    {"id": "large_push", "initial_tilt_deg": 0, "push_force_n": 20, "torque_limit_nm": 0.7},
+    {"id": "low_torque", "initial_tilt_deg": 0, "push_force_n": 5, "torque_limit_nm": 0.2}
+  ],
+  "angle_only_sigma_deg": [0, 0.25, 0.5, 1, 2],
+  "gyro_only_sigma_deg_s": [0, 1, 2, 5, 10],
+  "combined_angle_sigma_deg": [0, 0.5, 1, 2],
+  "combined_gyro_multiplier": 4,
+  "delay_ms": [0, 5, 10, 20, 40],
+  "stochastic_repetitions": 30,
+  "seed_formula": "1001 + 104729 * repetition_index, index=0..29; same seed across controllers and observers",
+  "deterministic_repetitions": 1,
+  "kalman_accel_sigma_rad_s2": 50,
+  "primary_outcome": "fall by 10 s; true tilt reaches 45 deg at a control endpoint",
+  "recovery": "Final dwell >=1 s within 1 deg tilt, 0.03 m position and 0.03 m/s speed, evaluated from truth",
+  "gain_policy": "Original controller gains frozen; within-controller sensing comparison, not a fair-tuned controller-class ranking",
+  "sensor_scope": "Independent Gaussian angle and gyro noise per sample; ideal position/velocity channels; whole packet delayed; no accelerometer physics, bias, quantisation or dropout",
+  "delay_policy": "Initial noisy packet at t=0 is available at startup and held until the first newer delayed packet; filter processes each packet once; no prediction to current time",
+  "example": {"scenario": "nominal", "angleNoiseDeg": 1, "gyroNoiseDegS": 4, "delayMs": 0, "seed": 1001}
+}

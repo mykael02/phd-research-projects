@@ -1,0 +1,30 @@
+[
+  {
+    "name": "step4_fig01_mass_properties",
+    "caption": "Rigid-body aggregation across the evaluated payload masses and mounting heights h. COM is measured along the body from the axle. The payload is a centred cuboid, 0.08 x 0.06 x 0.12 m; its own pitch inertia is included. Curves connect evaluated masses. The unloaded robot is the same at every nominal mounting height."
+  },
+  {
+    "name": "step4_fig02_outcome_map",
+    "caption": "Deterministic outcomes for zero initial tilt and a 20 N pulse, separated by controller and torque limit. Each distinct loaded cell is one trial. The zero-mass column repeats the same unloaded trial across heights for reference; those repetitions are not additional trials. Masses and heights are discrete categories, not equally spaced numerical axes. These maps do not fit a stability boundary."
+  },
+  {
+    "name": "step4_fig03_grid_fractions",
+    "caption": "Fractions of the same 48 deterministic initial-tilt/force/torque conditions at each load: four tilts, four force levels and three torque limits. The denominator includes zero-force cases. These equally weighted grid summaries are descriptive, not success probabilities for an operating population. No sampling confidence intervals apply. Lines only connect evaluated masses."
+  },
+  {
+    "name": "step4_fig04_trajectories",
+    "caption": "Protocol-selected ideal-sensing examples: 5 deg initial tilt, 5 N pulse and 0.7 N m torque limit. Loaded examples mount their payload at h=0.40 m. The shaded interval is the pulse. All six trials last 10 s and recover. These traces illustrate one condition and do not establish that increasing payload always improves balance."
+  },
+  {
+    "name": "step4_fig05_sensing_falls",
+    "caption": "Fall fractions and Wilson 95% intervals for fixed noisy conditions. Each point uses 30 paired seeds, angle-noise SD 0.5 deg and gyro-noise SD 2 deg/s. The first load is the unloaded reference; labels for loaded cases give mass and mounting height. Large-push and low-torque scenarios retain their original definitions. Zero observed falls does not imply zero failure probability. Profiles share seeds and are not independent groups."
+  },
+  {
+    "name": "step4_fig06_tail_rms",
+    "caption": "Nominal-condition final-one-second RMS metrics, sampled at 200 Hz including both endpoints from 9 to 10 s. Points show medians and bars the interquartile range across 30 seeds, not confidence intervals. Every plotted trial survives for 10 s but fails the strict continuous-dwell recovery criterion. These additional metrics describe persistent motion without redefining the recovery labels. Full-duration-only speed RMS is also supplied in the CSV."
+  },
+  {
+    "name": "step4_fig07_payload_geometry",
+    "caption": "Three-dimensional schematic at the upright pose, not a simulated response or a hardware design. Gold cuboid: payload; gold point: combined body COM; blue shell: illustrative original body envelope. Payload dimensions are those used for its pitch inertia. The original shell is only a drawing, and ballast may overlap its envelope. All three panels share the same metre scale. Dynamics remain planar, with no yaw, roll, slip or collision simulation."
+  }
+]

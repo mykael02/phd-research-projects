@@ -1,0 +1,66 @@
+:root{font-family:Segoe UI,Arial,sans-serif;color:#14283b;background:#f3f2ed;font-synthesis:none;--pid:#bd531e;--lqr:#087b88}*{box-sizing:border-box}body{margin:0}main{max-width:1320px;padding:30px 40px 45px;margin:auto}nav,footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;font-size:14px}a{color:#155c72;text-underline-offset:4px}header{margin:42px 0 28px}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:700;color:#607181}h1{font-size:clamp(36px,5vw,64px);font-weight:650;letter-spacing:-2px;margin:10px 0}h2{font-size:18px}.intro{font-size:18px;line-height:1.6;color:#526476;max-width:740px}.toolbar{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin-bottom:18px}label{display:block;font-size:12px;font-weight:600;color:#536474}select{display:block;margin-top:7px;max-width:100%;font:inherit;font-size:14px;padding:12px;border:1px solid #c5ced4;background:white;border-radius:8px;color:#14283b}button{border:1px solid #bac8d0;border-radius:8px;background:#fff;color:#19334b;min-height:42px;padding:10px 16px;font:600 13px Segoe UI,Arial;cursor:pointer}button:hover{background:#e6eef0}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #c77e16;outline-offset:3px}.primary{background:#18364d;color:white;border-color:#18364d}.primary:hover{background:#29506c}.stage{position:relative;height:530px;background:#e6ecef;border:1px solid #cbd5dc;border-radius:16px;overflow:hidden}#scene{position:absolute;inset:0}#scene canvas{display:block;width:100%;height:100%;touch-action:none}.stage-top,.stage-bottom{position:absolute;left:20px;right:20px;display:flex;justify-content:space-between;gap:12px;pointer-events:none}.stage-top{top:18px}.stage-bottom{bottom:18px;align-items:end;font-size:12px;color:#36526a}.stage-bottom button{pointer-events:auto;min-height:32px;padding:7px 10px}.stage-bottom div{display:flex;gap:5px}.badge{padding:8px 10px;background:#ffffffdf;border:1px solid #d1dde3;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.5px}#pulse.active{background:#fff2cc;color:#644600}#render-error{position:absolute;left:10%;right:10%;top:35%;padding:20px;background:white;border-radius:8px;line-height:1.7}.timeline{padding:22px 0 10px}.timeline label{display:flex;justify-content:space-between;font-size:14px}input[type=range]{width:100%;margin:16px 0 0;accent-color:#176779;cursor:pointer}.hint{font-size:12px;color:#566878;line-height:1.6}.telemetry{display:grid;grid-template-columns:1fr 1fr;gap:18px}.telemetry article{background:white;border:1px solid #d3dde2;border-radius:12px;padding:18px 22px}.telemetry h2{margin:0 0 22px;display:flex;align-items:center;gap:8px}.swatch{display:inline-block;width:11px;height:11px;border-radius:3px}.pid{background:var(--pid)}.lqr{background:var(--lqr)}.state{margin-left:auto;font-size:11px;color:#556979;font-weight:500}dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:0}dt{font-size:12px;color:#607181}dd{margin:6px 0 0;font-size:21px;font-variant-numeric:tabular-nums}.notes{max-width:950px;margin:35px 0;color:#4e6273;font-size:14px;line-height:1.8}.notes h2{color:#14283b}footer{border-top:1px solid #c9d4da;padding-top:22px;font-size:12px}#experiment-plot{height:650px;background:white;border-radius:12px;border:1px solid #d3dde2;overflow:hidden}.countline{font-size:14px;padding:12px 0;color:#4f6373}@media(max-width:750px){main{padding:20px}.telemetry{grid-template-columns:1fr}.stage{height:460px}.stage-bottom{flex-direction:column;align-items:start;gap:12px}.stage-top{left:12px;right:12px}.badge{font-size:8px}dd{font-size:18px}.toolbar>label:first-child{width:100%}.toolbar>label:first-child select{width:100%}#experiment-plot{height:520px}header{margin-top:28px}}
+
+[hidden]{display:none!important}.live-controls{background:white;border:1px solid #cbd5dc;border-radius:12px;padding:18px 22px}.push-buttons{display:flex;gap:10px;flex-wrap:wrap}.push-buttons button{background:#18364d;color:white}.live-settings{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:20px}.live-settings output{display:block;margin-top:5px;color:#19334b;font-size:15px}button:disabled{opacity:.55;cursor:default}input:disabled{cursor:default;opacity:.65}@media(max-width:750px){.live-settings{grid-template-columns:1fr;gap:12px}}
+
+#sensor-controls{margin:16px 0}#sensor-controls h2{margin-top:0}input[type=number]{display:block;margin-top:8px;border:1px solid #bac8d0;border-radius:6px;padding:11px;width:100%;color:#19334b;background:white}.check-label{display:flex;align-items:center;gap:8px}.trace-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.trace-grid article{border:1px solid #cbd5dc;border-radius:12px;padding:16px;background:white}.trace-grid svg{width:100%;display:block}.sensing-traces{margin:30px 0}@media(max-width:750px){.trace-grid{grid-template-columns:1fr}}
+
+/* Keep the experiment in view while its controls are being used. */
+.live-lab main{max-width:1720px;padding:18px 28px 40px}
+.live-lab nav{justify-content:flex-start;gap:12px 24px;font-size:12px}
+.live-lab header{margin:16px 0 18px;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.live-lab .eyebrow{display:none}
+.live-lab h1{font-size:32px;letter-spacing:-1px;margin:0}
+.live-lab .intro{font-size:14px;margin:0;line-height:1.5}
+.lab-workspace{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}
+.lab-view{min-width:0;position:sticky;top:12px;background:#f3f2ed;z-index:2}
+.lab-view .toolbar{gap:8px;margin:0 0 10px}
+.lab-view select{padding:9px;margin-top:4px;font-size:13px}
+.lab-view .stage{height:clamp(350px,calc(100svh - 235px),760px)}
+.lab-view .countline{margin:0;padding:9px 2px;font-size:13px;min-height:36px}
+.lab-panel{max-height:calc(100svh - 125px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:4px}
+.lab-panel .live-controls{padding:15px;margin:0 0 12px;border-radius:10px}
+.lab-panel h2{font-size:15px;margin:0 0 12px}
+.lab-panel .live-settings{grid-template-columns:1fr;gap:14px;margin-top:12px}
+.lab-panel .live-settings label{position:relative;font-size:12px}
+.lab-panel .live-settings output{font-size:14px;margin-top:4px}
+.lab-panel input[type=range]{margin-top:6px;min-height:22px}
+.lab-panel .push-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.lab-panel .push-buttons button{padding:9px 5px;font-size:12px}
+.lab-panel .hint{font-size:11px;line-height:1.5;margin:10px 0 0}
+.lab-panel select{width:100%;padding:9px}
+.control-help{margin-top:10px}
+.control-help summary{font-size:11px;color:#536474;cursor:pointer;padding:3px 0}
+#sensor-controls>summary{font-size:14px;font-weight:650;cursor:pointer;padding:3px 0}
+summary:focus-visible{outline:3px solid #c77e16;outline-offset:3px}
+.live-lab .timeline{padding:16px 0 10px}
+.live-lab .timeline input{margin-top:8px}
+.live-lab .telemetry article{padding:14px 18px}
+.live-lab .telemetry h2{margin-bottom:10px;font-size:15px}
+.live-lab dd{font-size:18px}
+@media(max-width:980px){
+ .live-lab main{padding:12px 16px 30px}
+ .live-lab header{margin:12px 0;gap:4px 14px}
+ .live-lab h1{font-size:27px}
+ .lab-workspace{grid-template-columns:minmax(0,1fr);gap:12px}
+ .lab-view{top:0;padding-top:6px;box-shadow:0 8px 12px -12px #1b344c}
+ .lab-view .stage{height:clamp(200px,38svh,440px)}
+ .lab-view .toolbar{align-items:center}
+ .lab-view .toolbar>label:first-child{width:auto}
+ .lab-panel{max-height:none;overflow:visible;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ .lab-panel .live-controls{margin:0}
+ #sensor-controls{grid-column:1/-1}
+ .lab-view .stage-bottom{left:10px;right:10px;bottom:10px;gap:5px;flex-direction:row;align-items:end}
+ .lab-view .stage-bottom>span{display:none}
+ .lab-view .stage-bottom button{font-size:11px;padding:6px 8px}
+}
+@media(max-width:560px){
+ .live-lab nav{gap:8px 14px;font-size:11px}
+ .live-lab .intro{font-size:12px}
+ .lab-panel{grid-template-columns:1fr}
+ .lab-view .toolbar{gap:6px}
+ .lab-view .toolbar label{font-size:10px}
+ .lab-view .toolbar button{padding:8px 10px;font-size:12px;min-height:36px}
+ .lab-view select{font-size:12px;padding:7px}
+ .lab-view .stage{height:clamp(180px,32svh,300px)}
+ .lab-view .countline{font-size:11px;min-height:30px;padding:7px 2px}
+}

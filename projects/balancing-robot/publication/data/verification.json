@@ -1,0 +1,21 @@
+{
+  "manuscript": {
+    "pages": 13,
+    "words": 3700,
+    "sha256": "4219058a89cd8549875b98acb1911d25c01750255a2c4e309934ed8a9f34335e"
+  },
+  "technical_report": {
+    "pages": 14,
+    "words": 3160,
+    "sha256": "b76414fcc636698a9b1cd452545c3a2c00c8144a6fbc396fcdd749b5f77d659c"
+  },
+  "review": {
+    "pdf_visual_review": "All pages reviewed; updated layout pages rechecked after the final rebuild.",
+    "figures": "All 16 static figures inspected.",
+    "animation": "101 frames present; still and frames at 0, 2.1, 3.5, 6 and 10 s inspected.",
+    "automated_checks": "18 Python tests; original UI logic, study UI logic, 3D data-contract and 3D UI-logic suites passed.",
+    "browser_visual_review": "Not performed: browser access host unavailable.",
+    "latex_compilation": "Not performed: TeX compiler unavailable.",
+    "physics_scope": "Planar simulation displayed in 3D; illustrative shell and track geometry."
+  }
+}

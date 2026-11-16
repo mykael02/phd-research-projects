@@ -1,0 +1,390 @@
+{
+  "coarse": {
+    "conditions": 88,
+    "integrations": 352,
+    "pairs": 88,
+    "outcome_agreement": 88,
+    "fall_agreement": 88,
+    "planar": {
+      "recovered": 32,
+      "fallen": 56
+    },
+    "native": {
+      "recovered": 32,
+      "fallen": 56
+    },
+    "last_step_label_changes": [],
+    "audit": {
+      "first_round_pairs": 0,
+      "second_round_pairs": 0
+    }
+  },
+  "zoom": {
+    "conditions": 88,
+    "integrations": 356,
+    "pairs": 88,
+    "outcome_agreement": 86,
+    "fall_agreement": 86,
+    "planar": {
+      "recovered": 46,
+      "fallen": 42
+    },
+    "native": {
+      "recovered": 44,
+      "fallen": 44
+    },
+    "last_step_label_changes": [],
+    "audit": {
+      "first_round_pairs": 2,
+      "second_round_pairs": 0
+    }
+  },
+  "payload": {
+    "conditions": 40,
+    "integrations": 340,
+    "pairs": 80,
+    "outcome_agreement": 80,
+    "fall_agreement": 80,
+    "planar": {
+      "fallen": 38,
+      "recovered": 42
+    },
+    "native": {
+      "fallen": 38,
+      "recovered": 42
+    },
+    "last_step_label_changes": [],
+    "audit": {
+      "first_round_pairs": 0,
+      "second_round_pairs": 0
+    }
+  },
+  "payload_primary_controller_transitions": {
+    "planar": {
+      "matrix": [
+        [
+          19,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          17
+        ]
+      ],
+      "fall_to_upright": 0,
+      "upright_to_fall": 0
+    },
+    "native": {
+      "matrix": [
+        [
+          19,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          17
+        ]
+      ],
+      "fall_to_upright": 0,
+      "upright_to_fall": 0
+    }
+  },
+  "paired_survivor_metrics": [
+    {
+      "metric": "squared_torque_integral_nm2_s",
+      "n": 19,
+      "planar_median_delta": -0.002886573646174881,
+      "native_median_delta": -0.002617461792457948
+    },
+    {
+      "metric": "peak_pitch_deg",
+      "n": 19,
+      "planar_median_delta": -0.8087349111952626,
+      "native_median_delta": -0.8092380666699519
+    }
+  ],
+  "boundary_diagnostic": {
+    "case": {
+      "scenario": "force",
+      "initial_tilt_deg": 0,
+      "push_force_n": -18.2,
+      "torque_limit_nm": 0.5,
+      "mass_kg": 0,
+      "height_m": 0.18,
+      "case_id": "zoom_026",
+      "parent_interval": [
+        18.0,
+        18.5
+      ]
+    },
+    "pair": {
+      "common_horizon_s": 2.615,
+      "max_position_error_m": 0.004050846711467493,
+      "max_pitch_error_deg": 1.738997851341842,
+      "rms_position_error_m": 0.0007544310024048719,
+      "rms_pitch_error_deg": 0.2651653241992874,
+      "max_state_errors_native_units": [
+        0.004050846711467493,
+        0.0257380122901488,
+        0.030351238191022034,
+        0.2551301322836413
+      ],
+      "case_id": "zoom_026",
+      "controller": "fixed",
+      "physics_step_s": 6.25e-05,
+      "planar_id": "446b57186a5fa7679bcd",
+      "native_id": "850fd296e97a195cbc5d",
+      "planar_outcome": "recovered",
+      "native_outcome": "fallen",
+      "same_outcome": false,
+      "same_fall_label": false,
+      "fall_time_difference_s": null
+    }
+  },
+  "payload_example": {
+    "scenario": "opposing_standard",
+    "initial_tilt_deg": 12,
+    "push_force_n": -15,
+    "torque_limit_nm": 0.6,
+    "mass_kg": 0.65,
+    "height_m": 0.26,
+    "case_id": "payload_022"
+  },
+  "payload_primary_engine_agreement": {
+    "fixed": 36,
+    "exact": 36
+  },
+  "payload_fall_effect_agreement": 36,
+  "payload_fall_effects": [
+    {
+      "case_id": "payload_004",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_005",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_006",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_007",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_008",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_009",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_010",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_011",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_012",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_013",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_014",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_015",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_016",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_017",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_018",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_019",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_020",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_021",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_022",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_023",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_024",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_025",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_026",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_027",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_028",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_029",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_030",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_031",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_032",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_033",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_034",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_035",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_036",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_037",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_038",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    },
+    {
+      "case_id": "payload_039",
+      "planar": 0,
+      "native": 0,
+      "agrees": true
+    }
+  ]
+}

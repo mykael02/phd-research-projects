@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Balance Lab · PID and LQR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <p><a href="visualisation/index.html">Open the live 3D simulation</a> · <a href="visualisation/experiments.html">Explore the 3D experiment map</a> · <a href="publication/output/pdf/manuscript.pdf">Read the manuscript</a></p>
+  <header><div class="eyebrow">ROBOTICS / CONTROL EXPERIMENT 01</div><h1>Balance Lab<span class="dot">.</span></h1><p>Two controllers. The same robot. One push.</p><span class="model-tag">Planar physics simulation</span></header>
+  <p><a href="results/robustness/report.html">Explore the robustness study: failure maps and trial replays →</a></p>
+  <section class="controls" aria-label="Simulation controls">
+    <div class="actions"><button id="run" class="primary">Run simulation</button><button id="reset">Reset</button><button id="push-left">← Push left</button><button id="push-right">Push right →</button></div>
+    <div class="settings">
+      <label>Initial tilt <output id="tilt-value">5°</output><input id="tilt" type="range" min="-20" max="20" value="5" step="1"></label>
+      <label>Push force <output id="force-value">3 N · 0.2 s</output><input id="force" type="range" min="0" max="30" value="3" step="1"></label>
+      <label>Total motor torque limit <output id="limit-value">0.70 N·m</output><input id="limit" type="range" min="0.1" max="1" value="0.7" step="0.05"></label>
+    </div>
+    <div class="runline"><span id="message" role="status">Ready. Run, then push both robots.</span><span id="clock">0.00 / 20.00 s</span></div>
+  </section>
+  <section class="robots" aria-label="Controller comparison">
+    <article class="robot-panel pid"><div class="panel-title"><div><span class="series-dot"></span><h2>PID</h2><span class="subtitle">Tilt PID + position feedback</span></div><span id="pid-status" class="status">Ready</span></div><canvas id="pid-scene" role="img" aria-label="Side view of robot using PID control"></canvas><div class="telemetry"><div><span>Tilt</span><strong id="pid-angle">5.00°</strong></div><div><span>Position</span><strong id="pid-position">0.000 m</strong></div><div><span>Torque</span><strong id="pid-torque">0.000 N·m</strong></div></div></article>
+    <article class="robot-panel lqr"><div class="panel-title"><div><span class="series-dot"></span><h2>LQR</h2><span class="subtitle">Full-state feedback</span></div><span id="lqr-status" class="status">Ready</span></div><canvas id="lqr-scene" role="img" aria-label="Side view of robot using LQR control"></canvas><div class="telemetry"><div><span>Tilt</span><strong id="lqr-angle">5.00°</strong></div><div><span>Position</span><strong id="lqr-position">0.000 m</strong></div><div><span>Torque</span><strong id="lqr-torque">0.000 N·m</strong></div></div></article>
+  </section>
+  <section class="trace"><div class="trace-heading"><h2>Tilt over time</h2><div class="legend"><span class="pid-text">━ PID</span><span class="lqr-text">┄ LQR</span></div></div><canvas id="plot" role="img" aria-label="Tilt in degrees against simulation time in seconds, solid PID and dashed LQR"></canvas></section>
+  <section class="metrics"><h2>Current run</h2><div class="table-wrap"><table><thead><tr><th>Controller</th><th>Peak tilt</th><th>Max travel from origin</th><th>Torque effort*</th><th>At torque limit</th></tr></thead><tbody><tr><th>PID</th><td id="pid-peak"></td><td id="pid-travel"></td><td id="pid-effort"></td><td id="pid-saturation"></td></tr><tr><th>LQR</th><td id="lqr-peak"></td><td id="lqr-travel"></td><td id="lqr-effort"></td><td id="lqr-saturation"></td></tr></tbody></table></div><p class="footnote">*Integral of squared motor torque, in (N·m)²·s. This is a control-effort measure, not energy consumption.</p></section>
+  <details><summary>Model and experiment limits</summary><p>A side view of a two-wheeled inverted pendulum with a 1.2 kg body, 0.18 m centre-of-mass height above the axle, and 0.045 m wheel radius. Both controllers receive exact state measurements and the same external force at the body centre of mass. The nominal controllers stay fixed when you change the torque limit.</p><p>Physics runs at 200 Hz with fourth-order Runge–Kutta integration. A fall is declared at 45°; ground impact is not simulated. The camera follows the axle, and ground markers show movement relative to the starting point. The experiment ends at 20 simulated seconds. Changing initial tilt or torque limit resets the run.</p><p>No wheel slip, sensor noise, motor electrical dynamics, yaw, real hardware calibration, or safety guarantees. These are initial controllers, not a claim that either method is generally better. Use the Python experiment runner for reproducible recovery-time measurements.</p></details>
+  <footer>Local simulation · no network connection required</footer>
+</main>
+<script src="config.js"></script><script src="model.js"></script><script src="app.js"></script>
+</body>
+</html>

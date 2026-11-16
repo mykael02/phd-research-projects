@@ -1,0 +1,34 @@
+[
+  {
+    "name": "ext_fig01_boundary_zoom",
+    "caption": "All cells of the exploratory transition zoom. Signs refer to force or initial tilt, as appropriate. The coarse grid located each interval; the follow-up uses 0.05 N or 0.05 deg spacing and the finest tested outcome for each cell. R/U/F mean recovered, upright-unsettled and fallen. Endpoints repeat coarse conditions. No interpolation between cells or population probability is implied; audit resolutions are retained in the data."
+  },
+  {
+    "name": "ext_fig02_boundary_example",
+    "caption": "Post hoc diagnostic: tilt 0 deg, force -18.2 N, torque limit 0.5 N m, physics step 0.0625 ms. The selection prioritizes outcome disagreement, then largest common-horizon pitch difference, with case ID breaking ties. This is a discrepancy illustration, not a representative or favourable example. Lines stop at the fall endpoint; the terminal torque zero is a placeholder. Fall time is resolved only at 5 ms control endpoints."
+  },
+  {
+    "name": "ext_fig03_refinement",
+    "caption": "Coarsest-to-finest outcome changes for each engine. R/U/F denote recovered, upright-unsettled and fallen. Boundary zoom begins at 0.25 ms; payload begins at 0.5 ms. The finest step can vary because disagreement-triggered audits are selective. Matrices include all 88 zoom cells or all 80 payload/controller pairs (including the unloaded control), not only audited cases. Persistent last-two-step changes are reported separately rather than declared resolved."
+  },
+  {
+    "name": "ext_fig04_payload_models",
+    "caption": "Native MuJoCo renders of three of the nine tested payloads. Gold cuboids use the original 0.08 x 0.12 x 0.06 m shape; heights are measured along the body from the axle. The shell is transparent and a massless noncolliding mast is added for presentation only. Low payload placements intersect the illustrative shell: this is a centred rigid mass arrangement, not a mountable hardware design. Printed COM and inertia refer to combined torso and payload, excluding the translating base and additional native chassis inertia."
+  },
+  {
+    "name": "ext_fig05_controller_outcomes",
+    "caption": "Paired fixed-to-payload-aware outcomes at the common primary physics step of 0.25 ms. Each matrix contains 36 loaded conditions (nine mass/height combinations and four force/torque scenarios). Unloaded controls are excluded. R/U/F mean recovered, upright-unsettled and fallen. Both designs use the same Q/R, ideal measurements and true plant; only the gain differs. Counts describe this selected finite grid. Finer-step audits assess sensitivity separately and do not silently change the primary comparison resolution."
+  },
+  {
+    "name": "ext_fig06_payload_atlas",
+    "caption": "Every loaded case at 0.25 ms. Text gives fixed/aware outcomes (R recovered, U unsettled, F fallen). Teal marks recovery under both designs and orange marks falls under both; there are no differing paired labels on this grid. Initial tilt is +12 deg in every panel. Positive and negative pushes are world-X forces at the combined COM. All nine mass/height combinations and four prescribed force/torque scenarios remain visible."
+  },
+  {
+    "name": "ext_fig07_payload_example",
+    "caption": "Protocol-selected example: 0.65 kg payload at 0.26 m, initial tilt +12 deg, -15 N force for 0.2 s from t=2 s, and torque limit 0.6 N m. Fixed and payload-aware LQR are compared in both engines at 0.25 ms physics resolution with 200 Hz control. Each line uses its own feedback trajectory under the same physical condition. Overlap indicates close trajectory agreement. Terminal torque is a zero placeholder; no continuation past a fall is plotted."
+  },
+  {
+    "name": "ext_fig08_paired_metrics",
+    "caption": "Controller metric changes at the matched 0.25 ms step, restricted to loaded conditions surviving under both controllers in both engines. Each dot is one condition; coordinates are aware-minus-fixed metric differences. The dotted diagonal denotes agreement about the size of the controller effect. Negative values mean a lower metric. This four-way survivor restriction is reported explicitly and must be read with the full fall inventory; it is not an unconditional ranking or statistical confidence statement."
+  }
+]

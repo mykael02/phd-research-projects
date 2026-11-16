@@ -1,0 +1,12 @@
+[
+  {
+    "engine": "planar",
+    "max_column_error": 0.0,
+    "same_outcome": true
+  },
+  {
+    "engine": "native",
+    "max_column_error": 0.0,
+    "same_outcome": true
+  }
+]

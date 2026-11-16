@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "scope": "Nominal unloaded robot: equation verification and native-contact discrepancy study; no hardware validation",
+  "initial_tilts_deg": [0, 5, 15],
+  "push_forces_n": [-15, -3, 0, 3, 15],
+  "duration_s": 10,
+  "control_period_s": 0.005,
+  "push_start_s": 2,
+  "push_duration_s": 0.2,
+  "physics_steps_s": [0.001, 0.0005, 0.00025],
+  "controller": "Original nominal LQR; unchanged gains and total torque limit",
+  "reduced_integrator": "RK4",
+  "native_integrator": "implicitfast",
+  "fall_threshold_deg": 45,
+  "fall_detection": "At 5 ms control endpoints; native model checks pitch and roll",
+  "recovery": "Final continuous dwell >=1 s within |pitch|<=1 deg, |x|<=0.03 m, |vx|<=0.03 m/s, after pulse end if nonzero",
+  "native_contact_variants": [
+    {"name": "nominal", "friction": 1, "time_constant_s": 0.005},
+    {"name": "friction_0p5", "friction": 0.5, "time_constant_s": 0.005},
+    {"name": "friction_1p5", "friction": 1.5, "time_constant_s": 0.005},
+    {"name": "contact_10ms", "friction": 1, "time_constant_s": 0.01}
+  ],
+  "sensitivity_step_s": 0.0005,
+  "reduced_acceptance": {"max_state_error_each_native_unit": 1e-7, "max_acceleration_error_each_native_unit": 1e-9, "same_outcome_required": true},
+  "native_screen": {"max_position_error_m": 0.01, "max_pitch_error_deg": 0.5, "full_10s_horizon_required": true, "same_outcome_required": true, "meaning": "Declared engineering discrepancy screen, not a physical-accuracy standard"},
+  "example": {"initial_tilt_deg": 5, "push_force_n": 3},
+  "selection": "Full Cartesian grid and example fixed before executing this study. No gain tuning, parameter fitting, random sampling or statistical confidence intervals."
+}

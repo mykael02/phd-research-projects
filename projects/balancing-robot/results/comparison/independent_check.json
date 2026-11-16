@@ -1,0 +1,49 @@
+{
+  "method": "Independent component mass matrix, DOP853 rtol=1e-11 atol=1e-13; mixed state components in SI units",
+  "linearisation_check": "passed",
+  "checks": [
+    {
+      "mass_kg": 0.35,
+      "height_m": 0.14,
+      "variant": "fixed",
+      "outcome": "recovered",
+      "max_absolute_state_component_difference": 2.568185606399709e-07
+    },
+    {
+      "mass_kg": 0.35,
+      "height_m": 0.14,
+      "variant": "exact",
+      "outcome": "recovered",
+      "max_absolute_state_component_difference": 2.568185606399709e-07
+    },
+    {
+      "mass_kg": 0.65,
+      "height_m": 0.26,
+      "variant": "fixed",
+      "outcome": "recovered",
+      "max_absolute_state_component_difference": 3.1352260654315955e-07
+    },
+    {
+      "mass_kg": 0.65,
+      "height_m": 0.26,
+      "variant": "exact",
+      "outcome": "recovered",
+      "max_absolute_state_component_difference": 2.434762225167475e-07
+    },
+    {
+      "mass_kg": 1.15,
+      "height_m": 0.36,
+      "variant": "fixed",
+      "outcome": "recovered",
+      "max_absolute_state_component_difference": 2.329702475378781e-07
+    },
+    {
+      "mass_kg": 1.15,
+      "height_m": 0.36,
+      "variant": "exact",
+      "outcome": "recovered",
+      "max_absolute_state_component_difference": 1.5983371381977918e-07
+    }
+  ],
+  "scope": "Numerical cross-check only; not hardware or independent multibody validation"
+}

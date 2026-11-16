@@ -1,0 +1,26 @@
+[
+  {
+    "name": "compare_fig01_gains",
+    "caption": "Gains K in u=-Kx for the reserved test masses and heights, using identical Q and R for every design. Dashed lines are nominal gains. The position gain remains -sqrt(12), to numerical precision, and is omitted. These are local continuous-time designs implemented with 200 Hz sampling and actuator saturation. Connecting lines do not imply interpolation in the implementation."
+  },
+  {
+    "name": "compare_fig02_paired_outcomes",
+    "caption": "Paired outcomes for exact-load redesign versus fixed nominal LQR. Every pair shares the true load, initial state, force, torque limit, sensing profile and random seed. Counts are descriptive inventories. In the noisy subset 186 fixed-controller falls become upright trials, while 12 fixed-controller survivors fall after redesign. No noisy run meets the strict recovery dwell criterion. The ideal comparison has identical outcome labels for every pair."
+  },
+  {
+    "name": "compare_fig03_condition_falls",
+    "caption": "Each cell prints fixed/aware fall counts out of 30 paired seeds; colour is (aware-fixed)/30, so negative values favour redesign. Separate panels retain each scenario and sensing profile. Axes are discrete test levels, not a continuous stability map. Per-controller Wilson intervals are in sensing_summary.csv; this colour scale is not a confidence interval for a paired difference."
+  },
+  {
+    "name": "compare_fig04_estimate_errors",
+    "caption": "Paired fall-to-upright improvements and upright-to-fall regressions relative to fixed nominal LQR, separately for 216 ideal pairs and 1,620 noisy pairs per variant. Four mismatch designs perturb one assumed parameter at a time. Heights refer to axle-to-payload COM distance. Counts across conditions are not operational probabilities. The different panel scales reflect their different inventories. A beneficial bias on this grid is not a recommendation to misestimate real payloads."
+  },
+  {
+    "name": "compare_fig05_paired_metrics",
+    "caption": "Exact-load redesign minus fixed-gain metric differences, restricted to pairs in which both robots survive the full 10 s. Each point is the median paired difference and each bar the interquartile range, not a confidence interval. n is the number of survivor pairs, pooled descriptively over the listed test conditions; different columns select different survivor populations. Negative values mean a lower metric. Saturation fraction is saturated time / 10 s. This conditional view must be read alongside the fall counts; it does not measure unconditional performance."
+  },
+  {
+    "name": "compare_fig06_example",
+    "caption": "Protocol-selected ideal example: true payload 0.65 kg at 0.26 m, initial tilt 12 deg, force -15 N from 2.00 to 2.20 s, and torque limit 0.6 N m. Both controllers recover. Torque stored at each endpoint is the command held during the preceding interval; its initial sample is zero. This example was specified before test execution and is not a best-case selection."
+  }
+]

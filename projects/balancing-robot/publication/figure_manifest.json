@@ -1,0 +1,66 @@
+[
+  {
+    "name": "fig01_outcomes_by_torque",
+    "caption": "Outcome counts at each torque limit. Each bar contains 117 conditions: nine initial tilts and thirteen signed pushes. Colours and hatching distinguish recovery, upright non-recovery, and fall. All other model and gain settings are fixed."
+  },
+  {
+    "name": "fig02_selected_failure_maps",
+    "caption": "Sampled outcome maps for three torque limits. R denotes recovered, U upright but unsettled, and F fallen. The cells show evaluated points; boundaries between colours are not certified continuous operating limits. Complete maps for all seven limits appear in the technical report."
+  },
+  {
+    "name": "fig03_paired_outcomes",
+    "caption": "Paired outcomes across the same 819 physical conditions. Rows are PID-type outcomes and columns are LQR outcomes. Off-diagonal entries reveal disagreements that marginal success counts conceal."
+  },
+  {
+    "name": "fig04_matched_recovery_metrics",
+    "caption": "Paired metrics restricted to the 161 conditions in which both controllers recovered. Points below the dashed identity line have a lower LQR value. This matched subset excludes every fall and non-recovery and must not be interpreted as an unconditional controller ranking."
+  },
+  {
+    "name": "fig05_response_trajectories",
+    "caption": "Illustrative trajectories for a nominal recovering condition (left) and the first PID-type unsettled condition in the original sweep order (right). Grey bands mark the force pulse. Dotted lines show the tilt and position recovery tolerances and the motor torque limits. These post hoc examples are explanatory, not representative statistical samples."
+  },
+  {
+    "name": "fig06_integral_equilibrium",
+    "caption": "Post hoc extension of all 220 originally unsettled PID-type trials to 30 s. Left: the measured position is compared with the equilibrium relation x = -(ki/kx) z. Right: the final-position distributions at 10 and 30 s relative to the 3 cm recovery limit. No controller gains or physical parameters change."
+  },
+  {
+    "name": "fig07_integral_ablation",
+    "caption": "Post hoc integral ablation on the full original grid. Only ki is changed from 0.4 to zero; all other PID-type gains, model parameters and limits remain fixed. The right matrix pairs original and ablated outcomes (R recovered, U unsettled, F fallen). This isolates an implementation choice and is not a newly optimized controller comparison."
+  },
+  {
+    "name": "fig08_tolerance_sensitivity",
+    "caption": "Post hoc sensitivity of the recovery label to the position tolerance. The final one-second dwell, 1 degree tilt bound, 0.03 m/s speed bound and 10-second horizon remain fixed. The dotted vertical line marks the original 3 cm tolerance. Curves are deterministic grid counts, without probability or confidence-interval interpretation."
+  },
+  {
+    "name": "sfig01_torque_0p1",
+    "caption": "Complete paired outcome maps at a total torque limit of 0.1 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "sfig02_torque_0p2",
+    "caption": "Complete paired outcome maps at a total torque limit of 0.2 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "sfig03_torque_0p3",
+    "caption": "Complete paired outcome maps at a total torque limit of 0.3 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "sfig04_torque_0p4",
+    "caption": "Complete paired outcome maps at a total torque limit of 0.4 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "sfig05_torque_0p5",
+    "caption": "Complete paired outcome maps at a total torque limit of 0.5 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "sfig06_torque_0p7",
+    "caption": "Complete paired outcome maps at a total torque limit of 0.7 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "sfig07_torque_1p0",
+    "caption": "Complete paired outcome maps at a total torque limit of 1 N m. Each map contains 117 conditions. R, U, and F label recovery, upright non-recovery, and fall respectively. Each trial has exact measurements and the same nominal body parameters."
+  },
+  {
+    "name": "fig09_3d_state_trajectories",
+    "caption": "Three-dimensional state trajectories in displacement, speed and tilt for three explicitly selected examples. Solid orange: PID-type; dashed teal: LQR. Circles mark initial states and crosses final states. Paths stop at 10 s or the declared fall, with no ground-impact extrapolation. These are planar-model state-space curves, not three-dimensional rigid-body motion; each panel uses its own axis scale."
+  }
+]

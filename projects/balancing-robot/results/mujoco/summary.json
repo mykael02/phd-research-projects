@@ -1,0 +1,45 @@
+{
+  "integrations": 150,
+  "equation_checks": {
+    "conditions": 48,
+    "max_acceleration_error_m_s2": 2.6645352591003757e-15,
+    "max_angular_acceleration_error_rad_s2": 1.4210854715202004e-14,
+    "actuator_generalized_force_sign_and_scale": "passed"
+  },
+  "reduced_trajectory_passes": 15,
+  "native_fine_outcome_agreement": 15,
+  "native_fine_screen_passes": 15,
+  "native_fine_max_position_error_m": 0.0008901447714564636,
+  "native_fine_max_pitch_error_deg": 0.11383829641236978,
+  "native_final_refinement_changed_outcomes": 0,
+  "sensitivity_rows": [
+    [
+      "Nominal",
+      0,
+      15,
+      "0.001159",
+      "0.1128"
+    ],
+    [
+      "Friction 0.5",
+      0,
+      10,
+      "0.003489",
+      "0.7896"
+    ],
+    [
+      "Friction 1.5",
+      0,
+      15,
+      "0.001159",
+      "0.1128"
+    ],
+    [
+      "Contact 10 ms",
+      0,
+      15,
+      "0.001245",
+      "0.1338"
+    ]
+  ]
+}

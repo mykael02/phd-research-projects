@@ -1,0 +1,26 @@
+[
+  {
+    "name": "mujoco_fig01_equivalence",
+    "caption": "Maximum trajectory residuals between the independently assembled MuJoCo ideal-rolling model and the original equations. Both use RK4 with 1 ms physics steps and 5 ms held controls. Conditions are ordered by increasing initial tilt (0, 5, 15 deg), then push (-15, -3, 0, 3, 15 N). Each coordinate is compared in its stated units over the shared pre-fall horizon. Exact zeros are displayed at 1e-17 for logarithmic plotting. This checks implementation equivalence of the same assumptions, not physical accuracy."
+  },
+  {
+    "name": "mujoco_fig02_trajectory",
+    "caption": "Protocol-selected trajectory: initial tilt 5 deg, +3 N COM force from 2.00 to 2.20 s, and total torque limit 0.70 N m. All models use the original fixed LQR gain and 200 Hz ideal feedback. Original and native models use 0.25 ms physics steps; the verified reduced model uses 1 ms RK4. The reduced and original curves may overlap. Torque is the command held over the following interval; the terminal zero is a plotting placeholder."
+  },
+  {
+    "name": "mujoco_fig03_discrepancy",
+    "caption": "Maximum absolute native-contact minus original-planar trajectory differences at 0.25 ms physics resolution. Each cell is one deterministic condition, not a probability or interpolated stability region. Differences stop at the earlier fall endpoint. The full record includes the common horizon and both outcome labels; a short-horizon fall is not treated as a successful agreement. The native model retains its additional chassis inertia, contact compliance and slip."
+  },
+  {
+    "name": "mujoco_fig04_refinement",
+    "caption": "Maximum trajectory changes when halving physics steps, with the control interval and fall-detection interval fixed at 5 ms. Each line is a condition, with original RK4 in orange and native implicitfast in teal. Shared pre-fall horizons are used. Zeros are placed at 1e-17 for display. A downward line indicates a smaller successive-step discrepancy; contact transitions can prevent monotonic convergence. These are empirical resolution checks, not formal error bounds."
+  },
+  {
+    "name": "mujoco_fig05_contact",
+    "caption": "Preselected 5 deg, +3 N example at 0.25 ms. The upper panels show the first 80 ms; roll shows the full run on a fixed scale, without amplifying round-off fluctuations. Rolling residual is wheel-centre world X velocity minus radius times absolute world Y angular velocity. This nearly planar diagnostic includes contact-free wheel spin and is not general 3D contact-point slip. Telemetry is sampled every 5 ms. The axle starts 0.2 mm above the radius with no warm-up, so the transients include contact engagement. Roll is not controlled."
+  },
+  {
+    "name": "mujoco_fig06_sensitivity",
+    "caption": "Contact sensitivity at 0.5 ms. Nominal sliding friction is 1.0 and contact time constant is 5 ms; each variant changes one parameter. Left: outcomes over the same 15 conditions. Right: peak longitudinal rolling residual per trial, using only 5 ms samples with nonzero total contact count. This supplementary diagnostic excludes contact-free wheel spin but is not a general contact-point slip measurement. Every condition contributes; horizontal offsets distinguish conditions and black bars show medians. These are deterministic inventories, not confidence intervals."
+  }
+]

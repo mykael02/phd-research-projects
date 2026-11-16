@@ -1,0 +1,15 @@
+{
+  "condition": {
+    "tilt_deg": 5,
+    "push_n": 3
+  },
+  "max_state_errors_native_units": [
+    2.220446049250313e-16,
+    6.938893903907228e-16,
+    1.3877787807814457e-16,
+    9.992007221626409e-16
+  ],
+  "existing_simulate_recovery_s": 2.78,
+  "comparison_runner_recovery_s": 2.7800000000000002,
+  "result": "passed"
+}

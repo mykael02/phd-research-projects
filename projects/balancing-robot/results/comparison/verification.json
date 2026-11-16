@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-12",
+  "development_records": 16,
+  "test_records": 11016,
+  "matched_six_variant_conditions": 1836,
+  "source_hashes_match": true,
+  "metrics_finite": true,
+  "prior_reports_and_datasets_unchanged": true,
+  "python_tests_passed": 22,
+  "javascript_suites_passed": 8,
+  "integration_audit_trials": 1296,
+  "integration_outcome_changes": 0,
+  "independent_component_DOP853_cases": 6,
+  "local_links_checked": 36,
+  "pdf_pages": 9,
+  "pdf_text_bounds": "passed",
+  "pdf_visual_review": "All final nine rendered pages checked; orphan paragraph and plot labels/legend corrected.",
+  "figures_visually_reviewed": 6,
+  "figure_formats": [
+    "PDF",
+    "SVG",
+    "600 dpi PNG"
+  ],
+  "pdf_sha256": "e9ffc7917e2d5be2374805127ff695ba47626b9b4a26bab961836b813031bf6b",
+  "limitations": [
+    "No independent multibody or hardware validation.",
+    "Browser access unavailable; WebGL pixels not visually checked; UI tests use renderer mock.",
+    "LaTeX source uncompiled."
+  ]
+}

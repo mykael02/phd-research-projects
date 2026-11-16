@@ -1,0 +1,18 @@
+{
+  "feature": "Live force controls in 3D",
+  "date": "2026-11-12",
+  "model": "Shares unmodified model.js and config.js with 2D",
+  "checks_passed": [
+    "Per-step equality with 2D model under a scripted sequence of positive and negative pushes",
+    "40 physics steps per 0.2 second pulse at 200 Hz",
+    "Replacing an active pulse",
+    "20 second run limit",
+    "Individual fallen robot remains frozen while the other continues",
+    "Live UI run, pause/resume, hidden-tab pause, force controls, reset, tilt and torque changes, completion",
+    "Recorded replay and experiment-map regression checks",
+    "Existing 2D UI regression checks",
+    "Local HTML resource links"
+  ],
+  "browser_visual_check": "Unavailable: browser access host is unavailable",
+  "archived_manuscript_results": "Unchanged"
+}

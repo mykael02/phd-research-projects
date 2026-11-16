@@ -1,0 +1,11 @@
+phase,variant,n,fixed_fall_to_upright,fixed_upright_to_fall
+ideal_test,exact,216,0,0
+ideal_test,mass_low,216,0,0
+ideal_test,mass_high,216,0,0
+ideal_test,height_low,216,0,2
+ideal_test,height_high,216,4,0
+sensing_test,exact,1620,186,12
+sensing_test,mass_low,1620,149,13
+sensing_test,mass_high,1620,217,13
+sensing_test,height_low,1620,110,20
+sensing_test,height_high,1620,257,8

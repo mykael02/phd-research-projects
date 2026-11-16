@@ -1,0 +1,13 @@
+{
+  "study": "mujoco-boundary-zoom-v1",
+  "status": "Exploratory follow-up frozen after the coarse boundary study and before zoom execution",
+  "source": "results/mujoco_boundary/study.json",
+  "selection": "Within every scenario/torque/sign slice, select the union of all adjacent tested cells whose three-way outcome changes in either engine. Subdivide every selected interval into 10 equal parts and evaluate all 11 endpoints/interior values; deduplicate identical conditions.",
+  "spacing": "0.05 N in force slices and 0.05 deg in the startup slice",
+  "controller": "Unchanged nominal LQR",
+  "physics_steps_s": [0.00025, 0.000125],
+  "audit_steps_s": [0.0000625, 0.00003125],
+  "audit_rule": "Repeat both engines at 0.0625 ms if their labels differ at 0.125 ms or either changes between 0.25 and 0.125 ms; repeat at 0.03125 ms only if either changes between 0.125 and 0.0625 ms. Retain unresolved last-two-step changes.",
+  "interpretation": "Outcome-conditioned exploratory zoom, not an independent held-out sample. Shared endpoints repeat coarse conditions. Do not interpolate a continuous threshold or extrapolate outside observed intervals.",
+  "other_settings": "Frozen extension_protocol.json and existing compiled plant; no parameter fitting or controller redesign"
+}

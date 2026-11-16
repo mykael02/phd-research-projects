@@ -1,0 +1,12 @@
+<mujoco model="ideal rolling equivalence check">
+      <compiler angle="radian" inertiafromgeom="false"/>
+      <option timestep="0.001" integrator="RK4" gravity="0 0 -9.81"/>
+      <worldbody><body name="base" pos="0 0 0.045">
+        <joint name="travel" type="slide" axis="1 0 0" damping="0.08" armature="0.11851851851851852"/>
+        <inertial pos="0 0 0" mass="0.35" diaginertia=".001 .001 .001"/>
+        <body name="torso"><joint name="pitch" type="hinge" axis="0 1 0" damping="0.002"/>
+          <inertial pos="0 0 0.18" mass="1.2" diaginertia="0.012 0.012 .004"/>
+        </body>
+      </body></worldbody>
+      <actuator><motor joint="travel" gear="22.22222222222222"/><motor joint="pitch" gear="-1"/></actuator>
+    </mujoco>

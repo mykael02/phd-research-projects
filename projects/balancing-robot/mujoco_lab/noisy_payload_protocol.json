@@ -1,0 +1,28 @@
+{
+  "study": "mujoco-noisy-payload-comparison-v1",
+  "date": "2026-11-13",
+  "status": "Local protocol saved before any noisy MuJoCo trajectory was run; not externally preregistered. Conditions, seeds, gains and noise profiles are copied unchanged from comparison_protocol.json, whose planar outcomes are already known.",
+  "question": "In the planar study, exact-load LQR redesign reduced noisy falls from 508 to 334 of 1,620 (186 prevented, 12 introduced). Does that reduction persist when the same conditions, seeds and gains are run on the native wheel-contact MuJoCo plant?",
+  "source_protocol": "comparison_protocol.json",
+  "controllers": ["fixed", "exact"],
+  "excluded": "The four load-estimate-error variants are not repeated here.",
+  "loads": "All nine test loads: 0.35, 0.65, 1.15 kg at 0.14, 0.26, 0.36 m",
+  "scenarios": "Both sensing_test scenarios (opposing_push, restricted_torque)",
+  "profiles": "All three noisy profiles (direct_0ms, kalman_0ms, kalman_10ms)",
+  "seeds": "5003 + 104729*i, i = 0..29: identical noise sequences to the planar study and across controllers and engines",
+  "paired_conditions": 1620,
+  "engines": [
+    {"id": "planar_port", "engine": "planar", "physics_step_s": 0.005, "purpose": "Python port of the archived JavaScript sensing pipeline and RK4 plant; must reproduce the archived outcome of every fixed and exact record before native results are interpreted"},
+    {"id": "native_0p25ms", "engine": "native", "physics_step_s": 0.00025, "purpose": "Primary native-contact result (same step as the ideal-sensing payload extension)"},
+    {"id": "native_0p5ms", "engine": "native", "physics_step_s": 0.0005, "purpose": "Complete step-size replicate of the native result"}
+  ],
+  "native_plant": "extension_core.LoadedEngine, unchanged: welded payload with matched combined COM and pitch inertia, friction 1, contact time constant 5 ms, start at 0.0452 m, no warm-up. No diagnostic variant from the disagreement study is applied.",
+  "sensing": "Measurement = true [x, v, pitch, pitch rate] of the native base; Gaussian noise on pitch and pitch rate only; whole-packet delay; optional two-state Kalman filter (acceleration sigma 50). Same code path for both engines.",
+  "primary": "Fall by 10 s (absolute true pitch >= 45 deg at a control endpoint; additionally roll in the native model). Paired transitions fixed -> exact per condition and seed: prevented and introduced falls, per engine.",
+  "persistence_criterion": "Declared before execution: the reduction 'persists' if exact has fewer falls than fixed in both native replicates, and prevented falls exceed introduced falls in both. Magnitude is reported, not required to match.",
+  "secondary": "Falls by load, scenario and profile; per-seed agreement between engines; survivor outcome labels; peak tilt and squared-torque integral on mutual survivors.",
+  "statistics": "Paired counts are descriptive. An exact two-sided sign (McNemar) test on discordant pairs is reported per engine as a summary of seed-level evidence in this known model; the 1,620 pairs share nine loads and two scenarios and are not independent draws from a deployment population.",
+  "step_sensitivity": "Noisy closed loops near a fall boundary amplify small numerical differences, so individual seed labels may differ between engines and steps. Aggregate and paired counts are the unit of comparison; per-seed label agreement is reported separately.",
+  "example": {"mass_kg": 0.65, "height_m": 0.26, "scenario": "opposing_push", "profile": "kalman_10ms", "seed_index": 0},
+  "tuning_budget": "Zero. No gain, noise, contact or threshold change after seeing results."
+}

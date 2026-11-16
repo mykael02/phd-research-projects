@@ -1,0 +1,190 @@
+{
+  "checked_integrations": 1048,
+  "finite_states_timing_limits_pulses_warnings_and_hashes": "passed",
+  "repeated_coarse_zoom_trajectories": [
+    {
+      "coarse_id": "e1fa868bcd38f17a706d",
+      "zoom_id": "bc21efd34589993b9d56",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "db25386e972d7ce0f679",
+      "zoom_id": "e85553738416b0675536",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "bd5c76fb461790a43faa",
+      "zoom_id": "5e805ca31e49f8ab2438",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "502e25f61870b93fe0fc",
+      "zoom_id": "6309b64806725bf0b402",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "ab34c0799d31b860788b",
+      "zoom_id": "1107045d1251eff93b00",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "4d7ad0083e5260a67864",
+      "zoom_id": "afd18295531cb13700c3",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "61b574bc9c37758b3257",
+      "zoom_id": "cca105fdd17968871f16",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "f7b2e5bb8ab611a67688",
+      "zoom_id": "936333771b8ea8211648",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "4de89817bd7d481bcc8f",
+      "zoom_id": "8c8e22e9c0ddd91823b1",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "a1b36b527bb3a994deae",
+      "zoom_id": "5efb10b3ad91e8cb626b",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "107669969dd814c2bcb3",
+      "zoom_id": "ab89adcf2ad5192bf8ea",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "9bb8373c7100cd19c96f",
+      "zoom_id": "f7239d5904f0aef0000b",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "9fe5ef1ae472fedc8777",
+      "zoom_id": "434545571f0e1ec85c39",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "ad0f54333f292db71a26",
+      "zoom_id": "4129626aa146880e0e9e",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "bed7e20b416d137eaef8",
+      "zoom_id": "e83ad188d63f6d918ba0",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "f0c73f52fd79f7e8f96f",
+      "zoom_id": "32fc11e45ff1875c4215",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "87213a4a3334c36f9cfe",
+      "zoom_id": "39e57f2107dfbcfe4086",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "bfa6f00cbc50500d0d3b",
+      "zoom_id": "db9ea7485574510731b0",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "99a2190f59c3c258e1b1",
+      "zoom_id": "340512c31a39d6d19ff9",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "7f729d995d2cfb667a6a",
+      "zoom_id": "d583a5a6134dc1418397",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "c49537116aba2f34db9c",
+      "zoom_id": "8ce5ccccc6bbc1d7bb1e",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "8b07762066554926d782",
+      "zoom_id": "9e3e0fbb44362d063050",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "97053f503e01b36bc43c",
+      "zoom_id": "46b752ddef472531921b",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "641b99010e1910701a76",
+      "zoom_id": "d14e7178b2dc19e85699",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "df5102ccbf8e4e870f38",
+      "zoom_id": "11274d94fe65ad438311",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "52e6699344081cb0c541",
+      "zoom_id": "4e9aa93499d9b644b404",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "da551f5223f9dab8ac5c",
+      "zoom_id": "fed9be8b0a4713ba9446",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "5bf8107112d64adfb333",
+      "zoom_id": "f12326c62c1bf3cb1f37",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "1caa381e20afde6164ee",
+      "zoom_id": "06554d7925bc7a44d20f",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "2d24ff1d1338c017df91",
+      "zoom_id": "c37563fa55aa7bd7e05a",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "244890434e3270326498",
+      "zoom_id": "8a3c56f3a5f038e69073",
+      "result": "bitwise identical"
+    },
+    {
+      "coarse_id": "69b10e24702352536b36",
+      "zoom_id": "60ec25547cae02918804",
+      "result": "bitwise identical"
+    }
+  ],
+  "archived_payload_example_checks": [
+    {
+      "controller": "fixed",
+      "max_state_errors_native_units": [
+        9.70317830251144e-09,
+        5.582100426337888e-08,
+        9.259335659317358e-09,
+        3.1349042384221093e-07
+      ],
+      "same_outcome": true,
+      "note": "Prior JavaScript RK4 uses 5 ms physics; current Python uses 0.5 ms, both at 200 Hz control."
+    },
+    {
+      "controller": "exact",
+      "max_state_errors_native_units": [
+        9.571258230423041e-09,
+        4.9594670259445195e-08,
+        7.527619250158324e-09,
+        2.4345128468716837e-07
+      ],
+      "same_outcome": true,
+      "note": "Prior JavaScript RK4 uses 5 ms physics; current Python uses 0.5 ms, both at 200 Hz control."
+    }
+  ]
+}

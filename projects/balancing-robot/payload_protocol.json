@@ -1,0 +1,38 @@
+{
+  "study": "step4-payload-v1",
+  "design_date": "2026-11-12",
+  "status": "Exploratory protocol fixed before this sweep; not preregistered or held out",
+  "duration_s": 10,
+  "dt_s": 0.005,
+  "push_time_s": 2,
+  "push_duration_s": 0.2,
+  "payload_mass_kg": [0, 0.25, 0.5, 0.75, 1, 1.5],
+  "payload_height_m": [0.1, 0.18, 0.3, 0.4],
+  "shape_m": {"width": 0.08, "height": 0.06, "depth": 0.12},
+  "mounting": "Rigid and centred on body axis; height is axle-to-payload COM distance along body. No load changes during a run.",
+  "zero_mass_policy": "One zero-payload configuration at nominal 0.18 m; duplicates at other heights omitted",
+  "force_policy": "Horizontal force acts at the combined loaded-body COM, as in the original model. Its moment arm varies with loading; this is not a fixed attachment-point test.",
+  "controllers": ["pid", "lqr"],
+  "gain_policy": "Frozen original gains, integral clamp, saturation and filter process covariance; no tuning or adaptation",
+  "ideal_grid": {"tilt_deg": [0, 5, 10, 15], "force_n": [0, 5, 10, 20], "torque_limit_nm": [0.2, 0.4, 0.7]},
+  "sensing_loads": [{"mass_kg": 0, "height_m": 0.18}, {"mass_kg": 0.75, "height_m": 0.18}, {"mass_kg": 0.75, "height_m": 0.4}, {"mass_kg": 1.5, "height_m": 0.4}],
+  "scenarios": [
+    {"id": "nominal", "initial_tilt_deg": 5, "push_force_n": 5, "torque_limit_nm": 0.7},
+    {"id": "large_push", "initial_tilt_deg": 0, "push_force_n": 20, "torque_limit_nm": 0.7},
+    {"id": "low_torque", "initial_tilt_deg": 0, "push_force_n": 5, "torque_limit_nm": 0.2}
+  ],
+  "sensing_profiles": [
+    {"id": "direct_0ms", "mode": "direct", "angleNoiseDeg": 0.5, "gyroNoiseDegS": 2, "delayMs": 0},
+    {"id": "kalman_0ms", "mode": "kalman", "angleNoiseDeg": 0.5, "gyroNoiseDegS": 2, "delayMs": 0},
+    {"id": "kalman_10ms", "mode": "kalman", "angleNoiseDeg": 0.5, "gyroNoiseDegS": 2, "delayMs": 10}
+  ],
+  "stochastic_repetitions": 30,
+  "seed_formula": "1001 + 104729 * i, i=0..29; paired across loads, controllers and sensing profiles",
+  "kalman_accel_sigma_rad_s2": 50,
+  "primary_outcome": "Fall by 10 s at control endpoints, absolute true tilt >=45 deg",
+  "recovery": "Original final continuous one-second dwell: absolute tilt <=1 deg, position <=0.03 m and speed <=0.03 m/s; measured after pulse end, or t=0 if force=0",
+  "secondary_metrics": "Peak tilt, displacement, saturation duration, squared torque integral, final-one-second RMS tilt/position/speed for full-duration trials only",
+  "statistics": "Wilson 95% intervals only for noisy fixed-condition fall fractions; deterministic outcomes are not random samples. No pooled operational success probabilities or controller-class claims.",
+  "numerical_audit": "Repeat all 2016 deterministic trials with two RK4 substeps while keeping 200 Hz control. Repeat any changed outcomes with four substeps.",
+  "example": {"scenario": "nominal", "profile": "ideal", "mass_kg": [0, 0.75, 1.5], "height_m": 0.4}
+}

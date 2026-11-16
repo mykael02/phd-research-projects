@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-12",
+  "primary_trials": 4176,
+  "deterministic_trials": 2016,
+  "sensing_trials": 2160,
+  "integration_audit_trials": 2016,
+  "integration_outcome_changes": 0,
+  "exact_step3_zero_payload_matches": 540,
+  "python_tests_passed": 22,
+  "javascript_suites_passed": [
+    "test_payload.js",
+    "test_sensing.js",
+    "test_live_3d.js",
+    "test_3d.js",
+    "test_ui.js",
+    "test_study_ui.js",
+    "test_3d_ui.js"
+  ],
+  "source_hashes_match": true,
+  "finite_metrics": true,
+  "local_links_checked": 34,
+  "pdf_pages": 10,
+  "pdf_text_bounds": "passed",
+  "figure_count": 7,
+  "figure_formats": [
+    "PDF",
+    "SVG",
+    "600 dpi PNG"
+  ],
+  "pdf_sha256": "11a25592e189364060688883fad59e93063e25185b396a78ae6b11389d22e50d",
+  "limitations": [
+    "Browser access host unavailable: interactive WebGL pixels not visually verified; UI tests use renderer mock.",
+    "LaTeX source not compiled.",
+    "No hardware experiments."
+  ],
+  "pdf_visual_review": "All ten rendered pages reviewed; final revised geometry, map caption and sensing-results pages rechecked.",
+  "figure_visual_review": "All seven static figures reviewed; revised 3D schematic rechecked."
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "step3_fig01_independent_noise",
+    "caption": "Independent angle-noise and gyro-noise sweeps in the nominal condition (5 deg initial tilt, 5 N push, 0.7 N m limit), with zero packet delay and the other noise channel set to zero. Each noisy point uses 30 paired seeds. Vertical lines are 95% Wilson intervals for the recovered fraction at that fixed condition. The zero-noise point is a single deterministic evaluation with no uncertainty interval. Lines connect evaluated levels only."
+  },
+  {
+    "name": "step3_fig02_noise_delay_falls",
+    "caption": "Noise-delay outcome map for the large-push condition (0 deg initial tilt, 20 N pulse, 0.7 N m limit). Gyro SD is four times angle SD numerically, in deg/s. Each cell gives falls/evaluations: n=30 for noisy cells and n=1 for deterministic zero-noise cells. Rows are discrete delay levels, not equally spaced numeric time intervals. Shading is the evaluated fraction; it is not a fitted stability boundary. Full results for all three scenarios are supplied in summary.csv."
+  },
+  {
+    "name": "step3_fig03_true_measured_estimated",
+    "caption": "Protocol-selected example: nominal condition, angle SD 1 deg, gyro SD 4 deg/s, zero delay and seed 1001. Both controllers use Kalman estimates. The shaded interval is the 5 N pulse. A fixed 1.5-3.5 s window shows the transient and sensor noise; the complete 10 s traces are retained in results.json. Angular-rate estimates remain close to noisy gyro readings with the chosen process covariance. This is an illustrative trace, not independent statistical replication."
+  },
+  {
+    "name": "step3_fig04_delay_estimation_error",
+    "caption": "Nominal condition, angle SD 1 deg and gyro SD 4 deg/s; all 30 seeds in every plotted group run for the full 10 s. Solid curves compare estimates with current true tilt; dashed curves compare with truth at the delivered packet timestamp. Points are medians, and shading is the interquartile range for current-state error, not a confidence interval. The log scale separates denoising from the remaining delay mismatch. No prediction to the present is applied."
+  },
+  {
+    "name": "step3_fig05_control_effort",
+    "caption": "Nominal condition with zero delay and paired angle/gyro noise levels. Curves show median integrated squared total motor torque over the full 10 s; shading is the interquartile range across 30 seeds at each noisy level. Zero noise is one deterministic trial. All runs shown last 10 s. This is a control-effort measure, not electrical energy or hardware battery consumption."
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "mujoco_version": "4.0.1",
+  "python": "3.14.2",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "model": "balancing_robot.xml",
+  "nq": 9,
+  "nv": 8,
+  "actuators": 2,
+  "total_mass_kg": 1.5500000000000003,
+  "physics_step_s": 0.001,
+  "control_step_s": 0.005,
+  "simulated_seconds": 9.999999999999897,
+  "fallen": false,
+  "peak_pitch_deg": 6.158786014496062,
+  "final_state_x_v_pitch_rate": [
+    5.277722902046295e-05,
+    -3.736464261429407e-05,
+    -5.4989700450413605e-06,
+    2.2960090274635552e-05
+  ],
+  "max_contact_count": 4,
+  "warnings": {},
+  "rendering": "Two 1280x900 PNGs successfully rendered",
+  "scope": "Installation/contact-model smoke test only; not calibrated validation against the planar model."
+}

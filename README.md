@@ -2,7 +2,7 @@
 
 This repository is the starting point for choosing and beginning a robotics PhD
 research focus. It holds provisional topic notes in `docs/` and several small,
-runnable starter projects in `projects/`. None of them is a chosen focus.
+runnable research projects in `projects/`. None of them is a chosen focus.
 
 ## Status: no live literature search has been done
 
@@ -22,6 +22,8 @@ for them. As a result:
 
 | Project | Question it starts on | Runs on | Status |
 |---|---|---|---|
+| [balancing-robot](projects/balancing-robot/) | PID and LQR balancing control, sensing, payloads, and MuJoCo simulation studies | Python, NumPy/SciPy, Node.js; browser visualisations | Simulation studies and draft research reports; no hardware validation |
+| [reinforcement-learning](projects/reinforcement-learning/) | Reserved for reinforcement learning experiments | Not yet implemented | Placeholder; original folder was empty |
 | [nav-baseline](projects/nav-baseline/) | Grid A*, seeded RRT and a differential-drive model as a testable navigation base | Python 3.8+, stdlib | D1, D2 built; D3 path tracking deferred |
 | [exit-finding](projects/exit-finding/) | How a robot with only local sensing finds a marked exit in an unknown grid (random walk vs. nearest-frontier) | Python 3.8+, stdlib | First experiment runs |
 | [radiation-aware-inspection](projects/radiation-aware-inspection/) | Planning inspections under battery and radiation-dose budgets (shortest vs. dose-aware routing) | Python 3.8+, stdlib | First experiment runs; novelty unverified |
@@ -55,7 +57,7 @@ change that, and no topic has been chosen.
 
 ```
 README.md                         This file: index of projects
-.github/workflows/tests.yml       CI: runs every project's tests and experiment runners
+.github/workflows/tests.yml       CI: starter tests/runners and balancing-robot tests
 docs/
   topic-candidates.md             Provisional robotics topics, each with a hypothesis-labelled gap
   scoring-rubric.md               Weighted criteria for choosing a research focus
@@ -63,6 +65,8 @@ docs/
   starter-rationale.md            Why grid A* is the starter, baseline rules, deferred roadmap
   visualizations/                 Interactive HTML replays of the exit and plant experiments
 projects/
+  balancing-robot/                Balancing simulations, controller studies, visualisations and reports
+  reinforcement-learning/         Reserved for future reinforcement learning projects
   nav-baseline/                   Grid A*, BFS, D1 seeded RRT, D2 diff-drive (see its README)
   exit-finding/                   Exploration toward an unknown exit
   radiation-aware-inspection/     Budgeted inspection missions on a synthetic radiation field
@@ -70,15 +74,24 @@ projects/
   simulation-support/             Shared report helpers
 ```
 
-Every project has a `README.md` with its question, how to run it and its current
-results. Small result files (summary CSV and SVG) are committed; full
-`results.json` trajectories and `runs/` outputs are regenerated and ignored.
+Each project has a `README.md` describing its current scope and status.
+The navigation starters keep small result files (summary CSV and SVG); their
+full `results.json` trajectories and `runs/` outputs are regenerated and ignored.
+The balancing-robot project also preserves its archived study data, figures,
+and draft reports. Local Python environments, report-rendering tools and previews,
+logs, and the generated release ZIP stay on disk but are excluded from Git.
 
 ## Commands
 
 Run from the repository root:
 
 ```
+# balancing-robot (Python, NumPy/SciPy and Node.js)
+python -m pip install -r projects/balancing-robot/requirements.txt
+python -m unittest discover -s projects/balancing-robot/tests -v
+# Browser entry point: projects/balancing-robot/index.html
+# Additional Node.js tests and MuJoCo setup: see the project's README files.
+
 # nav-baseline (Python 3.8+, no third-party packages)
 python -m unittest discover -s projects/nav-baseline/tests -t projects/nav-baseline -v
 python projects/nav-baseline/run_experiments.py            # add --timing for wall-clock section

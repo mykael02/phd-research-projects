@@ -1,0 +1,47 @@
+{
+  "study": "mujoco-boundary-disagreement-diagnostics-v1",
+  "date": "2026-11-13",
+  "status": "Exploratory diagnostic protocol, saved before any diagnostic trajectory was run. It targets two already-known disagreements, so it is outcome-conditioned and cannot be confirmatory.",
+  "target": "Unloaded robot, nominal fixed LQR, zero initial tilt, 0.5 N m torque limit, +/-18.2 N pulse from 2.0 to 2.2 s. The planar model recovers; native-contact MuJoCo falls (archived to 0.0625 ms).",
+  "question": "Which modelling assumption moves the native fall boundary relative to the planar one: the additional chassis pitch inertia, the unsettled contact start, or the contact and friction model?",
+  "control_period_s": 0.005,
+  "torque_limit_nm": 0.5,
+  "physics_step_s": 0.000125,
+  "confirmation_step_s": 0.0000625,
+  "primary": "Critical-force bracket per variant: bisection on positive force inside [17.0, 19.5] N, 12 halvings (final width about 0.0006 N), label = fallen or not fallen at 10 s. Reported as the shift of the bracket midpoint from the planar reference.",
+  "secondary": "Outcome labels at +18.2 and -18.2 N at both physics steps; state at pulse onset; sampled wheel slip, friction utilisation and normal force; required traction coefficient computed from the planar trajectory.",
+  "bisection_assumption": "One fall transition inside the bracket. Checked, not assumed, by 0.01 N scans of 18.10-18.30 N in the planar and unmodified native models. A variant with no transition in the bracket is reported as such.",
+  "variants": {
+    "planar": {"engine": "planar", "group": "reference", "label": "Planar equations"},
+    "native": {"engine": "native", "group": "reference", "label": "Native contact, as archived"},
+
+    "planar_plus_chassis": {"engine": "planar", "group": "inertia", "planar_body_inertia": 0.0122, "label": "Planar + 0.0002 kg m2 chassis pitch inertia"},
+    "chassis_removed": {"engine": "native", "group": "inertia", "chassis_inertia": 1e-9, "label": "Native, chassis inertia removed"},
+    "torso_compensated": {"engine": "native", "group": "inertia", "torso_pitch_inertia": 0.0118, "label": "Native, torso pitch inertia reduced by 0.0002"},
+    "chassis_doubled": {"engine": "native", "group": "inertia", "chassis_inertia": 0.0004, "label": "Native, chassis inertia doubled"},
+
+    "height_radius": {"engine": "native", "group": "settling", "initial_height_m": 0.045, "label": "Native, start at wheel radius (0.0450 m)"},
+    "height_equilibrium": {"engine": "native", "group": "settling", "initial_height": "measured", "label": "Native, start at measured resting height"},
+    "warmup_2s": {"engine": "native", "group": "settling", "warmup_s": 2.0, "label": "Native, 2 s controlled warm-up before t = 0"},
+    "reset_at_push": {"engine": "native", "group": "settling", "reset_at_push": true, "label": "Native, upright zero-velocity state restored at pulse onset"},
+    "planar_transplant": {"engine": "planar", "group": "settling", "inject_native_state_at_push": true, "label": "Planar, native pulse-onset state injected"},
+
+    "friction_0p5": {"engine": "native", "group": "contact", "friction": 0.5, "label": "Sliding friction 0.5"},
+    "friction_0p75": {"engine": "native", "group": "contact", "friction": 0.75, "label": "Sliding friction 0.75"},
+    "friction_1p5": {"engine": "native", "group": "contact", "friction": 1.5, "label": "Sliding friction 1.5"},
+    "friction_2": {"engine": "native", "group": "contact", "friction": 2.0, "label": "Sliding friction 2.0"},
+    "friction_5": {"engine": "native", "group": "contact", "friction": 5.0, "label": "Sliding friction 5.0"},
+    "stiff_contact": {"engine": "native", "group": "contact", "time_constant_s": 0.002, "label": "Contact time constant 2 ms"},
+    "soft_contact": {"engine": "native", "group": "contact", "time_constant_s": 0.01, "label": "Contact time constant 10 ms"},
+    "hard_impedance": {"engine": "native", "group": "contact", "solimp": "0.99 0.999 0.0001", "label": "Stiffer contact impedance"},
+    "condim_3": {"engine": "native", "group": "contact", "condim": 3, "label": "No torsional friction (condim 3)"},
+    "condim_6": {"engine": "native", "group": "contact", "condim": 6, "label": "Rolling friction enabled (condim 6)"},
+    "pyramidal_cone": {"engine": "native", "group": "contact", "cone": "pyramidal", "label": "Pyramidal friction cone"},
+    "noslip": {"engine": "native", "group": "contact", "noslip_iterations": 20, "label": "No-slip solver pass (20 iterations)"},
+    "rk4_integrator": {"engine": "native", "group": "contact", "integrator": "RK4", "label": "RK4 integrator"},
+
+    "idealised_combined": {"engine": "native", "group": "combined", "torso_pitch_inertia": 0.0118, "initial_height": "measured", "friction": 2.0, "label": "Compensated inertia + resting start + friction 2.0"}
+  },
+  "interpretation": "Each variant changes one declared assumption (the combined variant changes three). A variant that moves the native bracket onto the planar one identifies a sufficient explanation for these two cases only. Nothing is fitted: no variant replaces the archived model, and no parameter is selected because it restores agreement.",
+  "limits": "Illustrative parameters; no hardware. A sub-0.1 N boundary shift is far below any plausible physical calibration uncertainty, so the diagnosis concerns simulator assumptions, not robot behaviour."
+}
