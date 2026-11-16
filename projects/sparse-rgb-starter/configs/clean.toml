@@ -1,0 +1,13 @@
+[synthetic]
+seed = 42
+frames = 120
+fps = 30.0
+noise_px = 0.0
+dropout_probability = 0.0
+
+[baseline]
+confidence_threshold = 0.2
+min_ray_angle_deg = 1.0
+
+[evaluation]
+pck_threshold_m = 0.05

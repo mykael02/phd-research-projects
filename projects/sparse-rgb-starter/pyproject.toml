@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sparse-rgb-research"
+version = "0.1.0"
+description = "A CPU pilot for evaluating sparse-view human joint reconstruction"
+requires-python = ">=3.11"
+dependencies = ["numpy==2.3.5"]
+
+[project.scripts]
+sparse-rgb = "sparse_rgb.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

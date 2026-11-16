@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mykael02/phd-research-projects/schemas/manifest.schema.json",
+  "title": "Sparse RGB sequence manifest v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "sequence_id", "source", "conventions", "joint_names", "bones", "cameras", "observations_file", "ground_truth_file"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "sequence_id": {"type": "string", "minLength": 1},
+    "source": {"enum": ["synthetic", "real"]},
+    "conventions": {
+      "const": {
+        "length_unit": "m",
+        "world_axes": "x_right_y_forward_z_up",
+        "camera_axes": "x_right_y_down_z_forward",
+        "extrinsics": "world_to_camera",
+        "image_coordinates": "uv_pixels",
+        "distortion": "none_rectified"
+      }
+    },
+    "joint_names": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "bones": {
+      "type": "array",
+      "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}}
+    },
+    "cameras": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/camera"}},
+    "observations_file": {"$ref": "#/$defs/path"},
+    "ground_truth_file": {"oneOf": [{"$ref": "#/$defs/path"}, {"type": "null"}]}
+  },
+  "$defs": {
+    "path": {"type": "string", "minLength": 1, "description": "Relative POSIX path inside the dataset directory; runtime also rejects traversal and escaping symlinks."},
+    "row3": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "row4": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}},
+    "camera": {
+      "type": "object", "additionalProperties": false,
+      "required": ["camera_id", "image_size", "intrinsics", "world_to_camera"],
+      "properties": {
+        "camera_id": {"type": "string", "minLength": 1},
+        "image_size": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}, "description": "[width, height] in pixels"},
+        "intrinsics": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/row3"}},
+        "world_to_camera": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/row4"}}
+      }
+    }
+  }
+}
