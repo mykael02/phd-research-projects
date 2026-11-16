@@ -61,7 +61,7 @@ These are pipeline sanity checks, not real-world accuracy claims. With two camer
 | `tests/` | Synthetic numerical, failure-case and end-to-end tests |
 | `docs/dataset.md` | Array schema, camera conventions and real-data adapter requirements |
 | `docs/research-plan.md` | Research questions, next experiments and unimplemented extensions |
-| `.github/workflows/tests.yml` | CPU tests and both pilot commands on Python 3.11 and 3.12 |
+| `../../.github/workflows/tests.yml` | Repository CI (job `sparse-rgb-starter`): CPU tests and both pilot commands on Python 3.11 and 3.12 |
 
 Each pilot creates `dataset/manifest.json`, `dataset/observations.npz`, `dataset/ground_truth.npz`, `predictions.npz`, `metrics.json`, a copy of `config.toml`, and `run.json`. The run record includes resolved config, Python/NumPy versions, source hash, git revision/dirty state when available, and input/output SHA-256 hashes. Identical configs reproduce arrays and metrics in the same environment; timestamps, absolute paths and environment metadata in `run.json` vary. Synthetic datasets are generated on demand; no data or weights are committed.
 

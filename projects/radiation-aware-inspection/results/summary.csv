@@ -1,0 +1,9 @@
+scenario,policy,completed,total_inspections,returned,reason,movement_steps,elapsed_steps,dose,battery_budget,dose_budget,within_budgets
+standard,shortest,3,3,True,all_inspected,32,35,78.195001,80,80,True
+standard,dose_aware,3,3,True,all_inspected,32,35,39.432364,80,80,True
+tight_dose,shortest,0,3,True,no_feasible_next_inspection,0,0,0.0,80,35,True
+tight_dose,dose_aware,1,3,True,no_feasible_next_inspection,24,25,31.101229,80,35,True
+tight_battery,shortest,2,3,True,no_feasible_next_inspection,26,28,71.772291,30,80,True
+tight_battery,dose_aware,1,3,True,no_feasible_next_inspection,24,25,31.101229,30,80,True
+zero_budget,shortest,0,3,True,no_feasible_next_inspection,0,0,0.0,0,0,True
+zero_budget,dose_aware,0,3,True,no_feasible_next_inspection,0,0,0.0,0,0,True

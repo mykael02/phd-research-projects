@@ -1,8 +1,8 @@
 # Robotics PhD research projects
 
 This repository is the starting point for choosing and beginning a robotics PhD
-research focus. It has two parts: provisional topic notes and a small,
-deterministic navigation baseline to experiment with.
+research focus. It holds provisional topic notes in `docs/` and several small,
+runnable starter projects in `projects/`. None of them is a chosen focus.
 
 ## Status: no live literature search has been done
 
@@ -17,6 +17,20 @@ for them. As a result:
 - The live search is recorded as **OUTSTANDING** in
   `docs/literature-search-todo.md`. A topic should not be chosen until that
   search is done.
+
+## Projects
+
+| Project | Question it starts on | Runs on | Status |
+|---|---|---|---|
+| [nav-baseline](projects/nav-baseline/) | Grid A*, seeded RRT and a differential-drive model as a testable navigation base | Python 3.8+, stdlib | D1, D2 built; D3 path tracking deferred |
+| [exit-finding](projects/exit-finding/) | How a robot with only local sensing finds a marked exit in an unknown grid (random walk vs. nearest-frontier) | Python 3.8+, stdlib | First experiment runs |
+| [radiation-aware-inspection](projects/radiation-aware-inspection/) | Planning inspections under battery and radiation-dose budgets (shortest vs. dose-aware routing) | Python 3.8+, stdlib | First experiment runs; novelty unverified |
+| [sparse-rgb-starter](projects/sparse-rgb-starter/) | Human motion from sparse RGB views; currently a 2D-keypoint triangulation and evaluation pipeline | Python 3.11+, numpy | Synthetic pilot runs; RGB detection etc. planned |
+| [simulation-support](projects/simulation-support/) | Shared results/SVG helpers for exit-finding and radiation-aware-inspection | Python 3.8+, stdlib | Library only |
+
+`exit-finding` and `radiation-aware-inspection` import `nav-baseline/gridnav`
+and `simulation-support` by their position under `projects/`; keep these
+folders side by side.
 
 ## Navigation is a provisional starter, not the chosen focus
 
@@ -40,38 +54,50 @@ change that, and no topic has been chosen.
 ## Layout
 
 ```
-README.md                         This file
+README.md                         This file: index of projects
+.github/workflows/tests.yml       CI: runs every project's tests and experiment runners
 docs/
   topic-candidates.md             Provisional robotics topics, each with a hypothesis-labelled gap
   scoring-rubric.md               Weighted criteria for choosing a research focus
   literature-search-todo.md       OUTSTANDING live search: venues, query terms, check per hypothesis
   starter-rationale.md            Why grid A* is the starter, baseline rules, deferred roadmap
+  visualizations/                 Interactive HTML replays of the exit and plant experiments
 projects/
-  nav-baseline/                   Standard-library-only Python 3.8+ baseline
-    gridnav/                      Grid loading, 4-connected A*, BFS reference, validate_path
-    rrtplan/                      D1: seeded RRT in continuous space (rule G)
-    diffdrive/                    D2: unicycle kinematics, limits, disc collision (rule G)
-    maps/                         Hand-made '.'/'#' text maps
-    run_experiments.py            Deterministic experiment report (timing only with --timing)
-    run_rrt_experiments.py        Deterministic D1 RRT report
-    tests/                        unittest suite
-    README.md                     Baseline details
-    RRT.md                        D1 rules and fixed settings
-    DIFFDRIVE.md                  D2 model, rule G, collision-check limitation
+  nav-baseline/                   Grid A*, BFS, D1 seeded RRT, D2 diff-drive (see its README)
+  exit-finding/                   Exploration toward an unknown exit
+  radiation-aware-inspection/     Budgeted inspection missions on a synthetic radiation field
+  sparse-rgb-starter/             Sparse-view triangulation pilot (installable package)
+  simulation-support/             Shared report helpers
 ```
+
+Every project has a `README.md` with its question, how to run it and its current
+results. Small result files (summary CSV and SVG) are committed; full
+`results.json` trajectories and `runs/` outputs are regenerated and ignored.
 
 ## Commands
 
-Run from the repository root (Python 3.8+, no third-party packages):
+Run from the repository root:
 
 ```
+# nav-baseline (Python 3.8+, no third-party packages)
 python -m unittest discover -s projects/nav-baseline/tests -t projects/nav-baseline -v
-python projects/nav-baseline/run_experiments.py
-python projects/nav-baseline/run_experiments.py --timing
+python projects/nav-baseline/run_experiments.py            # add --timing for wall-clock section
 python projects/nav-baseline/run_rrt_experiments.py
+
+# exit-finding and radiation-aware-inspection (Python 3.8+, no third-party packages)
+python -m unittest discover -s projects/exit-finding -p "test_*.py" -v
+python projects/exit-finding/run_experiments.py
+python -m unittest discover -s projects/radiation-aware-inspection -p "test_*.py" -v
+python projects/radiation-aware-inspection/run_experiments.py
+
+# sparse-rgb-starter (Python 3.11+, numpy); run inside its folder
+cd projects/sparse-rgb-starter
+python -m pip install -e .
+python -m unittest discover -s tests -v
+python -m sparse_rgb pilot --config configs/pilot.toml --output runs/pilot
 ```
 
-The first runs the test suite. The second prints the deterministic experiment
-report, which is identical on every run. The third adds a separate wall-clock
-timing section, labelled non-deterministic. The fourth prints the D1 RRT report
-(see `projects/nav-baseline/RRT.md`).
+The nav-baseline experiment report is deterministic and identical on every run;
+`--timing` adds a separate, non-deterministic wall-clock section. The exit and
+plant runners rewrite their `results/` folders; pass `--output PATH` to keep a
+separate run.
